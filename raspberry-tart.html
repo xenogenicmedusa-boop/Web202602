@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Raspberry Tart</title>
+
+<style>
+
+/* =====================
+   Raspberry Tart Design System
+===================== */
+
+:root{
+
+/* Raspberry */
+--raspberry-main:#e21313;
+--raspberry-hover:#ff4d4d;
+--raspberry-soft:#ffe5e5;
+
+/* Cream */
+--cream-bg:#fffafa;
+--cream-soft:#f8e4e4;
+
+/* Chocolate */
+--chocolate-dark:#0c0c0c;
+--chocolate-soft:#424242;
+
+/* Text */
+--text-primary:#2b2b2b;
+--text-light:#ffffff;
+--text-muted:#a3a2a2;
+
+}
+
+/* Reset */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family: "Segoe UI",sans-serif;
+}
+
+body{
+background:var(--cream-bg);
+color:var(--text-primary);
+line-height:1.6;
+}
+
+/* =====================
+   Navbar
+===================== */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+background:white;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+color:var(--raspberry-main);
+}
+
+nav a{
+margin-left:20px;
+text-decoration:none;
+color:var(--text-primary);
+font-weight:500;
+}
+
+nav a:hover{
+color:var(--raspberry-main);
+}
+
+/* =====================
+   Hero Section
+===================== */
+
+.hero{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:80px 60px;
+}
+
+.hero-text{
+max-width:500px;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:20px;
+}
+
+.hero p{
+color:var(--text-muted);
+margin-bottom:30px;
+}
+
+.btn{
+padding:14px 28px;
+border:none;
+border-radius:30px;
+background:var(--raspberry-main);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.btn:hover{
+background:var(--raspberry-hover);
+transform:translateY(-3px);
+}
+
+/* Hero Image */
+.hero img{
+width:420px;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* =====================
+   Products
+===================== */
+
+.products{
+padding:80px 60px;
+background:var(--cream-soft);
+text-align:center;
+}
+
+.products h2{
+font-size:36px;
+margin-bottom:40px;
+}
+
+.card-container{
+display:flex;
+gap:30px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:20px;
+width:260px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card img{
+width:100%;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+/* =====================
+   About
+===================== */
+
+.about{
+padding:80px 60px;
+display:flex;
+gap:60px;
+align-items:center;
+}
+
+.about img{
+width:400px;
+border-radius:20px;
+}
+
+.about-text{
+max-width:500px;
+}
+
+/* =====================
+   Footer
+===================== */
+
+footer{
+background:var(--chocolate-dark);
+color:white;
+text-align:center;
+padding:30px;
+margin-top:60px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+<div class="logo">🍓 Raspberry Tart</div>
+<div>
+<a href="#">Home</a>
+<a href="#">Menu</a>
+<a href="#">About</a>
+<a href="#">Contact</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-text">
+<h1>Sweet Moments with Raspberry Tart</h1>
+<p>
+手作覆盆莓塔，結合法式甜點工藝與新鮮莓果，
+帶來最優雅的甜點體驗。
+</p>
+<button class="btn">Order Now</button>
+</div>
+
+<img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3">
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+<h2>Our Signature</h2>
+
+<div class="card-container">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1505250469679-203ad9ced0cb">
+<h3>Classic Raspberry</h3>
+<p>經典覆盆莓塔</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1488477181946-6428a0291777">
+<h3>Berry Cream Tart</h3>
+<p>莓果奶油塔</p>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1551024709-8f23befc6b17">
+<h3>Chocolate Raspberry</h3>
+<p>巧克力覆盆莓</p>
+</div>
+
+</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+<img src="https://images.unsplash.com/photo-1514517220031-7d2bbf5c89c4">
+
+<div class="about-text">
+<h2>About Us</h2>
+<p>
+Raspberry Tart 專注於手工甜點，
+使用天然食材與低糖配方，
+讓甜點不只是甜，而是一種生活美學。
+</p>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<p>© 2026 Raspberry Tart Bakery</p>
+</footer>
+
+</body>
+</html>

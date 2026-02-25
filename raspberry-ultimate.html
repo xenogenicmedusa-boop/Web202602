@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Raspberry Tart Ultimate</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =============================
+   DESIGN TOKENS (Pro Method)
+============================= */
+
+:root{
+--raspberry:#e21313;
+--raspberry-light:#ff6b6b;
+--cream:#fffafa;
+--glass:rgba(255,255,255,.6);
+--text:#2b2b2b;
+--dark:#0c0c0c;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:var(--cream);
+color:var(--text);
+overflow-x:hidden;
+}
+
+/* =============================
+   NAVBAR GLASS
+============================= */
+
+nav{
+position:fixed;
+width:100%;
+display:flex;
+justify-content:space-between;
+padding:20px 60px;
+backdrop-filter:blur(20px);
+background:var(--glass);
+z-index:1000;
+}
+
+.logo{
+font-weight:700;
+color:var(--raspberry);
+}
+
+/* =============================
+   HERO PARALLAX
+============================= */
+
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+text-align:center;
+}
+
+.hero h1{
+font-size:64px;
+margin-bottom:20px;
+opacity:0;
+transform:translateY(60px);
+transition:1s;
+}
+
+.hero.show h1{
+opacity:1;
+transform:translateY(0);
+}
+
+.hero img{
+width:420px;
+border-radius:30px;
+animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+}
+
+/* =============================
+   PARALLAX SECTION
+============================= */
+
+.parallax{
+height:80vh;
+background:url("https://images.unsplash.com/photo-1505250469679-203ad9ced0cb") center/cover fixed;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-size:40px;
+font-weight:bold;
+}
+
+/* =============================
+   REVEAL SECTIONS
+============================= */
+
+.section{
+padding:120px 60px;
+text-align:center;
+opacity:0;
+transform:translateY(80px);
+transition:1s;
+}
+
+.section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* Cards */
+
+.cards{
+display:flex;
+gap:30px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.card{
+width:260px;
+padding:25px;
+border-radius:20px;
+background:var(--glass);
+backdrop-filter:blur(15px);
+box-shadow:0 15px 40px rgba(0,0,0,.1);
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-15px) scale(1.03);
+}
+
+/* =============================
+   FOOTER
+============================= */
+
+footer{
+background:var(--dark);
+color:white;
+text-align:center;
+padding:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">🍓 Raspberry Tart</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+<h1>Raspberry Tart Experience</h1>
+<img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3">
+</section>
+
+<!-- PARALLAX -->
+<section class="parallax">
+Fresh. Elegant. Sweet.
+</section>
+
+<!-- MENU -->
+<section class="section reveal">
+<h2>Signature Collection</h2>
+
+<div class="cards">
+
+<div class="card">Classic Raspberry</div>
+<div class="card">Berry Cream</div>
+<div class="card">Chocolate Raspberry</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="section reveal">
+<h2>Crafted with Passion</h2>
+<p>我們將甜點變成藝術與體驗。</p>
+</section>
+
+<footer>
+© Raspberry Tart Ultimate
+</footer>
+
+<script>
+
+/* HERO LOAD ANIMATION */
+window.addEventListener("load",()=>{
+document.querySelector("#hero").classList.add("show");
+});
+
+/* SCROLL REVEAL */
+const reveals=document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll",()=>{
+
+reveals.forEach(sec=>{
+const top=sec.getBoundingClientRect().top;
+if(top<window.innerHeight-100){
+sec.classList.add("show");
+}
+});
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Raspberry Tart Pro</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   DESIGN SYSTEM
+========================= */
+
+:root{
+
+--raspberry:#e21313;
+--raspberry-light:#ff4d4d;
+
+--cream:#fffafa;
+--cream-soft:#f8e4e4;
+
+--dark:#0c0c0c;
+--dark-soft:#424242;
+
+--text:#2b2b2b;
+--white:#ffffff;
+
+}
+
+/* Dark Mode */
+body.dark{
+--cream:#0f0f0f;
+--cream-soft:#1a1a1a;
+--text:#ffffff;
+}
+
+/* Reset */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:var(--cream);
+color:var(--text);
+transition:0.4s;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+position:fixed;
+width:100%;
+top:0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+backdrop-filter:blur(15px);
+background:rgba(255,255,255,0.6);
+z-index:100;
+}
+
+body.dark nav{
+background:rgba(0,0,0,0.5);
+}
+
+.logo{
+font-size:22px;
+font-weight:700;
+color:var(--raspberry);
+}
+
+nav a{
+margin-left:25px;
+text-decoration:none;
+color:var(--text);
+font-weight:500;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:60px;
+padding:80px;
+}
+
+.hero-text{
+max-width:500px;
+animation:fadeUp 1s ease;
+}
+
+.hero h1{
+font-size:52px;
+margin-bottom:20px;
+}
+
+.hero p{
+opacity:.7;
+margin-bottom:30px;
+}
+
+.btn{
+padding:14px 30px;
+border-radius:40px;
+border:none;
+background:var(--raspberry);
+color:white;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+transform:translateY(-4px);
+background:var(--raspberry-light);
+}
+
+.hero img{
+width:420px;
+border-radius:25px;
+box-shadow:0 30px 60px rgba(0,0,0,.15);
+animation:float 4s ease-in-out infinite;
+}
+
+/* =========================
+   GLASS CARDS
+========================= */
+
+.section{
+padding:120px 60px;
+text-align:center;
+}
+
+.cards{
+display:flex;
+gap:30px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.card{
+width:260px;
+padding:25px;
+border-radius:20px;
+backdrop-filter:blur(20px);
+background:rgba(255,255,255,.5);
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+transition:.4s;
+}
+
+body.dark .card{
+background:rgba(255,255,255,.08);
+}
+
+.card:hover{
+transform:translateY(-12px);
+}
+
+.card img{
+width:100%;
+border-radius:15px;
+margin-bottom:15px;
+}
+
+/* =========================
+   ABOUT SPLIT
+========================= */
+
+.about{
+display:flex;
+align-items:center;
+gap:60px;
+padding:120px 60px;
+flex-wrap:wrap;
+}
+
+.about img{
+width:420px;
+border-radius:20px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+background:var(--dark);
+color:white;
+text-align:center;
+padding:40px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(40px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+}
+
+/* =========================
+   MOBILE RWD
+========================= */
+
+@media(max-width:900px){
+
+.hero{
+flex-direction:column;
+text-align:center;
+}
+
+.hero img{
+width:80%;
+}
+
+.about{
+flex-direction:column;
+}
+
+nav{
+padding:20px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">🍓 Raspberry Tart</div>
+<div>
+<a href="#">Home</a>
+<a href="#">Menu</a>
+<a href="#">About</a>
+<button class="btn" onclick="toggleDark()">Dark</button>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-text">
+<h1>Luxury Raspberry Experience</h1>
+<p>
+手作甜點 × 現代美學  
+打造最優雅的覆盆莓塔品牌。
+</p>
+<button class="btn">Order Dessert</button>
+</div>
+
+<img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3">
+</section>
+
+<!-- MENU -->
+<section class="section">
+<h2>Signature Tart</h2>
+
+<div class="cards">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1505250469679-203ad9ced0cb">
+<h3>Classic</h3>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1488477181946-6428a0291777">
+<h3>Berry Cream</h3>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1551024709-8f23befc6b17">
+<h3>Chocolate Berry</h3>
+</div>
+
+</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+
+<img src="https://images.unsplash.com/photo-1514517220031-7d2bbf5c89c4">
+
+<div>
+<h2>Our Story</h2>
+<p>
+Raspberry Tart 將甜點視為藝術，
+每一顆覆盆莓都來自最純粹的風味。
+</p>
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 Raspberry Tart Studio</p>
+</footer>
+
+<script>
+
+function toggleDark(){
+document.body.classList.toggle("dark");
+}
+
+</script>
+
+</body>
+</html>
