@@ -3,20 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>春節風格練習-自練</title>
+    <title>春節商業風格練習</title>
 
     <!-- 字體 -->
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
         /* ====== 全域設定 ====== */
         body{
-            
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #f8e8c8, #f5d7a1);
+            font-family: "Noto Sans TC", sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* ====== 主卡片 ====== */
+        .box01{
+            width: 420px;
+            height: 420px;
+
+            background: linear-gradient(135deg, #b30000, #d62828, #ffb703);
+
+            padding: 60px;
+            box-sizing: border-box;
+
+            border-radius: 22px;
+
+            box-shadow: 
+                0 20px 40px rgba(179, 0, 0, 0.35),
+                inset 0 0 20px rgba(255, 215, 0, 0.5);
+
+            color: #fff8e7;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.8;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+
+            position: relative;
+            overflow: hidden;
+
+            transition: all 0.5s ease;
+        }
+
+        /* ====== 金色光澤效果 ====== */
+        .box01::before{
+            content: "";
+            position: absolute;
+            top: -60%;
+            left: -60%;
+            width: 220%;
+            height: 220%;
+
+            background: linear-gradient(
+                120deg,
+                rgba(255,255,255,0.1) 0%,
+                rgba(255,255,255,0.45) 50%,
+                rgba(255,255,255,0.1) 100%
+            );
+
+            transform: rotate(25deg);
+            transition: 0.8s;
+        }
+
+        .box01:hover::before{
+            transform: rotate(25deg) translateX(25%);
+        }
+
+        /* ====== Hover 效果 ====== */
+        .box01:hover{
+            background: linear-gradient(135deg, #8b0000, #c1121f, #ffd60a);
+
+            transform: translateY(-10px) scale(1.03);
+
+            box-shadow: 
+                0 30px 60px rgba(139, 0, 0, 0.5),
+                inset 0 0 30px rgba(255, 223, 0, 0.6);
+
+            letter-spacing: 3px;
+        }
+
+        /* ====== 文字標題強化 ====== */
+        .title{
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        /* ====== 按鈕設計（商業感提升） ====== */
+        .btn{
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 28px;
+
+            background: linear-gradient(90deg, #ffd60a, #ffea00);
+            color: #8b0000;
+
+            font-weight: 900;
+            border-radius: 50px;
+            text-decoration: none;
+
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover{
+            background: linear-gradient(90deg, #fff176, #ffd60a);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.3);
         }
 
     </style>
 </head>
+
 <body>
-    
+
+    <div class="box01">
+        <div class="title">新春限時優惠</div>
+
+        <p>
+            你的團體隨時得知最新活動資訊，春節限定優惠全面開跑，
+            完整活動內容立即查看，把握財運好時機！
+        </p>
+
+        <a href="#" class="btn">立即參加</a>
+    </div>
+
 </body>
 </html>
