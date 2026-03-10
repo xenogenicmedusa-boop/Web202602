@@ -1,0 +1,111 @@
+/* 迷幻霧景(Foggy Landscapes) */
+:root {
+
+    /* --- [基礎霧底層 - Mist Layers] --- */
+    --fog-01: #ece4e2;
+    /* 原 mycolor01 */
+    --fog-02: #f2ebe9;
+    --fog-03: #e5ddd0;
+    --fog-04: #d8d0c1;
+    --fog-05: #fcd3d1;
+    /* 原 mycolor02 */
+    --fog-06: #fcdff3;
+    /* 原 mycolor03 */
+    --fog-07: #f5e6f0;
+    --fog-08: #e8d9e5;
+
+    /* --- [迷幻光暈層 - Psychedelic Glows] --- */
+    --glow-sun: #fe929f;
+    /* 原 mycolor04 */
+    --glow-pink: #ffb1bb;
+    --glow-lavender: #d1d6fb;
+    /* 新增：冷調幻光 */
+    --glow-mint: #d1fbe5;
+    /* 新增：薄荷霧光 */
+    --glow-amber: #e4d6bd;
+    /* 原 shadow01 */
+    --glow-soft-gold: #f4e4bc;
+
+    /* --- [中景植物與地景 - Mid-ground] --- */
+    --land-gold: #b78338;
+    /* 原 textcolor01 */
+    --land-ochre: #cf9a4e;
+    --land-brown: #915c4c;
+    /* 原 textcolor02 */
+    --land-clay: #a67365;
+    --land-teal: #40686a;
+    /* 原 textcolor03 */
+    --land-moss: #5a7d7f;
+    --land-sand: #a88661;
+    /* 原 shadow02 */
+
+    /* --- [深景與陰影 - Deep Silhouettes] --- */
+    --void-brown: #2f1812;
+    /* 原 textcolor04 */
+    --void-bark: #4a2d26;
+    --void-slate: #504e63;
+    /* 原 shadow03 */
+    --void-dusk: #3a384d;
+    --void-deep: #00142f;
+    /* 原 shadow04 */
+    --void-night: #0a1b33;
+
+    /* --- [UI 輔助色 - Functional Mist] --- */
+    --ui-border: rgba(145, 92, 76, 0.2);
+    --ui-glass: rgba(236, 228, 226, 0.4);
+    --ui-highlight: #ffffff;
+
+    /* 文字相關 */
+    --text-shadow01:  rgba(180, 200, 255, 0.35);
+    --text-shadow02:  rgba(200, 180, 255, 0.25);
+    --text-shadow03:  rgba(160, 210, 255, 0.2);
+    --text-shadow04:  rgba(0, 0, 0, 0.4),
+         rgba(170, 190, 255, 0.35);
+
+    --text-shadow05: rgba(0, 0, 0, 0.45),
+        rgba(200, 160, 255, 0.3);
+    --text-shadow06: rgba(0, 0, 0, 0.6),
+        rgba(150, 200, 255, 0.45);
+
+    --text-shadow07: rgba(0, 0, 0, 0.7),
+        rgba(190, 170, 255, 0.4);
+
+    --text-shadow08: rgba(170, 210, 255, 0.35);
+    --text-shadow-psy:
+         rgba(0, 0, 0, 0.5),
+         rgba(120, 180, 255, 0.35),
+         rgba(200, 140, 255, 0.25);
+
+    --text-fog01: #e8f1f2;
+    /* 霧白藍 Mist White Blue */
+    --text-fog02: #dbe7ff;
+    /* 霧藍 Lavender Mist */
+    --text-fog03: #cddafd;
+    /* 霧紫藍 Dreamy Periwinkle */
+    --text-fog04: #bfc7e6;
+    /* 迷霧灰紫 Foggy Iris */
+    --text-fog05: #aebfd6;
+    /* 霧藍灰 Blue Fog */
+    --text-fog06: #9fb8b3;
+    /* 霧綠青 Misty Teal */
+    --text-fog07: #c7b8d6;
+    /* 霧薰衣草 Lavender Haze */
+    --text-fog08: #b5a9c9;
+    /* 霧紫灰 Smoky Amethyst */
+    --text-fog09: #d6cfdc;
+    /* 霧粉灰 Dusty Mauve */
+    --text-fog10: #f3f0ff;
+    /* 月霧白 Moonlit Fog */
+
+
+
+}
+body{
+    margin: 0;
+    font-family: arial;}
+    .menu-btn{
+        font-size: 30px;
+        cursor: pointer;
+        display: none;
+    }
+    

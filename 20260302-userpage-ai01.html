@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xusan｜個人履歷首頁</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== 極光設計師感配色 ===== */
+        :root {
+            --fog-01: linear-gradient(135deg, #021b1b, #043d3d, #065f46, #0d9488, #14b8a6);
+            --land-teal: rgba(16, 185, 129, 0.7);
+            --land-gold: rgba(0, 255, 170, 0.15);
+            --void-brown: rgba(0, 255, 200, 0.6);
+            --void-night: #e6fffb;
+            --void-deep: #ecfeff;
+            --ui-glass: rgba(0, 255, 200, 0.4);
+            --text-shadow08: rgba(0, 40, 40, 0.65);
+        }
+
+        body {
+            margin: 0;
+            font-family: "Chiron GoRound TC", sans-serif;
+            background: #021b1b;
+            color: var(--void-night);
+            line-height: 1.8;
+        }
+
+        /* ===== 首頁區塊 ===== */
+        .section01 {
+            background: var(--fog-01);
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box01,
+        .box02,
+        .box03,
+        .box04 {
+            width: 150px;
+            height: 150px;
+            background-color: var(--land-teal);
+            position: absolute;
+            backdrop-filter: blur(8px);
+        }
+
+        .box01 {
+            top: 0;
+            left: 0;
+            box-shadow: -2px -2px 15px var(--void-brown);
+        }
+
+        .box02 {
+            top: 0;
+            right: 0;
+            box-shadow: 2px -2px 15px var(--void-brown);
+        }
+
+        .box03 {
+            bottom: 0;
+            left: 0;
+            box-shadow: -2px 2px 15px var(--void-brown);
+        }
+
+        .box04 {
+            bottom: 0;
+            right: 0;
+            box-shadow: 2px 2px 15px var(--void-brown);
+        }
+
+        .user_img {
+            position: absolute;
+            top: 30px;
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+            background-image: url(images/chuotanhls-beauty-7089300_1280.jpg);
+            background-position: center;
+            background-size: cover;
+            border-radius: 15px;
+            box-shadow: 0 0 40px var(--ui-glass);
+            background-attachment: fixed;
+            transition: 1s;
+        }
+
+        .user_img:hover {
+            transform: scale(1.03);
+        }
+
+        .user_text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--text-shadow08);
+            backdrop-filter: blur(12px);
+            padding: 30px 50px;
+            border-radius: 20px;
+            text-align: center;
+            color: var(--void-deep);
+            box-shadow: 0 0 25px var(--ui-glass);
+        }
+
+        .user_text h1 {
+            font-size: 55px;
+            margin: 0;
+            letter-spacing: 3px;
+        }
+
+        .user_text h2 {
+            margin: 10px 0;
+            font-weight: 400;
+        }
+
+        .user_text p {
+            margin: 0;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        hr {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 60%;
+        }
+
+        /* ===== 自我介紹 ===== */
+        .intro {
+            padding: 80px 15%;
+            background: linear-gradient(180deg, #022c22, #021b1b);
+            font-size: 20px;
+        }
+
+        /* ===== 作品集區塊 ===== */
+        .section02 {
+            position: relative;
+            height: 420px;
+            margin-top: 50px;
+        }
+
+        .section02_box01,
+        .section02_box02,
+        .section02_box03 {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            line-height: 320px;
+            transition: 0.5s;
+            box-shadow: 0 0 30px rgba(0, 255, 200, 0.4);
+        }
+
+        .section02_box01 {
+            left: 5%;
+            background-image: url(images/cat01.jpg);
+        }
+
+        .section02_box02 {
+            left: 35%;
+            background-image: url(images/cat02.avif);
+        }
+
+        .section02_box03 {
+            left: 65%;
+            background-image: url(images/cat03.avif);
+        }
+
+        .section02_box01:hover,
+        .section02_box02:hover,
+        .section02_box03:hover {
+            transform: scale(1.08);
+        }
+
+        .section02 a {
+            text-decoration: none;
+            color: white;
+            font-size: 24px;
+            font-weight: 500;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="section01">
+        <div class="box01"></div>
+        <div class="box02"></div>
+        <div class="box03"></div>
+        <div class="box04"></div>
+
+        <div class="user_img"></div>
+
+        <div class="user_text">
+            <h1>XUSAN</h1>
+            <hr>
+            <h2>Front-End Developer</h2>
+            <p>Design-driven Developer｜專注於使用者體驗與視覺整合</p>
+        </div>
+    </div>
+
+    <div class="intro">
+        您好，我是 Xusan，一名專注於前端開發與設計整合的工程師。<br><br>
+
+        熟悉 HTML、CSS、JavaScript，並具備 React / Vue 專案開發經驗。
+        擅長打造兼具視覺設計與技術架構的高品質網頁應用。<br><br>
+
+        專長領域包含：<br>
+        ・RWD 響應式設計<br>
+        ・跨瀏覽器相容性優化<br>
+        ・RESTful API 串接<br>
+        ・前端效能優化與模組化架構<br><br>
+
+        我重視設計語言與品牌一致性，追求細節與流暢度，
+        期望透過設計與技術整合，創造具有溫度與深度的數位體驗。
+    </div>
+
+    <div class="section02">
+        <div class="section02_box01">
+            <a href="#" target="_blank">品牌形象網站</a>
+        </div>
+        <div class="section02_box02">
+            <a href="#" target="_blank">互動式前端專案</a>
+        </div>
+        <div class="section02_box03">
+            <a href="#" target="_blank">API 串接實務應用</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

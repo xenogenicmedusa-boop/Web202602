@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap文字&圖片</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss03-ai.css">
+
+    <style>
+        .container {
+            background-color: var(--ui-highlight);
+            margin-top: 15px;
+            margin-left: 15px;
+            padding-bottom: 5px;
+        }
+
+        .container h1 {
+            margin: 0px auto;
+        }
+
+        .box01 {
+            width: 100%;
+            border: 2px solid var(--land-clay);
+            padding: 24px;
+            margin: 24px;
+            box-shadow: 2px 2px 4px 2px var(--ui-border);
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Ch3. Bootstrap 文字相關 & Ch4. 圖片相關</h1>
+
+        <h1>1. 字型大小 h1 ~h5</h1>
+        <div class="box01">
+            <h1>世界盃導航投資者一定旁邊，特。</h1>
+            <h2>世界盃導航投資者一定旁邊，特。</h2>
+            <h3>世界盃導航投資者一定旁邊，特。</h3>
+            <h4>世界盃導航投資者一定旁邊，特。</h4>
+            <h5>世界盃導航投資者一定旁邊，特。</h5>
+        </div>
+        <h1>class="h1" ~ class="h5"</h1>
+        <div class="box01">
+            <div class="h1">世界盃導航投資者一定旁邊，特。</div>
+            <div class="h2">世界盃導航投資者一定旁邊，特。</div>
+            <div class="h3">世界盃導航投資者一定旁邊，特。</div>
+            <div class="h4">世界盃導航投資者一定旁邊，特。</div>
+            <div class="h5">世界盃導航投資者一定旁邊，特。</div>
+        </div>
+
+        <h1>2. display-1~display-6</h1>
+        <div class="box01">
+            <div class="display-1">這是一個大標題</div>
+            <div class="display-2">這是一個大標題</div>
+            <div class="display-3">這是一個大標題</div>
+            <div class="display-4">這是一個大標題</div>
+            <div class="display-5">這是一個大標題</div>
+            <div class="display-6">這是一個大標題</div>
+        </div>
+        <h1>3. 文本元素</h1>
+        <div class="box01">
+            <p>各級超級，原來費用，積分中央。<mark>各級超級，原來費用，積分中央。</mark></p>
+            <p>各級超級，原來費用，積分中央。<del>各級超級，原來費用，積分中央。</del></p>
+            <p>各級超級，原來費用，積分中央。<s>各級超級，原來費用，積分中央。</s></p>
+            <p>各級超級，原來費用，積分中央。<ins>各級超級，原來費用，積分中央。</ins></p>
+            <p>各級超級，原來費用，積分中央。<u>各級超級，原來費用，積分中央。</u></p>
+            <p>各級超級，原來費用，積分中央。<small>各級超級，原來費用，積分中央。</small></p>
+            <p>各級超級，原來費用，積分中央。<strong>各級超級，原來費用，積分中央。</strong></p>
+            <p>各級超級，原來費用，積分中央。<em>各級超級，原來費用，積分中央。</em></p>
+        </div>
+        <h1>4. text-start, text-center, text-end</h1>
+        <div class="box01">
+            <div class="text-start">檔案公里，圖片電池只不過，皇。</div>
+            <div class="text-center">檔案公里，圖片電池只不過，皇。</div>
+            <div class="text-end">檔案公里，圖片電池只不過，皇。</div>
+        </div>
+        <h1>5. list-unstyled</h1>
+        <div class="box01">
+            <ul class="list-unstyled">
+                <li>選單項目001</li>
+                <li>選單項目002</li>
+                <ul>
+                    <li>選單項目002-1</li>
+                    <li>選單項目002-2</li>
+                    <li>選單項目002-3</li>
+                </ul>
+                <li>選單項目003</li>
+                <li>選單項目004</li>
+                <li>選單項目005</li>
+            </ul>
+        </div>
+        <h1>6. list-inline</h1>
+        <div class="box01">
+            <ul class="list-inline">
+                <li class="list-inline-item">選單01</li>
+                <li class="list-inline-item">選單02</li>
+                <li class="list-inline-item">選單03</li>
+                <li class="list-inline-item">選單04</li>
+            </ul>
+        </div>
+        <h1>7. text truncation</h1>
+        <div class="box01">
+            <p class="text-truncate">
+                緊緊這時預覽，農民數量開發商差距國有百姓演唱享受，航空令人行情老公常常預防記住接下來知道加盟轉換，構成我只求助取得反覆中文，均為轉移原因不大幻想一條衝擊專題歌曲，上一頁一些緊張任務真實機票球隊繼續重量，減肥最高還沒有魔法天地調查提出了，大會不能西方措施做法狀況，檢驗辦法證據透露走出感染告訴我我有宣傳下載，吸引年度貼布產生主體命令保障灌水上漲，然後都要每日畢業三人批評失望詳細日常安徽，是的回去，房。
+            </p>
+        </div>
+        <h1>8. float-start, float-end</h1>
+        <div class="box01">
+            <img src="images/paris01.jpg" width="150px" class="float-start">
+            <p>爭取人體是我，手指國務院處於難道新竹詳細內容，成果顧客阿摩斯比例打造下載地址我覺得，等方面它們那天說了姑娘深入某些，自由一定會也沒團結開始性能指揮真正自從，生成無法整理魔獸困難銷售特性隨意，治療有個增長就有服裝終於，抽菸區平方米周圍難得鍵盤複製不大我還永遠，起點活動招生行政，感興趣工程師是我你有家裡排行榜文字其中缺乏盯着，維修輕輕工資可用天堂依法權威變化所有，說明網際網路室內模式交給聯盟，每日本。
+            </p>
+        </div>
+        <div class="box01">
+            <img src="images/paris01.jpg" width="150px" alt="" class="float-end">
+            <p>一會文件大小信譽符合但他本網站做到我想，第一個不敢國際工程師一絲不代表草魚現代化便是改造，引導熱情，經理方式怎麼辦右鍵透明無派，降價取消鬱悶充分夫妻身後大量，日記出售令人，距離一個典型就好也在一會兒，成長合理大量建材人數那就演出沒想到為你，需求接着別的採購特性路線機票訂單統計需要矛盾嘉義，至於上門避免正常一流小心，基層組成允許各級頁面記住烏日實用，主營主持用於具備一直，肯定那天，甚至自行你自己給。
+            </p>
+        </div>
+        <h1>9. img-fluid</h1>
+        <div class="box01">
+            <img src="images/water01.jpg" width="100%">
+            <hr>
+            <img src="images/water01.jpg" class="img-fluid" alt="">
+        </div>
+
+        <h1>9. img-thumbnail</h1>
+        <div class="box01">
+            <img src="images/water01.jpg" class="img-fluid img-thumbnail">
+        </div>
+
+        <h1>10. 圖片置中 d-block mx-auto</h1>
+        <div class="box01">
+            <img src="images/paris02.jpg" width="200px" class="d-block mx-auto">
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

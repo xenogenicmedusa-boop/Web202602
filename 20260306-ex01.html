@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排版練習</title>
+    <link rel="stylesheet" href="css/mycss03-ai.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bpmf+Huninn&family=Chiron+GoRound+TC:wght@200..900&family=Chocolate+Classical+Sans&family=LXGW+WenKai+Mono+TC&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+                      
+        }
+
+        .wrapper {
+            width: 1024px;
+            margin-top: 30px;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 4px 4px 8px 4px var(--void-brown);
+        }
+
+        .logo {
+            background-image: url(images/galaxy02.jpg);
+            height: 220px;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        .header nav {
+            background-color: var(--land-brown);
+            text-align: center;
+            margin-top: 2px;
+        }
+
+        .header nav ul {
+            display: inline-block;
+        }
+
+        .header nav ul li {
+            float: left;
+            list-style-type: none;
+        }
+
+        .header nav ul li a {
+            display: block;
+            /* padding: 上下 左右; */
+            padding: 15px 20px;
+            background-color: var(--land-gold);
+            text-decoration: solid;
+            color: var(--fog-01);
+            font-size: 24px;
+            font-weight: 900;
+            margin-right: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 4px 2px var(--void-brown);
+            transition: transform 0.7s;
+            font-family: "Chocolate Classical Sans", sans-serif;
+        }
+
+        .header nav ul li a:hover {
+            color: var(--glow-mint);
+            box-shadow: 5px -5px 12px 2px var(--glow-soft-gold);
+            transform: scale(1.02);
+            rotate: (-5deg);
+        }
+
+        .content_in {
+            padding: 30px 50px;
+            text-align: justify;
+            background-color: var(--text-shadow02);
+        }
+
+        .content_in h1 {
+            color: var(--void-brown);
+            margin-bottom: 10px;
+            text-align: center;
+            font-family: "LXGW WenKai Mono TC", monospace;
+        }
+
+        .content_in p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            line-height: 2rem;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .content_in a {
+            display: block;
+            width: 130px;
+            height: 40px;
+            text-align: center;
+            margin: 0 auto;
+            background-color: var(--fog-08);
+            color: var(--void-bark);
+            line-height: 40px;
+            text-decoration: none;
+            font-weight: 900;
+            box-shadow: 2px 2px 4px 2px var(--void-brown);
+            font-family: "Chiron GoRound TC", sans-serif;
+        }
+
+        .content_in a:hover {
+            color: var(--void-night);
+            box-shadow: 5px -5px 12px 2px var(--glow-soft-gold);
+            transform: scale(1.02);
+            rotate: (-5deg);
+        }
+
+        .footer {
+            background-color: var(--void-dusk);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            font-size: 16px;
+            padding: 10px 0px;
+            color: var(--ui-highlight);
+        }
+        .sidebar{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            background-color: var(--land-moss);
+            padding-top: 20px;
+        }
+        .sidebar h2{
+            color: var(--glow-soft-gold);
+            text-align: center;
+        }
+        .sidebar a{
+            display: block;
+            color: var(--void-dusk);
+            padding: 12px;
+            text-decoration: none;
+        }
+        .sidebar a:hover{
+            background-color: var(--glow-pink);
+        }
+
+        /* 手持裝置最大768px，平板最大1024px，桌機最大1440px */
+        /* 針對手持裝置進行的設定如下 */
+        @media screen and (max-width: 768px) {
+            .wrapper {
+                width: 100%;
+            }
+
+            .header nav {
+                background-color: var(--land-clay);
+            }
+
+            .header nav ul {
+                display: block;
+                padding-top: 5px;
+                padding-bottom: 5px;
+
+            }
+
+            .header nav ul li {
+                float: none;
+            }
+
+            .header nav ul li a {
+                display: block;
+                /* padding: 上下 左右; */
+                padding: 10px 15px;
+                background-color: var(--land-gold);
+
+
+                font-size: 20px;
+                font-weight: 700;
+                margin-right: 0px;
+                border-radius: 5px;
+                transition: transform 0.5s;
+                font-family: "Chocolate Classical Sans", sans-serif;
+            }
+
+            .header nav ul li a:hover {
+                transform: scale(1.01);
+            }
+
+            .content_in {
+                padding: 15px 30px;
+                text-align: justify;
+                background-color: var(--text-shadow02);
+            }
+
+            .content_in h1 {
+                color: var(--void-brown);
+                margin-bottom: 5px;
+                text-align: center;
+                font-family: "LXGW WenKai Mono TC", monospace;
+                font-size: 30px;
+            }
+
+            .content_in p {
+                font-size: 15px;
+                margin-bottom: 15px;
+
+                line-height: 1rem;
+                font-family: "Roboto", sans-serif;
+            }
+
+            .content_in a {
+                display: block;
+                width: 100px;
+                height: 30px;
+                line-height: 30px;
+                font-weight: 700;
+            }
+
+            .content_in a:hover {
+                transform: scale(1.01);
+                rotate: (-3deg);
+            }
+            .menu-btn{
+                display: block;
+            }
+            .sidebar{
+                left: -200px;
+                transition: 0.3s;
+            }
+            .sidebar.show{
+                left: 0;
+            }
+           
+        }
+        .sidebar{
+        width: 100px;
+        height: 100%;
+        background-color: var(--land-moss);
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding-top: 20px;
+    }
+    .sidebar a{
+        display: block;
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+    }
+    .sidebar a:hover{
+        background-color: var(--land-teal);
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="logo"> </div>
+            <!-- nav>ul>li*5>a -->
+            <nav>
+                <ul>
+                    <li><a href="#">首頁</a></li>
+                    <li><a href="#">最新消息</a></li>
+                    <li><a href="#">合作店家</a></li>
+                    <li><a href="#">關於我們</a></li>
+                    <li><a href="#">聯絡我們</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="content_in">
+                <h1>歡迎光臨</h1>
+                <p>歡迎您，共享版反饋，看法開通休息開發商一切暴力網頁課程規模國際，之處連續自信出台天然所謂計劃描述從事，二人可惜主題部門結果協會唱片放心有點遠報紙整合垃圾，鑒定失敗參數轉移基本上，吸引監督對手身邊顯示為止章節聊天指標電影服務費用，類型古代老人計算機出現在發。
+                </p>
+                <p>努力禮品成績成人機關溫暖危險，報價打擊第二次後悔媒體不行採用減肥不怕無疑笑容，結婚不斷對她進度二級運行優惠治理他們的環保錯誤，為何經典我覺得賓館材料充滿評論，毫不漸漸高中突出反正女士共同口氣嘿嘿靜靜具備手指金錢，夫妻印象經理支持屬性較高違反，我愛垃圾，點。
+                </p>
+                <p>原始碼攝影真正東京最為房間做什麼，前往學科民族動漫否則版本有限責任公司神經案件標誌，居住拍攝留言力道污染給我們執法要求大大解決，便宜哪裡沒有什麼更新時間有一種受到上路類型可以功能鮮花神經，沒事論文工程優秀一步為何住宅律師觀察僅僅今天追求富岡貢獻網頁，歡迎。
+                </p>
+                <a href="#">了解更多</a>
+            </div>
+        </div>
+        <div class="footer">
+            <p>智慧生成全端程式與跨平台APP整合實務班版權所有 2026</p>
+        </div>
+    </div>
+    
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div id="sidebar" class="sidebar">
+        <h2>選單</h2>
+        <a href="#">公司簡介</a>
+            <a href="#">產品介紹</a>
+            <a href="#">服務項目</a>
+            <a href="#">聯絡我們</a>
+    </div>
+    <script>
+        function toggleMenu(){
+            document.getElementById("sidebar").classList.toggle("show");
+        }
+    </script>
+</body>
+
+</html>
