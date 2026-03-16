@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CH.5 Table</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss03-ai.css">
+    <style>
+        /* 基礎防錯設定 */
+        *{
+            box-sizing: border-box;
+        }
+/* 確保圖片在任何情況下都不會超出格子 */
+        .table-rwd img {
+            max-width: 120px;/* 手機版建議縮小圖片 */
+            height: auto;
+        }
+
+        @media screen and (max-width: 768px) {
+
+            /* 1. 隱藏表頭 */
+            .table-rwd thead {
+                display: none;
+            }
+
+            /* 2. 讓每一行變成獨立卡片 */
+            .table-rwd tbody tr {
+                display: block;
+                margin-bottom: 1.5rem;
+                border: 2px solid #dee2e6;
+                overflow: hidden;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                background-color: #fff;
+            }
+
+            /* 3. 讓每個單元格垂直排列 */
+            .table-rwd tbody tr td {
+                display: block;
+                width: 100%;
+                padding: 10px 10px;
+                border: none;
+                border-bottom: 1px solid #eee;
+                overflow: hidden;
+                /* 清除浮動 */
+
+            }
+/* 每一行中的最後一個單元格 */
+            .table-rwd tbody tr td:last-child {
+                border-bottom: none; /*將底部的邊框線消除*/
+            }
+
+            /* 4. 製作偽元素標題 */
+            .table-rwd tbody tr td::before {
+                content: attr(data-th) " : ";
+
+                color: #495057;
+                display: block;
+                float: left;
+                width: 35%;
+                /* 給予標題適當寬度 */
+                text-align: right;
+                padding-right: 15px;
+            }
+
+            .table-rwd tbody tr td span {
+                display: block;
+                float: left;
+                width: 65%;
+                word-break: break-all;
+                /* 防止長文字跑版 */
+                color: #212529;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-4 text-center">RWD Table</div>
+
+
+        <!-- table-striped table-hover table-sm -->
+        <table class="table table-bordered table-rwd">
+            <thead class="table-dark">
+                <tr>
+                    <th width="10%">員工編號</th>
+                    <th width="10%">員工姓名</th>
+                    <th width="30%">員工照片</th>
+                    <th width="10%">員工部門</th>
+                    <th width="10%">員工職位</th>
+                    <th width="30%">專業專長</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-active">
+                    <td data-th="員工編號"> <span>TW-0942</span></td>
+                    <td data-th="員工姓名"> <span>林思妤 (Alice Lin)</span></td>
+                    <td data-th="員工照片"><span><img src="images/twd-0942.png" alt="" class="img-fluid"></span></td>
+                    <td data-th="員工部門"> <span>產品研發部</span></td>
+                    <td data-th="員工職位"> <span>資深使用者經驗設計師</span></td>
+                    <td data-th="專業專長"> <span>資深使用者經驗設計師 林思妤深耕於 UX
+                            設計領域，擅長透過介面原型設計（Prototyping）將抽象概念具象化。她具備敏銳的使用者行為分析能力，能精準捕捉用戶需求，優化產品整體的互動體驗。</span></td>
+                </tr>
+
+                <tr class="table-primary">
+                    <td data-th="員工編號"> <span>TW-1105</span></td>
+                    <td data-th="員工姓名"> <span>張睿誠 (Marcus Chang)</span></td>
+                    <td data-th="員工照片"><span><img src="images/twd-1105.png" alt="" class="img-fluid"></span></td>
+                    <td data-th="員工部門"> <span>全球行銷部</span></td>
+                    <td data-th="員工職位"> <span>品牌策略經理</span></td>
+                    <td data-th="專業專長"> <span>品牌策略經理
+                            張睿誠擁有卓越的跨國專案管理經驗，能有效協調多方資源達成品牌目標。在數位行銷方面，他專精於數位社群預算優化，協助品牌在多變的社群環境中精準投放，極大化行銷投資報酬率。</span>
+                    </td>
+                </tr>
+
+                <tr class="table-warning">
+                    <td data-th="員工編號">TW-1588</td>
+                    <td data-th="員工姓名">陳子晴 (Elena Chen)</td>
+                    <td data-th="員工照片"><span><img src="images/twd-1588.png" alt="" class="img-fluid"></span></td>
+                    <td data-th="員工部門">資訊工程部</td>
+                    <td data-th="員工職位">後端架構工程師</td>
+                    <td data-th="專業專長"> <span>後端架構工程師
+                            陳子晴是技術核心人才，專精於分散式系統的開發與維護，確保高併發環境下的穩定性。她同時具備深厚的資料庫性能調校功力，能針對複雜資料結構進行優化，顯著提升系統回應速度。</span>
+                    </td>
+                </tr>
+
+                <tr class="table-success">
+                    <td data-th="員工編號">TW-0831</td>
+                    <td data-th="員工姓名">江致遠 (Leo Chiang)</td>
+                    <td data-th="員工照片"><span><img src="images/twd-0831.png" alt="" class="img-fluid"></span></td>
+                    <td data-th="員工部門">客戶成功部</td>
+                    <td data-th="員工職位">客戶關係總監</td>
+                    <td data-th="專業專長"> <span>客戶關係總監
+                            江致遠在維護關鍵客戶關係方面表現出色，具備高超的衝突解決技巧，能化解商務洽談中的各項挑戰。他長期專注於高資產客戶維繫，致力於提升客戶忠誠度並創造長遠的商業價值。</span></td>
+                </tr>
+
+                <tr class="table-danger">
+                    <td data-th="員工編號">TW-2022</td>
+                    <td data-th="員工姓名">蘇若薇 (Vivian Su)</td>
+                    <td data-th="員工照片"><span><img src="images/twd-2022.png" alt="" class="img-fluid"></span></td>
+                    <td data-th="員工部門">人力資源部</td>
+                    <td data-th="員工職位">人才發展專員</td>
+                    <td data-th="專業專長"> <span>人才發展專員
+                            蘇若薇致力於提升組織內部軟實力，擅長企業文化建設，協助建立良好的工作氛圍。她亦具備豐富的內部教育訓練策劃經驗，能針對員工職能需求設計學習地圖，推動人才的持續成長。</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-4.0.0.min.js"></script>
+    <script>
+        $(function () {
+            console.log("hello!");
+            //迴圈 重複做某一件事情
+            //i++ --> i = i + 1
+            for(let i=1; i<10; i++){
+                for(let j=1; j<10; j++){console.log(i + "x" +j +" = " + i*j);}
+                
+            }
+        });
+    </script>
+</body>
+
+</html>

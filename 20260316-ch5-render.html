@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CH.5 Table</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss03-ai.css">
+    <style>
+        /* 基礎防錯設定 */
+        *{
+            box-sizing: border-box;
+        }
+/* 確保圖片在任何情況下都不會超出格子 */
+        .table-rwd img {
+            max-width: 120px;/* 手機版建議縮小圖片 */
+            height: auto;
+        }
+
+        @media screen and (max-width: 768px) {
+
+            /* 1. 隱藏表頭 */
+            .table-rwd thead {
+                display: none;
+            }
+
+            /* 2. 讓每一行變成獨立卡片 */
+            .table-rwd tbody tr {
+                display: block;
+                margin-bottom: 1.5rem;
+                border: 2px solid #dee2e6;
+                overflow: hidden;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                background-color: #fff;
+            }
+
+            /* 3. 讓每個單元格垂直排列 */
+            .table-rwd tbody tr td {
+                display: block;
+                width: 100%;
+                padding: 10px 10px;
+                border: none;
+                border-bottom: 1px solid #eee;
+                overflow: hidden;
+                /* 清除浮動 */
+
+            }
+/* 每一行中的最後一個單元格 */
+            .table-rwd tbody tr td:last-child {
+                border-bottom: none; /*將底部的邊框線消除*/
+            }
+
+            /* 4. 製作偽元素標題 */
+            .table-rwd tbody tr td::before {
+                content: attr(data-th) " : ";
+
+                color: #495057;
+                display: block;
+                float: left;
+                width: 35%;
+                /* 給予標題適當寬度 */
+                text-align: right;
+                padding-right: 15px;
+            }
+
+            .table-rwd tbody tr td span {
+                display: block;
+                float: left;
+                width: 65%;
+                word-break: break-all;
+                /* 防止長文字跑版 */
+                color: #212529;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-4 text-center">RWD Table</div>
+
+
+        <!-- table-striped table-hover table-sm -->
+        <table class="table table-bordered table-rwd">
+            <thead class="table-dark">
+                <tr>
+                    <th width="10%">員工編號</th>
+                    <th width="10%">員工姓名</th>
+                    <th width="30%">員工照片</th>
+                    <th width="10%">員工部門</th>
+                    <th width="10%">員工職位</th>
+                    <th width="30%">專業專長</th>
+                </tr>
+            </thead>
+            <tbody id="datalist">
+                <tr class="table-active">
+                    <td data-th="員工編號"> <span>TW-0942</span></td>
+                    <td data-th="員工姓名"> <span>林思妤 (Alice Lin)</span></td>
+                    <td data-th="員工照片"><span><img src="images/twd-0942.png" alt="" class="img-fluid"></span></td>
+                    <td data-th="員工部門"> <span>產品研發部</span></td>
+                    <td data-th="員工職位"> <span>資深使用者經驗設計師</span></td>
+                    <td data-th="專業專長"> <span>資深使用者經驗設計師 林思妤深耕於 UX
+                            設計領域，擅長透過介面原型設計（Prototyping）將抽象概念具象化。她具備敏銳的使用者行為分析能力，能精準捕捉用戶需求，優化產品整體的互動體驗。</span></td>
+                </tr>
+
+                <tr class="table-primary">
+                    <td data-th="員工編號"> <span>TW-1105</span></td>
+                    <td data-th="員工姓名"> <span>張睿誠 (Marcus Chang)</span></td>
+                    <td data-th="員工照片"><span><img src="images/twd-1105.png" alt="" class="img-fluid"></span></td>
+                    <td data-th="員工部門"> <span>全球行銷部</span></td>
+                    <td data-th="員工職位"> <span>品牌策略經理</span></td>
+                    <td data-th="專業專長"> <span>品牌策略經理
+                            張睿誠擁有卓越的跨國專案管理經驗，能有效協調多方資源達成品牌目標。在數位行銷方面，他專精於數位社群預算優化，協助品牌在多變的社群環境中精準投放，極大化行銷投資報酬率。</span>
+                    </td>
+                </tr>
+
+                <tr class="table-warning">
+                    <td data-th="員工編號">TW-1588</td>
+                    <td data-th="員工姓名">陳子晴 (Elena Chen)</td>
+                    <td data-th="員工照片"><span><img src="images/twd-1588.png" alt="" class="img-fluid"></span></td>
+                    <td data-th="員工部門">資訊工程部</td>
+                    <td data-th="員工職位">後端架構工程師</td>
+                    <td data-th="專業專長"> <span>後端架構工程師
+                            陳子晴是技術核心人才，專精於分散式系統的開發與維護，確保高併發環境下的穩定性。她同時具備深厚的資料庫性能調校功力，能針對複雜資料結構進行優化，顯著提升系統回應速度。</span>
+                    </td>
+                </tr>
+
+                <tr class="table-success">
+                    <td data-th="員工編號">TW-0831</td>
+                    <td data-th="員工姓名">江致遠 (Leo Chiang)</td>
+                    <td data-th="員工照片"><span><img src="images/twd-0831.png" alt="" class="img-fluid"></span></td>
+                    <td data-th="員工部門">客戶成功部</td>
+                    <td data-th="員工職位">客戶關係總監</td>
+                    <td data-th="專業專長"> <span>客戶關係總監
+                            江致遠在維護關鍵客戶關係方面表現出色，具備高超的衝突解決技巧，能化解商務洽談中的各項挑戰。他長期專注於高資產客戶維繫，致力於提升客戶忠誠度並創造長遠的商業價值。</span></td>
+                </tr>
+
+                <tr class="table-danger">
+                    <td data-th="員工編號">TW-2022</td>
+                    <td data-th="員工姓名">蘇若薇 (Vivian Su)</td>
+                    <td data-th="員工照片"><span><img src="images/twd-2022.png" alt="" class="img-fluid"></span></td>
+                    <td data-th="員工部門">人力資源部</td>
+                    <td data-th="員工職位">人才發展專員</td>
+                    <td data-th="專業專長"> <span>人才發展專員
+                            蘇若薇致力於提升組織內部軟實力，擅長企業文化建設，協助建立良好的工作氛圍。她亦具備豐富的內部教育訓練策劃經驗，能針對員工職能需求設計學習地圖，推動人才的持續成長。</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-4.0.0.min.js"></script>
+    <script>
+        $(function () {
+            console.log("hello!");
+            //迴圈 重複做某一件事情
+            //i++ --> i = i + 1
+            //for(let i=1; i<10; i++){
+           // for(let j=1; j<10; j++){
+           //console.log(i + "x" + j + " = " + i*j);
+           //}
+           // }
+
+           let userData = {
+  "company": "未來科技股份有限公司",
+  "employees": [
+    {"id":"E001","name":"王志豪","photo":"images/user01.png","department":"資訊部","position":"系統工程師","description":"負責公司內部系統維護與伺服器管理"},
+    {"id":"E002","name":"林雅婷","photo":"images/user02.png","department":"行銷部","position":"行銷專員","description":"負責社群媒體經營與品牌推廣活動"},
+    {"id":"E003","name":"陳柏宇","photo":"images/user03.png","department":"業務部","position":"業務代表","description":"負責客戶開發與產品銷售業務"},
+    {"id":"E004","name":"張家瑜","photo":"images/user04.png","department":"人資部","position":"人資專員","description":"負責招募面試與員工訓練規劃"},
+    {"id":"E005","name":"黃俊傑","photo":"images/user05.png","department":"財務部","position":"會計專員","description":"負責公司帳務處理與財務報表整理"},
+    {"id":"E006","name":"李佳穎","photo":"images/user06.png","department":"資訊部","position":"前端工程師","description":"負責公司網站前端開發與UI介面優化"},
+    {"id":"E007","name":"吳承翰","photo":"images/user07.png","department":"資訊部","position":"後端工程師","description":"負責API設計與資料庫系統開發"},
+    {"id":"E008","name":"蔡佩珊","photo":"images/user08.png","department":"行銷部","position":"活動企劃","description":"規劃線上與線下品牌活動與宣傳"},
+    {"id":"E009","name":"劉冠廷","photo":"images/user09.png","department":"業務部","position":"業務主任","description":"帶領業務團隊拓展企業客戶市場"},
+    {"id":"E010","name":"楊舒涵","photo":"images/user10.png","department":"人資部","position":"招募專員","description":"負責公司人才招募與面試安排"},
+    {"id":"E011","name":"許家豪","photo":"images/user11.png","department":"資訊部","position":"DevOps工程師","description":"維護CI/CD流程與雲端部署環境"},
+    {"id":"E012","name":"郭怡君","photo":"images/user12.png","department":"財務部","position":"財務分析師","description":"負責財務數據分析與營運報告"},
+    {"id":"E013","name":"邱建宏","photo":"images/user13.png","department":"業務部","position":"資深業務","description":"維護重要客戶關係並開拓新市場"},
+    {"id":"E014","name":"賴品妤","photo":"images/user14.png","department":"行銷部","position":"品牌專員","description":"負責品牌形象規劃與市場策略"},
+    {"id":"E015","name":"蘇柏霖","photo":"images/user15.png","department":"資訊部","position":"資料工程師","description":"設計與維護公司資料處理流程"},
+    {"id":"E016","name":"謝宜庭","photo":"images/user16.png","department":"人資部","position":"教育訓練專員","description":"規劃員工培訓與內部課程"},
+    {"id":"E017","name":"鄭凱文","photo":"images/user17.png","department":"資訊部","position":"資安工程師","description":"負責公司資安監控與漏洞防護"},
+    {"id":"E018","name":"周雅玲","photo":"images/user18.png","department":"財務部","position":"會計主管","description":"負責公司財務管理與會計制度"},
+    {"id":"E019","name":"曾俊傑","photo":"images/user19.png","department":"業務部","position":"客戶經理","description":"管理重要客戶並制定銷售策略"},
+    {"id":"E020","name":"潘怡安","photo":"images/user20.png","department":"行銷部","position":"內容行銷","description":"負責撰寫品牌內容與社群文章"},
+    {"id":"E021","name":"洪士軒","photo":"images/user21.png","department":"資訊部","position":"AI工程師","description":"開發AI模型並優化資料分析系統"},
+    {"id":"E022","name":"呂佳欣","photo":"images/user22.png","department":"人資部","position":"薪資專員","description":"負責員工薪資與福利制度管理"},
+    {"id":"E023","name":"沈柏安","photo":"images/user23.png","department":"業務部","position":"業務專員","description":"負責產品銷售與市場開發"},
+    {"id":"E024","name":"杜怡萱","photo":"images/user24.png","department":"行銷部","position":"社群經理","description":"管理品牌社群與數位廣告投放"},
+    {"id":"E025","name":"高志明","photo":"images/user25.png","department":"資訊部","position":"系統架構師","description":"設計大型系統架構與技術規劃"},
+    {"id":"E026","name":"簡佩琪","photo":"images/user26.png","department":"財務部","position":"出納專員","description":"負責公司資金收支與銀行往來"},
+    {"id":"E027","name":"唐子豪","photo":"images/user27.png","department":"業務部","position":"區域業務","description":"負責區域市場客戶開發"},
+    {"id":"E028","name":"羅欣怡","photo":"images/user28.png","department":"行銷部","position":"廣告企劃","description":"負責廣告投放策略與活動規劃"},
+    {"id":"E029","name":"廖志成","photo":"images/user29.png","department":"資訊部","position":"資料庫管理師","description":"維護資料庫系統與資料安全"},
+    {"id":"E030","name":"何佳蓉","photo":"images/user30.png","department":"人資部","position":"人資主管","description":"負責人力資源制度與組織發展"}
+  ]
+};
+
+const employees = userData.employees;
+console.log(`=== ${userData.company} 員工通訊錄 ===\n`);
+//使用 forEach 迴圈遍歷每一位員工
+employees.forEach((emp, index) => {
+    const card = `
+    -----------------------------------------
+[ 人事資料卡 No.${(index + 1).toString().padStart(2, '0')} ]
+編號：${emp.id}
+姓名：${emp.name}
+部門：${emp.department}
+職稱：${emp.position}
+照片路徑：${emp.photo}
+簡介：${emp.description}
+-----------------------------------------
+  `;
+  console.log(card);
+});
+console.log(`總計人數：${employees.length} 位`);
+
+
+           for (let i = 0; i < 30; i++){ 
+           let strHTML = `<tr class="table-active">
+                    <td data-th="員工編號"> <span>${userData.employees[i].id}</span></td>
+                    <td data-th="員工姓名"> <span>${userData.employees[i].name}</span></td>
+                    <td data-th="員工照片"><span><img src="${userData.employees[i].photo}" alt="" class="img-fluid"></span></td>
+                    <td data-th="員工部門"> <span>${userData.employees[i].department}</span></td>
+                    <td data-th="員工職位"> <span>${userData.employees[i].position}</span></td>
+                    <td data-th="專業專長"> <span>${userData.employees[i].description}</span></td>
+                </tr>`;
+            $("#datalist").append(strHTML);
+            }
+        });
+    </script>
+</body>
+
+</html>

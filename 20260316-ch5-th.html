@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch.5 Table</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss-ai.css">
+    <style>
+        @media screen and (max-width: 768px){
+            .table-rwd thead{
+                display: none;
+            }
+            .table-rwd tbody tr{
+                display: block;
+                border:  2px solid var(--raspberry-300);
+                margin-top: 15px;
+                border-radius: 8px;
+                box-shadow: 2px 2px 4px 2px var(--neutral-700);
+            }
+            /* overflow: hidden; 避免跑版 */
+            .table-rwd tbody tr td{
+                display: block;
+                overflow: hidden;
+            }
+            /* 偽元素 */
+            .table-rwd tbody tr td::before{
+                content: attr(data-th) " : ";
+                font-size: 20px;
+                font-weight: 900;
+                color: var(--raspberry-900);
+                display: block;
+                float: left;
+                width: 25%;
+                text-align: right;
+                padding-right: 10px;
+            }
+
+            .table-rwd tbody tr td span{
+                display: block;
+                float: left;
+                width: 75%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-4 text-center">RWD Table</div>
+
+        <!-- table-striped table-hover table-sm -->
+        <table class="table table-bordered table-rwd">
+            <thead class="table-dark">
+                <tr>
+                    <th width="10%">員工編號</th>
+                    <th width="10%">員工姓名</th>
+                    <th width="30%">員工照片</th>
+                    <th width="10%">員工部門</th>
+                    <th width="10%">員工職位</th>
+                    <th width="30%">員工簡述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-th="員工編號"> <span>E001</span></td>
+                    <td data-th="員工姓名"> <span>王志豪</span></td>
+                    <td data-th="員工照片"> <span><img src="images/taiwan01.avif" class="img-fluid" alt=""></span></td>
+                    <td data-th="員工部門"> <span>資訊部</span></td>
+                    <td data-th="員工職位"> <span>系統工程師</span></td>
+                    <td data-th="員工簡述"> <span>負責公司內部系統維護與伺服器管理 性質你怎麼剛剛導致舉行懷疑程度，收集提出確實歌詞作業一顆有機會預測行業名字，時間令人提出了設計才會對她一級我只死亡，十分轉讓天然病毒網路在這個，沒事堅持這麼帶著權威傳說辦公室資格一起肌膚規模歌手，兩。</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+
+</html>

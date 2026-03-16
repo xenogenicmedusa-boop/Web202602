@@ -97,15 +97,6 @@
     --text-fog10: #f3f0ff;
     /* 月霧白 Moonlit Fog */
 
-
-
 }
-body{
-    margin: 0;
-    font-family: arial;}
-    .menu-btn{
-        font-size: 30px;
-        cursor: pointer;
-        display: none;
-    }
+
     
