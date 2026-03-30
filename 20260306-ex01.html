@@ -13,21 +13,53 @@
         * {
             margin: 0;
             padding: 0;
-                      
+
         }
 
         .wrapper {
             width: 1024px;
-            margin-top: 30px;
-            margin-bottom: 0;
+background-color: var(--ui-border);
             margin-left: auto;
             margin-right: auto;
             box-shadow: 4px 4px 8px 4px var(--void-brown);
         }
 
+        .menu-btn {
+            font-size: 28px;
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 0px;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            background-color: var(--land-moss);
+            padding-top: 20px;
+        }
+
+        .sidebar h2 {
+            color: var(--glow-soft-gold);
+            text-align: center;
+        }
+
+        .sidebar a {
+            display: block;
+            color: var(--void-dusk);
+            padding: 12px;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background: var(--glow-pink);
+        }
+
         .logo {
             background-image: url(images/galaxy02.jpg);
-            height: 220px;
+            height: 250px;
             background-position: center center;
             background-size: cover;
         }
@@ -124,34 +156,27 @@
             padding: 10px 0px;
             color: var(--ui-highlight);
         }
-        .sidebar{
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100px;
-            height: 100%;
-            background-color: var(--land-moss);
-            padding-top: 20px;
-        }
-        .sidebar h2{
-            color: var(--glow-soft-gold);
-            text-align: center;
-        }
-        .sidebar a{
-            display: block;
-            color: var(--void-dusk);
-            padding: 12px;
-            text-decoration: none;
-        }
-        .sidebar a:hover{
-            background-color: var(--glow-pink);
-        }
+
 
         /* 手持裝置最大768px，平板最大1024px，桌機最大1440px */
         /* 針對手持裝置進行的設定如下 */
         @media screen and (max-width: 768px) {
             .wrapper {
                 width: 100%;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .sidebar {
+                left: -200px;
+                transition: 0.3s;
+                z-index: 1000;
+            }
+
+            .sidebar.show {
+                left: 0;
             }
 
             .header nav {
@@ -222,43 +247,25 @@
                 transform: scale(1.01);
                 rotate: (-3deg);
             }
-            .menu-btn{
-                display: block;
-            }
-            .sidebar{
-                left: -200px;
-                transition: 0.3s;
-            }
-            .sidebar.show{
-                left: 0;
-            }
-           
-        }
-        .sidebar{
-        width: 100px;
-        height: 100%;
-        background-color: var(--land-moss);
-        position: fixed;
-        left: 0;
-        top: 0;
-        padding-top: 20px;
-    }
-    .sidebar a{
-        display: block;
-        color: white;
-        padding: 10px;
-        text-decoration: none;
-    }
-    .sidebar a:hover{
-        background-color: var(--land-teal);
-    }
 
+
+        }
     </style>
 </head>
 
 <body>
     <div class="wrapper">
+
         <div class="header">
+            <span class="menu-btn" onclick="toggleMenu()">☰</span>
+
+            <div id="sidebar" class="sidebar">
+                <h2>選單</h2>
+                <a href="#">公司簡介</a>
+                <a href="#">產品介紹</a>
+                <a href="#">服務項目</a>
+                <a href="#">聯絡我們</a>
+            </div>
             <div class="logo"> </div>
             <!-- nav>ul>li*5>a -->
             <nav>
@@ -287,17 +294,10 @@
             <p>智慧生成全端程式與跨平台APP整合實務班版權所有 2026</p>
         </div>
     </div>
-    
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
-    <div id="sidebar" class="sidebar">
-        <h2>選單</h2>
-        <a href="#">公司簡介</a>
-            <a href="#">產品介紹</a>
-            <a href="#">服務項目</a>
-            <a href="#">聯絡我們</a>
-    </div>
+
+
     <script>
-        function toggleMenu(){
+        function toggleMenu() {
             document.getElementById("sidebar").classList.toggle("show");
         }
     </script>

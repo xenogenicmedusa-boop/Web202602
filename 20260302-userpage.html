@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="css/mycss03-ai.css">
     <link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap" rel="stylesheet">
     <style>
+        body{
+            background: var(--earth-300);
+            color: var(--void-brown);
+        }
         .section01 {
             background-color: var(--fog-01);
             height: 100vh;
@@ -17,8 +21,8 @@
         .box01 {
             width: 150px;
             height: 150px;
-            box-shadow: -2px -2px 2px 2px var(--void-brown);
-            background-color: var(--land-teal);
+            box-shadow: -2px -2px 2px 2px var(--amber-50);
+            background-color: var(--earth-700);
             position: absolute;
             top: 0;
             left: 0;
@@ -27,8 +31,8 @@
         .box02 {
             width: 150px;
             height: 150px;
-            box-shadow: 2px -2px 2px 2px var(--void-brown);
-            background-color: var(--land-teal);
+            box-shadow: 2px -2px 2px 2px var(--amber-50);
+            background-color: var(--earth-700);
             position: absolute;
             top: 0;
             right: 0;
@@ -37,8 +41,8 @@
         .box03 {
             width: 150px;
             height: 150px;
-            box-shadow: -2px 2px 2px 2px var(--void-brown);
-            background-color: var(--land-teal);
+            box-shadow: -2px 2px 2px 2px var(--amber-50);
+            background-color: var(--earth-700);
             position: absolute;
             bottom: 0;
             left: 0;
@@ -47,8 +51,8 @@
         .box04 {
             width: 150px;
             height: 150px;
-            box-shadow: 2px 2px 2px 2px var(--void-brown);
-            background-color: var(--land-teal);
+            box-shadow: 2px 2px 2px 2px var(--amber-50);
+            background-color: var(--earth-700);
             position: absolute;
             bottom: 0;
             right: 0;
@@ -62,13 +66,16 @@
             right: 30px;
             background-color: var(--land-gold);
             /* 背景圖相關 */
-            background-image: url(images/premium_photo-1730805336219-47b46c34dc74.avif);
+            background-image: url(images/paris01.jpg);
             background-position: center center;
             background-size: cover;
             border-radius: 10px;
             box-shadow: 4px 4px 8px 4px var(--ui-glass);
             background-attachment: fixed;
             transition: 1s;
+        }
+        .user_img:hover{
+            transform: scale(1.03);
         }
 
         .user_text {
@@ -78,18 +85,28 @@
             transform: translateX(-50%) translateY(-50%);
             background-color: var(--text-shadow08);
             color: var(--void-deep);
-            padding: 15px;
+            backdrop-filter: blur(12px);
+            padding: 50px 80px;
             font-family: "Chiron GoRound TC", sans-serif;
+            border-radius: 20px;
+            box-shadow: 0 0 25 var(--text-shadow05);
         }
 
         .user_text h1 {
             text-align: center;
-            font-size: 50px;
+            font-size: 60px;
         }
 
         .user_text h2 {
             text-align: center;
             margin: 0;
+            font-size: 40px;
+        }
+        .user_text p {
+            text-align: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            font-size: 30px;
         }
 
         .user_img:hover {
@@ -109,7 +126,7 @@
             position: absolute;
             width: 320px;
             height: 320px;border-radius: 50%;
-            left: 0%;
+            left: 10%;
             background-position: center center;
             background-size: cover;
             background-color: var(--land-gold);
@@ -126,7 +143,7 @@
             position: absolute;
             width: 320px;
             height: 320px;border-radius: 50%;
-            left: 30%;
+            left: 40%;
             background-position: center center;
             background-size: cover;
             background-color: var(--land-gold);
@@ -143,7 +160,7 @@
             position: absolute;
             width: 320px;
             height: 320px;border-radius: 50%;
-            left: 60%;
+            left: 70%;
             background-position: center center;
             background-size: cover;
             background-color: var(--land-gold);
@@ -155,6 +172,14 @@
         .section02_box03 a{
             text-decoration: none;
             color: var(--void-night);
+        }
+        .intro{
+            padding: 80px 15%;
+            background: linear-gradient(180deg #ffd6d6, #ffe3c2);
+            font-size: 25px;
+            line-height: 50px;
+            font-weight: 500;
+
         }
         
     </style>
@@ -177,12 +202,13 @@
 
 
     </div>
-    <br>您好，我是一名專注於前端開發的工程師，具備良好的使用者體驗思維與扎實的程式設計能力。熟悉 HTML、CSS、JavaScript，並有使用 React / Vue 等主流前端框架進行專案開發的經驗。同時了解
-    RWD響應式設計、跨瀏覽器相容性處理，以及 RESTful API 串接。
-    <br>在專案開發過程中，我重視程式碼品質與可維護性，習慣使用 Git 進行版本控制，也熟悉與 UI/UX
-    設計師及後端工程師協作，確保產品在功能與體驗上都能達到最佳效果。
-    <br>我對新技術保持高度學習熱情，持續關注前端生態系的發展，例如效能優化、模組化架構設計與前端自動化流程（Webpack / Vite / CI/CD）。期望能在團隊中發揮專業能力，打造穩定、流暢且具有良好使用體驗的產品。
-    <br><br><br><br><br>
+    <div class="intro">
+        您好，我是一名專注於前端開發的工程師，具備良好的使用者體驗思維與扎實的程式設計能力。熟悉 HTML、CSS、JavaScript，並有使用 React / Vue 等主流前端框架進行專案開發的經驗。同時了解
+    RWD響應式設計、跨瀏覽器相容性處理，以及 RESTful API 串接。<br><br>
+    在專案開發過程中，我重視程式碼品質與可維護性，習慣使用 Git 進行版本控制，也熟悉與 UI/UX
+    設計師及後端工程師協作，確保產品在功能與體驗上都能達到最佳效果。<br><br>
+    我對新技術保持高度學習熱情，持續關注前端生態系的發展，例如效能優化、模組化架構設計與前端自動化流程（Webpack / Vite / CI/CD）。期望能在團隊中發揮專業能力，打造穩定、流暢且具有良好使用體驗的產品。
+    <br><br><br><br><br></div>
     <div class="section02">
         <div class="section02_box01 bg-cover">
             <p><a href="20260209-1.html" target="_blank">作品集一</a></p>
