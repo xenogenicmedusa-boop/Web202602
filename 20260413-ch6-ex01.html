@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch6 - 切版練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss03-ai.css">
+    <style>
+        body {
+            background-color: var(--gray-50);
+        }
+
+        .box01 {
+            background-image: url(images/paris01.jpg);
+            height: 220px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin-top: 15px;
+        }
+
+        .box02 {
+            background-color: var(--mint-100);
+            box-shadow: 2px 2px 4px 2px var(--mint-900);
+            border-radius: 10px;
+            height: 150px;
+            margin-top: 15px;
+            text-align: center;
+            line-height: 150px;
+            font-size: 28px;
+            color: var(--void-brown);
+            font-weight: 900;
+        }
+
+        .box03 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-shadow: 2px 2px 4px 2px var(--forest-900);
+            
+        }
+
+        .box03 .photo {
+            height: 220px;
+        }
+
+        .box03 .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .box03 .h2 {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .box03 p{
+            font-size: 20px;
+        }
+
+        @media screen and (min-width: 992px) {
+            .box02 {
+                border-radius: 50%;
+                height: 180px;
+                width: 180px;
+                line-height: 180px;
+                font-size: 32px;
+                background-color: var(--mint-300);
+                display: grid;
+
+            }
+        }
+
+        @media screen and (min-width: 1220px) {
+            .box02 {
+                border-radius: 50%;
+                height: 220px;
+                width: 220px;
+                line-height: 220px;
+                font-size: 34px;
+                background-color: var(--mint-600);
+                display: grid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 d-none d-sm-block">
+                <div class="box01"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="box02">選單01</div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02">選單02</div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02">選單03</div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="box02">選單04</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="box03">
+                    <div class="photo">
+                        <img src="images/paris05.jpg" alt="羅浮宮 (The Louvre)">
+                    </div>
+                    <div class="h2">羅浮宮 (The Louvre)</div>
+                    <p>位於巴黎市中心的羅浮宮，是世界級的藝術殿堂。照片中標誌性的玻璃金字塔由建築師貝聿銘設計，與古老華麗的宮殿建築形成強烈對比，在午後陽光下更顯得璀璨奪目，是古典與現代交融的完美象徵。</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="box03">
+                    <div class="photo">
+                        <img src="images/paris06.jpg" alt="凱旋門 (Arc de Triomphe)">
+                    </div>
+                    <div class="h2">凱旋門 (Arc de Triomphe)</div>
+                    <p>雄踞於香榭麗舍大道盡頭的凱旋門，是為了紀念拿破崙軍隊的功績而建。雄偉的拱門刻滿了英雄浮雕，展現了宏大的歷史感。環繞其周圍的圓環大道車流不息，見證了這座城市數百年的輝煌與變遷。</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="box03">
+                    <div class="photo">
+                        <img src="images/paris07.jpg" alt="老佛爺百貨 (Galeries Lafayette)">
+                    </div>
+                    <div class="h2">老佛爺百貨 (Galeries Lafayette)</div>
+                    <p>老佛爺百貨以其驚人的拜占庭式彩色玻璃穹頂聞名於世。華麗的金色雕花露台層層疊疊，如劇院般壯觀。這裡不僅是時尚購物的聖地，更是展現法式精緻美學與建築工藝的文化地標。</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="box03">
+                    <div class="photo">
+                        <img src="images/paris08.jpg" alt="聖馬丁運河 (Canal Saint-Martin)">
+                    </div>
+                    <div class="h2">聖馬丁運河 (Canal Saint-Martin)</div>
+                    <p>聖馬丁運河是巴黎當地人最愛的休閒去處。兩岸綠蔭環繞，水面平靜地倒映著兩旁的建築與樹木。這裡氣氛悠閒，遠離鬧區喧囂，非常適合漫步或靜坐在岸邊，感受巴黎最道地的文藝與慢生活節奏。</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="box03">
+                    <div class="photo">
+                        <img src="images/paris09.jpg" alt="塞納河畔 (The Seine)">
+                    </div>
+                    <div class="h2">塞納河畔 (The Seine)</div>
+                    <p>搭乘遊船沿著塞納河穿梭，是飽覽巴黎風景的最佳方式。岸邊壯麗的奧塞美術館與一座座充滿故事的橋樑相映成趣。在法國國旗的飄揚下，波光粼粼的河面訴說著這座「光之城」的無窮魅力與浪漫。</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="box03">
+                    <div class="photo">
+                        <img src="images/paris10.jpg" alt="聖母院 (Notre-Dame de Paris)">
+                    </div>
+                    <div class="h2">聖母院 (Notre-Dame de Paris)</div>
+                    <p>這座哥德式建築的傑作坐落於西堤島，擁有精緻的玫瑰窗與宏偉的鐘樓。照片記錄了它火災前的完整風貌，壯觀的飛扶壁與尖塔優雅地挺立於塞納河畔，展現了中世紀建築藝術的極致美感與歷史厚度。</p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

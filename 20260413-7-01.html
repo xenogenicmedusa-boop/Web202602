@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>版面練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss03-ai.css">
+    <style>
+        body{
+            background-color: var(--gray-50);
+        }
+        .header{
+            height: 100px;
+            line-height: 100px;
+            font-size: larger;
+            font-weight: 900;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
+        .box01{
+            height: 80px;
+            line-height: 80px;
+            font-size: medium;
+            font-weight: 700;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
+        .photo-box{
+            height: 150px;
+            line-height: 150px;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
+        .text-box{
+            height: 150px;
+            line-height: 150px;
+            margin-top: 15px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: larger;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-10 d-none d-md-block">
+                <div class="header text-center"
+                    style="background-image: url(images/galaxy06.jpg); background-position: center center; background-size: cover; ">Bangtan Sonyeon Dan
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-md-3">
+                <div class="box01 bg-success text-white text-center">OVERVIEW</div>
+            </div>
+            <div class="col-md-3">
+                <div class="box01 bg-warning text-center">MEMBERS</div>
+            </div>
+            <div class="col-md-3">
+                <div class="box01 bg-primary text-center">SONGS</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><div class="photo-box" style="background-image: url(images/galaxy07.jpg); background-position: center center; background-size: cover;"></div></div>
+            <div class="col-md-6"><div class="text-box text-center bg-secondary">ARIRANG</div></div>
+        </div>
+        <div class="row flex-row-reverse">
+            <div class="col-md-6"><div class="photo-box" style="background-image: url(images/galaxy08.jpg); background-position: center center; background-size: cover;"></div></div>
+            <div class="col-md-6"><div class="text-box text-center bg-info">SWIM</div></div>
+        </div>
+
+    </div>
+    
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

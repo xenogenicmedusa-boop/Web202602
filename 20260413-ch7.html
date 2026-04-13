@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch07</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss03-ai.css">
+    <style>
+        body {
+            background-color: var(--earth-50);
+        }
+
+        .box01 {
+            height: 100px;
+            margin-top: 15px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 48px;
+            font-weight: 900;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-2 text-primary">1. flex-row</div>
+        <div class="row flex-row">
+            <div class="col-3">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-danger">03</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-info">04</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">2. flex-row-reverse</div>
+        <div class="row flex-lg-row-reverse">
+            <div class="col-3">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-danger">03</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-info">04</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">3. flex-column</div>
+        <div class="row flex-lg-column">
+            <div class="col-md-3">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-md-3">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-md-3">
+                <div class="box01 bg-danger">03</div>
+            </div>
+            <div class="col-md-3">
+                <div class="box01 bg-info">04</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">4. flex-column-reverse</div>
+        <div class="row flex-lg-column-reverse">
+            <div class="col-md-3">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-md-3">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-md-3">
+                <div class="box01 bg-danger">03</div>
+            </div>
+            <div class="col-md-3">
+                <div class="box01 bg-info">04</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">5. justify-content-start</div>
+        <div class="row justify-content-start">
+            <div class="col-3">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-danger">03</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">6. justify-content-center</div>
+        <div class="row justify-content-lg-center">
+            <div class="col-3">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-danger">03</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">7. justify-content-end</div>
+        <div class="row justify-content-lg-end">
+            <div class="col-3">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-danger">03</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">8. justify-content-between</div>
+        <div class="row justify-content-lg-between">
+            <div class="col-3">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-danger">03</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">9. justify-content-around</div>
+        <div class="row justify-content-lg-around">
+            <div class="col-3">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-danger">03</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">10. align-items-*-start, center, end</div>
+        <div class="row flex-xl-column align-items-xxl-end">
+            <div class="col-3">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-danger">03</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">11. align-self-斷點-start, center, end</div>
+        <div class="row flex-column align-items-xl-center">
+            <div class="col-3 align-self-xl-start">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-3 align-self-xl-center">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-3 align-self-xl-end">
+                <div class="box01 bg-danger">03</div>
+            </div>
+            <div class="col-3 align-self-xl-center">
+                <div class="box01 bg-warning">04</div>
+            </div>
+            <div class="col-3 align-self-xl-start">
+                <div class="box01 bg-info">05</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">11. (練習)</div>
+        <div class="row flex-column align-items-md-center">
+            <div class="col-3 align-self-xl-end">
+                <div class="box01 bg-success"
+                    style="background-image: url(images/cat01.jpg); height: 200px; background-position: center center; background-size: cover;">
+                </div>
+            </div>
+            <div class="col-3 align-self-xl-center">
+                <div class="box01 bg-primary"
+                    style="background-image: url(images/cat02.avif); height: 200px; background-position: center center; background-size: cover;">
+                </div>
+            </div>
+            <div class="col-3 align-self-xl-start">
+                <div class="box01 bg-danger"
+                    style="background-image: url(images/cat03.avif); height: 200px; background-position: center center; background-size: cover;">
+                </div>
+            </div>
+            <div class="col-3 align-self-xl-center">
+                <div class="box01 bg-secondary"
+                    style="background-image: url(images/cat04.jpg); height: 200px; background-position: center center; background-size: cover;">
+                </div>
+            </div>
+            <div class="col-3 align-self-xl-end">
+                <div class="box01 bg-success"
+                    style="background-image: url(images/cat05.jpg); height: 200px; background-position: center center; background-size: cover;">
+                </div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">12. order(排序)</div>
+        <div class="row flex-row">
+            <div class="col-2 order-sm-4 order-md-3 order-lg-2 order-xl-1 order-xxl-0">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-2 order-sm-0 order-md-4 order-lg-3 order-xl-2 order-xxl-1">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-2 order-sm-1 order-md-0 order-lg-4 order-xl-3 order-xxl-2">
+                <div class="box01 bg-danger">03</div>
+            </div>
+            <div class="col-2 order-sm-2 order-md-1 order-lg-0 order-xl-4 order-xxl-3">
+                <div class="box01 bg-info">04</div>
+            </div>
+            <div class="col-2 order-sm-3 order-md-2 order-lg-1 order-xl-0 order-xxl-4">
+                <div class="box01 bg-secondary">05</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">13. ms-auto, me-auto(左右推格子)</div>
+        <div class="row flex-row">
+            <div class="col-3">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-3">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-3 ms-auto">
+                <div class="box01 bg-danger">03</div>
+            </div>
+
+        </div>
+        <div class="display-2 text-primary">14. mt-auto, mb-auto(上下推格子)</div>
+        <div class="row flex-column" style="height: 80vh;">
+            <div class="col-3">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-3 mt-auto">
+                <div class="box01 bg-primary">02</div>
+            </div>
+            <div class="col-3 ms-auto">
+                <div class="box01 bg-danger">03</div>
+            </div>
+        </div>
+        <div class="display-2 text-primary">15. offset(練習)</div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box01 bg-success">01</div>
+            </div>
+            <div class="col-md-4 d-none d-xl-block">
+                <div class="box01 bg-warning" style="background-image: url(images/galaxy04.jpg); background-position: center center; background-size: cover;"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <div class="box01 bg-success">02</div>
+            </div>
+            <div class="col-md-4 d-none d-xl-block">
+                <div class="box01 bg-warning" style="background-image: url(images/galaxy05.jpg); background-position: center center; background-size: cover;"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-8">
+                <div class="box01 bg-success">03</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

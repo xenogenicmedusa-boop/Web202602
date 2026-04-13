@@ -21,7 +21,7 @@
             justify-content: space-between;
             padding: 0 20px;
         }
-
+/* flex: 1：這是簡寫，代表 flex-grow: 1（會伸展）、flex-shrink: 1（會收縮）及 flex-basis: 0%。這能確保所有格子寬度始終保持一致。 */
         .navbar h2 {
             flex: 1;
         }
@@ -66,8 +66,10 @@
         /* 卡片區 */
         .cards {
             display: grid;
+            /* 關鍵：自動填滿，且每個格子寬度最少 200px，最多平分 1 等份 */
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
+            /* 格子之間的間距: 1fr：代表「1份剩餘空間」(Fractional unit)。 auto-fit：當視窗拉寬時，它會自動計算可以塞下幾個格子，並讓它們平分寬度。*/
         }
 
         .card {
@@ -144,3 +146,5 @@
 </body>
 
 </html>
+<!-- 如果你希望格子永遠都在同一行且寬度一致：用 Flexbox 的 flex: 1。
+如果你希望格子在視窗縮小時自動換行，且換行後依然整齊對齊：用 CSS Grid。 -->
