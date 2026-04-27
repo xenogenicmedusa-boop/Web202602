@@ -1,0 +1,193 @@
+<!-- 請依照我提供的 HTML/CSS 技術範圍，產生一個「時裝品牌官網時間軸區塊」的實務版面。
+
+限制條件：
+1. 不可以使用超出原始範例的技術。
+2. 只能使用 HTML、CSS、Bootstrap Grid、row、col-md-6、container、flex-row-reverse、background-image、position、::before 偽元素、hover、media query。
+3. 不可以使用 JavaScript 動畫、不可以使用 Bootstrap 元件外掛、不可以使用新的框架。
+4. 版面要使用左右交錯時間軸設計。
+5. 桌機版中間要有垂直時間軸線與節點圓點。
+6. 手機版要隱藏時間軸線與節點，內容改成上下排列。
+7. 圖片使用 background-image，圖片檔名可使用 images/fashion01.jpg 到 images/fashion04.jpg。
+8. 請保留 <link rel="stylesheet" href="css/bootstrap.min.css"> 與 <script src="js/bootstrap.bundle.min.js"></script>。
+
+主題需求：
+請以「流行時尚服裝品牌」為主題，內容要有時尚感，不要像作文或單純介紹歷史。
+
+區塊內容請包含：
+1. 頁首品牌標題區
+2. 設計起源
+3. 代表性作品
+4. 名人代言作品
+5. 時裝周
+
+文字風格：
+請使用像時裝雜誌專題介紹的語氣，重點放在引領潮流、獨特設計感，不要使用假文或無意義文字。
+
+設計風格：
+整體請使用太空科技感、螢光色卡通物件。
+
+請產生完整 HTML 程式碼，包含 head、style、body 與 script。 -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEON FUTURE FASHION</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #0a0a1a;
+            color: #e0e0ff;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #00f7ff;
+            text-shadow: 0 0 10px #00f7ff;
+        }
+
+        .timeline-section {
+            position: relative;
+        }
+
+        .timeline-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: #00f7ff;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-section-pointer {
+            position: relative;
+        }
+
+        .timeline-section-pointer::before {
+            content: "";
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            background-color: #0a0a1a;
+            border: 3px solid #ff00ff;
+            border-radius: 50%;
+            left: 50%;
+            top: 10px;
+            transform: translateX(-50%);
+        }
+
+        .timeline-section-pointer:hover::before {
+            width: 22px;
+            height: 22px;
+            border: 5px solid #00f7ff;
+        }
+
+        .text-box {
+            padding: 20px;
+        }
+
+        .text-box h2 {
+            color: #ff00ff;
+            text-shadow: 0 0 8px #ff00ff;
+        }
+
+        .bg-cover {
+            background-size: cover;
+            background-position: center;
+            justify-content: center;
+            background-repeat: no-repeat;
+            height: 100%;
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline-section::before,
+            .timeline-section-pointer::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <!-- 頁首 -->
+        <div class="header">
+            <h1>NEON FUTURE</h1>
+            <p>在光與材質之間，定義下一個世代的時尚語言</p>
+        </div>
+
+        <div class="timeline-section">
+
+            <!-- 設計起源 -->
+            <div class="row align-items-center timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="text-box">
+                        <h2>設計起源</h2>
+                        <p>品牌誕生於數位文化與未來科技的交界，設計語言融合霓虹光感與極簡輪廓，將虛擬世界的視覺語彙轉化為可穿戴的現實風格。</p>
+                        <p>每一件作品都像是一段光的軌跡，流動於城市與夜色之中。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-cover" style="background-image: url(images/fashion01.jpg); height:300px;"></div>
+                </div>
+            </div>
+
+            <!-- 代表性作品 -->
+            <div class="row align-items-center flex-row-reverse timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="text-box">
+                        <h2>代表性作品</h2>
+                        <p>以高反光材質與螢光輪廓線打造的系列外套，重新定義街頭機能風格，讓穿著者在夜晚也成為視覺焦點。</p>
+                        <p>結構設計強調未來感比例，展現科技與人體線條的融合。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-cover" style="background-image: url(images/fashion02.jpg); height:300px;"></div>
+                </div>
+            </div>
+
+            <!-- 名人代言 -->
+            <div class="row align-items-center timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="text-box">
+                        <h2>名人代言</h2>
+                        <p>多位國際藝人以品牌造型登上舞台與紅毯，將未來風格帶入主流文化，強烈視覺語言迅速擴散。</p>
+                        <p>這些造型不只是服裝，而是一種態度的宣告。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-cover" style="background-image: url(images/fashion03.jpg); height:100vh;"></div>
+                </div>
+            </div>
+
+            <!-- 時裝周 -->
+            <div class="row align-items-center flex-row-reverse timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="text-box">
+                        <h2>時裝周</h2>
+                        <p>在國際時裝周舞台上，以光影裝置與動態走秀打造沉浸式體驗，讓觀眾彷彿進入未來城市。</p>
+                        <p>品牌持續以創新視覺與設計語言，引領下一波時尚潮流。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-cover" style="background-image: url(images/fashion04.jpg); height:100vh;"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

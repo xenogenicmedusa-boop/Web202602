@@ -1,271 +1,481 @@
 /* 迷幻霧景(Foggy Landscapes) */
 :root {
 
-    /* --- [基礎霧底層 - Mist Layers] --- */
-    --fog-01: #ece4e2;
-    /* 原 mycolor01 */
-    --fog-02: #f2ebe9;
-    --fog-03: #e5ddd0;
-    --fog-04: #d8d0c1;
-    --fog-05: #fcd3d1;
-    /* 原 mycolor02 */
-    --fog-06: #fcdff3;
-    /* 原 mycolor03 */
-    --fog-07: #f5e6f0;
-    --fog-08: #e8d9e5;
+   /* --- [基礎霧底層 - Mist Layers] --- */
+   --fog-01: #ece4e2;
+   /* 原 mycolor01 */
+   --fog-02: #f2ebe9;
+   --fog-03: #e5ddd0;
+   --fog-04: #d8d0c1;
+   --fog-05: #fcd3d1;
+   /* 原 mycolor02 */
+   --fog-06: #fcdff3;
+   /* 原 mycolor03 */
+   --fog-07: #f5e6f0;
+   --fog-08: #e8d9e5;
 
-    /* --- [迷幻光暈層 - Psychedelic Glows] --- */
-    --glow-sun: #fe929f;
-    /* 原 mycolor04 */
-    --glow-pink: #ffb1bb;
-    --glow-lavender: #d1d6fb;
-    /* 新增：冷調幻光 */
-    --glow-mint: #d1fbe5;
-    /* 新增：薄荷霧光 */
-    --glow-amber: #e4d6bd;
-    /* 原 shadow01 */
-    --glow-soft-gold: #f4e4bc;
+   /* --- [迷幻光暈層 - Psychedelic Glows] --- */
+   --glow-sun: #fe929f;
+   /* 原 mycolor04 */
+   --glow-pink: #ffb1bb;
+   --glow-lavender: #d1d6fb;
+   /* 新增：冷調幻光 */
+   --glow-mint: #d1fbe5;
+   /* 新增：薄荷霧光 */
+   --glow-amber: #e4d6bd;
+   /* 原 shadow01 */
+   --glow-soft-gold: #f4e4bc;
 
-    /* --- [中景植物與地景 - Mid-ground] --- */
-    --land-gold: #b78338;
-    /* 原 textcolor01 */
-    --land-ochre: #cf9a4e;
-    --land-brown: #915c4c;
-    /* 原 textcolor02 */
-    --land-clay: #a67365;
-    --land-teal: #40686a;
-    /* 原 textcolor03 */
-    --land-moss: #5a7d7f;
-    --land-sand: #a88661;
-    /* 原 shadow02 */
+   /* --- [中景植物與地景 - Mid-ground] --- */
+   --land-gold: #b78338;
+   /* 原 textcolor01 */
+   --land-ochre: #cf9a4e;
+   --land-brown: #915c4c;
+   /* 原 textcolor02 */
+   --land-clay: #a67365;
+   --land-teal: #40686a;
+   /* 原 textcolor03 */
+   --land-moss: #5a7d7f;
+   --land-sand: #a88661;
+   /* 原 shadow02 */
 
-    /* --- [深景與陰影 - Deep Silhouettes] --- */
-    --void-brown: #2f1812;
-    /* 原 textcolor04 */
-    --void-bark: #4a2d26;
-    --void-slate: #504e63;
-    /* 原 shadow03 */
-    --void-dusk: #3a384d;
-    --void-deep: #00142f;
-    /* 原 shadow04 */
-    --void-night: #0a1b33;
+   /* --- [深景與陰影 - Deep Silhouettes] --- */
+   --void-brown: #2f1812;
+   /* 原 textcolor04 */
+   --void-bark: #4a2d26;
+   --void-slate: #504e63;
+   /* 原 shadow03 */
+   --void-dusk: #3a384d;
+   --void-deep: #00142f;
+   /* 原 shadow04 */
+   --void-night: #0a1b33;
 
-    /* --- [UI 輔助色 - Functional Mist] --- */
-    --ui-border: rgba(145, 92, 76, 0.2);
-    --ui-glass: rgba(236, 228, 226, 0.4);
-    --ui-highlight: #ffffff;
+   /* --- [UI 輔助色 - Functional Mist] --- */
+   --ui-border: rgba(145, 92, 76, 0.2);
+   --ui-glass: rgba(236, 228, 226, 0.4);
+   --ui-highlight: #ffffff;
 
-    /* 文字相關 */
-    --text-shadow01:  rgba(180, 200, 255, 0.35);
-    --text-shadow02:  rgba(200, 180, 255, 0.25);
-    --text-shadow03:  rgba(160, 210, 255, 0.2);
-    --text-shadow04:  rgba(0, 0, 0, 0.4),
-         rgba(170, 190, 255, 0.35);
+   /* 文字相關 */
+   --text-shadow01: rgba(180, 200, 255, 0.35);
+   --text-shadow02: rgba(200, 180, 255, 0.25);
+   --text-shadow03: rgba(160, 210, 255, 0.2);
+   --text-shadow04: rgba(0, 0, 0, 0.4),
+      rgba(170, 190, 255, 0.35);
 
-    --text-shadow05: rgba(0, 0, 0, 0.45),
-        rgba(200, 160, 255, 0.3);
-    --text-shadow06: rgba(0, 0, 0, 0.6),
-        rgba(150, 200, 255, 0.45);
+   --text-shadow05: rgba(0, 0, 0, 0.45),
+      rgba(200, 160, 255, 0.3);
+   --text-shadow06: rgba(0, 0, 0, 0.6),
+      rgba(150, 200, 255, 0.45);
 
-    --text-shadow07: rgba(0, 0, 0, 0.7),
-        rgba(190, 170, 255, 0.4);
+   --text-shadow07: rgba(0, 0, 0, 0.7),
+      rgba(190, 170, 255, 0.4);
 
-    --text-shadow08: rgba(170, 210, 255, 0.35);
-    --text-shadow-psy:
-         rgba(0, 0, 0, 0.5),
-         rgba(120, 180, 255, 0.35),
-         rgba(200, 140, 255, 0.25);
+   --text-shadow08: rgba(170, 210, 255, 0.35);
+   --text-shadow-psy:
+      rgba(0, 0, 0, 0.5),
+      rgba(120, 180, 255, 0.35),
+      rgba(200, 140, 255, 0.25);
 
-    --text-fog01: #e8f1f2;
-    /* 霧白藍 Mist White Blue */
-    --text-fog02: #dbe7ff;
-    /* 霧藍 Lavender Mist */
-    --text-fog03: #cddafd;
-    /* 霧紫藍 Dreamy Periwinkle */
-    --text-fog04: #bfc7e6;
-    /* 迷霧灰紫 Foggy Iris */
-    --text-fog05: #aebfd6;
-    /* 霧藍灰 Blue Fog */
-    --text-fog06: #9fb8b3;
-    /* 霧綠青 Misty Teal */
-    --text-fog07: #c7b8d6;
-    /* 霧薰衣草 Lavender Haze */
-    --text-fog08: #b5a9c9;
-    /* 霧紫灰 Smoky Amethyst */
-    --text-fog09: #d6cfdc;
-    /* 霧粉灰 Dusty Mauve */
-    --text-fog10: #f3f0ff;
-    /* 月霧白 Moonlit Fog */
+   --text-fog01: #e8f1f2;
+   /* 霧白藍 Mist White Blue */
+   --text-fog02: #dbe7ff;
+   /* 霧藍 Lavender Mist */
+   --text-fog03: #cddafd;
+   /* 霧紫藍 Dreamy Periwinkle */
+   --text-fog04: #bfc7e6;
+   /* 迷霧灰紫 Foggy Iris */
+   --text-fog05: #aebfd6;
+   /* 霧藍灰 Blue Fog */
+   --text-fog06: #9fb8b3;
+   /* 霧綠青 Misty Teal */
+   --text-fog07: #c7b8d6;
+   /* 霧薰衣草 Lavender Haze */
+   --text-fog08: #b5a9c9;
+   /* 霧紫灰 Smoky Amethyst */
+   --text-fog09: #d6cfdc;
+   /* 霧粉灰 Dusty Mauve */
+   --text-fog10: #f3f0ff;
+   /* 月霧白 Moonlit Fog */
 
-/*靜儀提供*/
+   /*靜儀提供*/
 
-    /* =========================
+   /* =========================
    Soft Dream Variations
    柔和彩虹
    ========================= */
 
---dream-red-soft: #ffd6d6;
---dream-orange-soft: #ffe3c2;
---dream-yellow-soft: #fff3bf;
---dream-lime-soft: #e9fac8;
---dream-green-soft: #d3f9d8;
---dream-mint-soft: #c3fae8;
---dream-cyan-soft: #c5f6fa;
---dream-sky-soft: #d0ebff;
---dream-blue-soft: #e7f5ff;
---dream-purple-soft: #f3d9fa;
---dream-pink-soft: #ffd9ec;
+   --dream-red-soft: #ffd6d6;
+   --dream-orange-soft: #ffe3c2;
+   --dream-yellow-soft: #fff3bf;
+   --dream-lime-soft: #e9fac8;
+   --dream-green-soft: #d3f9d8;
+   --dream-mint-soft: #c3fae8;
+   --dream-cyan-soft: #c5f6fa;
+   --dream-sky-soft: #d0ebff;
+   --dream-blue-soft: #e7f5ff;
+   --dream-purple-soft: #f3d9fa;
+   --dream-pink-soft: #ffd9ec;
 
-/* =========================
+   /* =========================
    Rainbow Reverie
    ========================= */
 
---rainbow-50:#fff0f6;
---rainbow-100:#ffe3ec;
---rainbow-200:#ffc9d8;
---rainbow-300:#ffa8c2;
---rainbow-400:#ff87b6;
---rainbow-500:#ff6b9a;
---rainbow-600:#f06595;
---rainbow-700:#e64980;
---rainbow-800:#d6336c;
---rainbow-900:#c2255c;
+   --rainbow-50: #fff0f6;
+   --rainbow-100: #ffe3ec;
+   --rainbow-200: #ffc9d8;
+   --rainbow-300: #ffa8c2;
+   --rainbow-400: #ff87b6;
+   --rainbow-500: #ff6b9a;
+   --rainbow-600: #f06595;
+   --rainbow-700: #e64980;
+   --rainbow-800: #d6336c;
+   --rainbow-900: #c2255c;
 
 
-/* =========================
+   /* =========================
    Dream Sky
    ========================= */
 
---sky-50:#e7f5ff;
---sky-100:#d0ebff;
---sky-200:#a5d8ff;
---sky-300:#74c0fc;
---sky-400:#4dabf7;
---sky-500:#339af0;
---sky-600:#228be6;
---sky-700:#1c7ed6;
---sky-800:#1971c2;
---sky-900:#1864ab;
+   --sky-50: #e7f5ff;
+   --sky-100: #d0ebff;
+   --sky-200: #a5d8ff;
+   --sky-300: #74c0fc;
+   --sky-400: #4dabf7;
+   --sky-500: #339af0;
+   --sky-600: #228be6;
+   --sky-700: #1c7ed6;
+   --sky-800: #1971c2;
+   --sky-900: #1864ab;
 
 
-/* =========================
+   /* =========================
    Mint Green
    ========================= */
 
---mint-50:#ebfbee;
---mint-100:#d3f9d8;
---mint-200:#b2f2bb;
---mint-300:#8ce99a;
---mint-400:#69db7c;
---mint-500:#51cf66;
---mint-600:#40c057;
---mint-700:#37b24d;
---mint-800:#2f9e44;
---mint-900:#2b8a3e;
+   --mint-50: #ebfbee;
+   --mint-100: #d3f9d8;
+   --mint-200: #b2f2bb;
+   --mint-300: #8ce99a;
+   --mint-400: #69db7c;
+   --mint-500: #51cf66;
+   --mint-600: #40c057;
+   --mint-700: #37b24d;
+   --mint-800: #2f9e44;
+   --mint-900: #2b8a3e;
 
 
-/* =========================
+   /* =========================
    Nature Green
    ========================= */
 
---forest-50:#edf6f0;
---forest-100:#d8f3dc;
---forest-200:#b7e4c7;
---forest-300:#95d5b2;
---forest-400:#74c69d;
---forest-500:#52b788;
---forest-600:#40916c;
---forest-700:#2d6a4f;
---forest-800:#1b4332;
---forest-900:#081c15;
+   --forest-50: #edf6f0;
+   --forest-100: #d8f3dc;
+   --forest-200: #b7e4c7;
+   --forest-300: #95d5b2;
+   --forest-400: #74c69d;
+   --forest-500: #52b788;
+   --forest-600: #40916c;
+   --forest-700: #2d6a4f;
+   --forest-800: #1b4332;
+   --forest-900: #081c15;
 
 
-/* =========================
+   /* =========================
    Earth Warm
    ========================= */
 
---earth-50:#fdf6ec;
---earth-100:#f5ebe0;
---earth-200:#e6ccb2;
---earth-300:#ddb892;
---earth-400:#d4a373;
---earth-500:#c08552;
---earth-600:#a47148;
---earth-700:#8d5524;
---earth-800:#7f5539;
---earth-900:#5a3e2b;
+   --earth-50: #fdf6ec;
+   --earth-100: #f5ebe0;
+   --earth-200: #e6ccb2;
+   --earth-300: #ddb892;
+   --earth-400: #d4a373;
+   --earth-500: #c08552;
+   --earth-600: #a47148;
+   --earth-700: #8d5524;
+   --earth-800: #7f5539;
+   --earth-900: #5a3e2b;
 
 
-/* =========================
+   /* =========================
    Honey Amber
    ========================= */
 
---amber-50:#fff9db;
---amber-100:#fff3bf;
---amber-200:#ffec99;
---amber-300:#ffe066;
---amber-400:#ffd43b;
---amber-500:#fcc419;
---amber-600:#fab005;
---amber-700:#f59f00;
---amber-800:#f08c00;
---amber-900:#e67700;
+   --amber-50: #fff9db;
+   --amber-100: #fff3bf;
+   --amber-200: #ffec99;
+   --amber-300: #ffe066;
+   --amber-400: #ffd43b;
+   --amber-500: #fcc419;
+   --amber-600: #fab005;
+   --amber-700: #f59f00;
+   --amber-800: #f08c00;
+   --amber-900: #e67700;
 
 
-/* =========================
+   /* =========================
    Neutral UI
    ========================= */
 
---gray-50:#f8f9fa;
---gray-100:#f1f3f5;
---gray-200:#e9ecef;
---gray-300:#dee2e6;
---gray-400:#ced4da;
---gray-500:#adb5bd;
---gray-600:#868e96;
---gray-700:#495057;
---gray-800:#343a40;
---gray-900:#212529;
+   --gray-50: #f8f9fa;
+   --gray-100: #f1f3f5;
+   --gray-200: #e9ecef;
+   --gray-300: #dee2e6;
+   --gray-400: #ced4da;
+   --gray-500: #adb5bd;
+   --gray-600: #868e96;
+   --gray-700: #495057;
+   --gray-800: #343a40;
+   --gray-900: #212529;
 
-/* =========================
+   /* =========================
    Brand Base Colors
    ========================= */
 
-/* 主品牌色 */
---brand-green: #2e7d32;
---brand-green-light: #81c784;
---brand-green-dark: #1b5e20;
+   /* 主品牌色 */
+   --brand-green: #2e7d32;
+   --brand-green-light: #81c784;
+   --brand-green-dark: #1b5e20;
 
-/* 背景主色 */
---bg-mint-light: #e8f5e9;
---bg-mint-soft: #b9e4c9;
---bg-mint-base: #7bc79a;
+   /* 背景主色 */
+   --bg-mint-light: #e8f5e9;
+   --bg-mint-soft: #b9e4c9;
+   --bg-mint-base: #7bc79a;
 
-/* 卡片色 */
---card-white: #ffffff;
---card-mint-light: #e8f7ef;
---card-mint-soft: #c7efd7;
+   /* 卡片色 */
+   --card-white: #ffffff;
+   --card-mint-light: #e8f7ef;
+   --card-mint-soft: #c7efd7;
 
-/* 文字色 */
---text-primary: #2f5d3a;
---text-dark: #1b5e20;
+   /* 文字色 */
+   --text-primary: #2f5d3a;
+   --text-dark: #1b5e20;
 
-/* 陰影 */
---shadow-soft: rgba(0,0,0,0.15);
---shadow-deep: rgba(0,0,0,0.18);
+   /* 陰影 */
+   --shadow-soft: rgba(0, 0, 0, 0.15);
+   --shadow-deep: rgba(0, 0, 0, 0.18);
 
-/* 光暈 */
---glow-green-soft: rgba(120,200,150,0.35);
---glow-green-strong: rgba(120,220,160,0.55);
+   /* 光暈 */
+   --glow-green-soft: rgba(120, 200, 150, 0.35);
+   --glow-green-strong: rgba(120, 220, 160, 0.55);
 
 }
 
-/* .noto-sans-jp-<uniquifier>  */
-*{
-  font-family: "Noto Sans JP", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 900;
+/************ 字型 ************/
+@import url('https://fonts.googleapis.com/css2?family=Huninn&family=M+PLUS+1p&display=swap" rel="stylesheet');
+body{
+  font-family: "Huninn", sans-serif;
+}
+/* .m-plus-1p-regular {
+  font-family: "M PLUS 1p", sans-serif;
+  font-weight: 400;
   font-style: normal;
+} */
+/* .huninn-regular {
+  font-family: "Huninn", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+} */
+
+
+.bg-cover {
+            background-position: center center;
+            background-size: cover;
+        }
+
+/***************************** roller相關 **************************/
+/* 外層使用.roller-box-*
+內層使用.roller */
+/* 從左邊滑入 */
+.roller-box-left {
+   position: relative;
+   overflow: hidden;
 }
 
-    
+.roller-box-left .roller {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: var(--shadow-soft);
+   transform: translateX(-100%);
+   transition: transform 1s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   top: 0;
+   left: 0;
+}
+
+.roller-box-left:hover .roller {
+   transform: translateX(0);
+}
+
+/* 從右邊滑入 */
+.roller-box-right {
+   position: relative;
+   overflow: hidden;
+}
+
+.roller-box-right .roller {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: var(--shadow-soft);
+   transform: translateX(100%);
+   transition: transform 1s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   top: 0;
+   left: 0;
+}
+
+.roller-box-right:hover .roller {
+   transform: translateX(0);
+}
+
+/* 從上方滑入 */
+.roller-box-top {
+   position: relative;
+   overflow: hidden;
+}
+
+.roller-box-top .roller {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: var(--shadow-soft);
+   transform: translateY(-100%);
+   transition: transform 1s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   top: 0;
+   left: 0;
+}
+
+.roller-box-top:hover .roller {
+   transform: translateY(0);
+}
+
+/* 從下方滑入 */
+.roller-box-bottom {
+   position: relative;
+   overflow: hidden;
+}
+
+.roller-box-bottom .roller {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: var(--shadow-soft);
+   transform: translateY(100%);
+   transition: transform 1s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   top: 0;
+   left: 0;
+}
+
+.roller-box-bottom:hover .roller {
+   transform: translateY(0);
+}
+
+/* 從左上方滑入 */
+.roller-box-left-top {
+   position: relative;
+   overflow: hidden;
+}
+
+.roller-box-left-top .roller {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: var(--shadow-soft);
+   transform: translate(-100%, -100%);
+   transition: transform 1s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   top: 0;
+   left: 0;
+}
+
+.roller-box-left-top:hover .roller {
+   transform: translateY(0);
+}
+
+/* 從左下方滑入 */
+.roller-box-left-bottom {
+   position: relative;
+   overflow: hidden;
+}
+
+.roller-box-left-bottom .roller {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: var(--shadow-soft);
+   transform: translate(-100%, 100%);
+   transition: transform 1s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   top: 0;
+   left: 0;
+}
+
+.roller-box-left-bottom:hover .roller {
+   transform: translateY(0);
+}
+
+/* 從右上方滑入 */
+.roller-box-right-top {
+   position: relative;
+   overflow: hidden;
+}
+
+.roller-box-right-top .roller {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: var(--shadow-soft);
+   transform: translate(100%, -100%);
+   transition: transform 1s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   top: 0;
+   left: 0;
+}
+
+.roller-box-right-top:hover .roller {
+   transform: translateY(0);
+}
+
+/* 從右下方滑入 */
+.roller-box-right-bottom {
+   position: relative;
+   overflow: hidden;
+}
+
+.roller-box-right-bottom .roller {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   background-color: var(--shadow-soft);
+   transform: translate(100%, 100%);
+   transition: transform 1s;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   top: 0;
+   left: 0;
+}
+
+.roller-box-right-bottom:hover .roller {
+   transform: translateY(0);
+}
+
+/* 從 CDN 遠端伺服器載入 Bootstrap Icons 的樣式表 */ 
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"); 

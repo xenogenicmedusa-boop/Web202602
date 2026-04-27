@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Practice</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss03-ai.css">
+    <style>
+        body{
+            background-color: blanchedalmond;
+        }
+        
+        .textbox{
+            font-size: 35px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .photobox{
+            height: 120px;
+            margin-top: 10px;
+            border-radius: 10px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            text-align: center;
+        }
+        .box01{
+            height: 100px;
+            line-height: 100px;
+            font-size: 24px;
+            font-weight: 900;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center"><div class="col-10">
+            <div class="textbox bg-primary text-center text-white">Flex Practice</div>
+        </div></div>
+        <div class="row justify-content-center"><div class="col-md-6"><div class="photobox" style="background-image: url(images/cat01.jpg);"></div></div>
+        <div class="col-md-6"><div class="textbox bg-light">ARIRANG</div></div></div>
+        <div class="row justify-content-center"><div class="col-md-6"><div class="photobox" style="background-image: url(images/cat03.avif);"></div></div>
+        <div class="col-md-6"><div class="textbox bg-light">SWIM</div></div></div>
+        <div class="row"><div class="col-md-4"><div class="box01 bg-secondary text-white text-center">景點A</div></div></div>
+        <div class="row"><div class="col-md-4 offset-md-4"><div class="box01 bg-secondary text-white text-center">景點B</div></div></div>
+        <div class="row"><div class="col-md-4 offset-md-8"><div class="box01 bg-secondary text-white text-center">景點C</div></div></div>
+        <div class="row">
+            <div class="col-6 col-md-3 order-md-4">
+                <div class="box01 bg-success text-center text-white">01</div>
+            </div>
+            <div class="col-6 col-md-3 order-md-3">
+                <div class="box01 bg-success text-center">02</div>
+            </div>
+            <div class="col-6 col-md-3 order-md-2">
+                <div class="box01 bg-success text-center text-white">03</div>
+            </div>
+            <div class="col-6 col-md-3 order-md-1">
+                <div class="box01 bg-success text-center">04</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 me-auto">
+                <div class="box01 bg-dark text-white text-center">左</div>
+            </div>
+            <div class="col-md-3">
+                <div class="box01 bg-dark text-white text-center">右</div>
+            </div>
+        </div>
+        <div class="row justify-content-center"><div class="col-md-10 d-none d-xl-block">
+            <div class="textbox bg-warning text-center">這一塊XL才會顯示</div>
+        </div></div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

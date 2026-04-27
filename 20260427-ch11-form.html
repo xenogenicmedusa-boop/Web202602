@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch11 FORM</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss03-ai.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-2 fw-bolder text-success">1. FORM</div>
+        <div class="row fs-5">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="" class="form-label">帳號</label>
+                    <input type="text" class="form-control form-control-sm is is-valid">
+                    <div class="valid-feedback">帳號符合輸入規定</div>
+                    <div class="invalid-feedback">帳號不符合輸入規定</div>
+                </div>
+                <button type="button" class="btn btn-primary">確認</button>
+                <button type="submit" class="btn btn-warning">送出</button>
+                <button type="reset" class="btn btn-danger">重設</button>
+                <div class="mb-3"><label for="" class="form-label">密碼</label>
+                    <input type="password" class="form-control" disabled>
+                </div>
+                <div class="mb-3"><label for="" class="form-label">數量</label>
+                    <input type="number" class="form-control form-control-lg" min="1" max="10" value="5">
+                </div>
+                <div class="mb-3">
+                    <label for="">檔案</label>
+                    <input type="file" class="form-control form-control-lg" multiple>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">點餐(datalist)</label>
+                    <input type="text" class="form-control form-control-lg" list="datalist">
+                    <datalist id="datalist">
+                        <option value="便當01"></option>
+                        <option value="便當02"></option>
+                        <option value="便當03"></option>
+                        <option value="便當04"></option>
+                        <option value="便當05"></option>
+                    </datalist>
+                </div>
+            </div>
+        </div>
+        <div class="display-2 fw-bolder mb-3 text-success">2. SELECT</div>
+        <div class="row fs-5">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="" class="form-label">縣市名稱</label>
+                    <select name="" id="" class="form-select form-select-lg">
+                        <option value="台北市">台北市</option>
+                        <option value="台中市">台中市</option>
+                        <option value="高雄市">高雄市</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <select name="" id="" class="form-select form-select-lg">
+                        <option value="" class="text-center" disabled selected>***選擇鄉鎮名稱***</option>
+                        <option value="西屯區">西屯區</option>
+                        <option value="北屯區">北屯區</option>
+                        <option value="南屯區">南屯區</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="display-2 fw-bolder mb-3 text-success">3. CHECKBOX & RADIO</div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-1 form-check"><label for="" class="form-check-label">選項01</label>
+                    <input type="checkbox" class="form-check-input" name="chk01">
+                </div>
+                <div class="mb-1 form-check"><label for="" class="form-check-label">選項02</label>
+                    <input type="checkbox" class="form-check-input" name="chk01">
+                </div>
+                <div class="mb-1 form-check"><label for="" class="form-check-label">選項03</label>
+                    <input type="checkbox" class="form-check-input" name="chk01">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-1 form-check"><label for="" class="form-check-label">選項01</label>
+                    <input type="radio" class="form-check-input" name="radio01">
+                </div>
+                <div class="mb-1 form-check"><label for="" class="form-check-label">選項02</label>
+                    <input type="radio" class="form-check-input" name="radio01">
+                </div>
+                <div class="mb-1 form-check"><label for="" class="form-check-label">選項03</label>
+                    <input type="radio" class="form-check-input" name="radio01">
+                </div>
+            </div>
+        </div>
+        <div class="display-2 fw-bolder mb-3 text-success">4. SWITCH</div>
+        <div class="mb-3 form-switch">
+            <input type="checkbox" name="" id="" class="form-check-input" checked>
+            <label for="" class="form-check-label">開/關</label>
+        </div>
+        <div class="mb-3 form-switch">
+            <input type="checkbox" name="" id="" class="form-check-input" checked>
+            <label for="" class="form-check-label">開/關</label>
+        </div>
+        <div class="display-2 fw-bolder mb-3 text-success">5. INPUT GROUP</div>
+        <div class="row">
+            <div class="col-12">
+                <div class="input-group mb-3"><span class="input-group-text">帳號</span>
+                    <input type="text" class="form-control" placeholder="請輸入帳號">
+                </div>
+                <div class="input-group mb-3"><input type="text" class="form-control" placeholder="請輸入電子郵件信箱"><span class="input-group-text">@gmail.com</span></div>
+                <div class="input-group input-group-lg mb-3"><span class="input-group-text">09</span><input type="text" class="form-control" placeholder="請輸入手機號碼"></div>
+            </div>
+        </div>
+        <div class="display-2 fw-bolder mb-3 text-success">6. FLOATING LABEL</div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3 form-floating">
+                    <input type="text" class="form-control" placeholder="">
+                    <label for="" class="form-label is-invalid">帳號</label>
+                    <div class="valid-feedback">帳號符合輸入規定</div>
+                    <div class="invalid-feedback">帳號不符合輸入規定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

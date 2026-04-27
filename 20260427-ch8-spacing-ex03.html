@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch8 練習03</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss03-ai.css">
+    <style>
+        body {
+            background-color: bisque;
+        }
+
+        .timeline-section {
+            position: relative;
+        }
+
+        .timeline-section::before {
+            position: absolute;
+            content: "";
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: darkgoldenrod;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-section-pointer {
+            position: relative;
+        }
+
+        .timeline-section-pointer::before {
+            position: absolute;
+            content: "";
+            top: 0;
+            bottom: 0;
+            background-color: rgb(243, 241, 245);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 3px solid #ee0808;
+        }
+
+        .timeline-section-pointer:hover::before {
+            width: 20px;
+            height: 20px;
+            border: 8px solid #e50aec;
+        }
+
+        @media screen  and (max-width: 768px) {
+
+            .timeline-section::before, .timeline-section-pointer::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container py-4">
+        <div class="timeline-section">
+            <div class="row align-items-center timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="text">
+                        <div class="h2 text-center text-success">TITLE-1970</div>
+                        <p class="fs-5">道路把握，有個按鈕，地上賺錢，鬱悶水晶各個臺東論壇連接那麼。</p>
+                        <p class="fs-5">我都不夠女兒規格理想求助命令就要包裝對面精采，尤其是，國有。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-cover" style="background-image: url(images/field01.jpg); height: 280px;"></div>
+
+                </div>
+            </div>
+            <div class="row align-items-center flex-row-reverse timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="text">
+                        <div class="h2 text-center text-success">TITLE-1980</div>
+                        <p class="fs-5">道路把握，有個按鈕，地上賺錢，鬱悶水晶各個臺東論壇連接那麼。</p>
+                        <p class="fs-5">我都不夠女兒規格理想求助命令就要包裝對面精采，尤其是，國有。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-cover" style="background-image: url(images/landscape01.jpg); height: 280px;"></div>
+
+                </div>
+            </div>
+            <div class="row align-items-center timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="text">
+                        <div class="h2 text-center text-success">TITLE-1990</div>
+                        <p class="fs-5">道路把握，有個按鈕，地上賺錢，鬱悶水晶各個臺東論壇連接那麼。</p>
+                        <p class="fs-5">我都不夠女兒規格理想求助命令就要包裝對面精采，尤其是，國有。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-cover" style="background-image: url(images/landscape02.jpg); height: 280px;"></div>
+
+                </div>
+            </div>
+            <div class="row align-items-center flex-row-reverse timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="text">
+                        <div class="h2 text-center text-success">TITLE-2000</div>
+                        <p class="fs-5">道路把握，有個按鈕，地上賺錢，鬱悶水晶各個臺東論壇連接那麼。</p>
+                        <p class="fs-5">我都不夠女兒規格理想求助命令就要包裝對面精采，尤其是，國有。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-cover" style="background-image: url(images/landscape03.jpg); height: 280px;"></div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

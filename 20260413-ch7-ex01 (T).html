@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex 練習版面</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #eee6d9;
+        }
+
+        .title-box {
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            font-size: 42px;
+            font-weight: 900;
+            margin-top: 20px;
+            border-radius: 12px;
+        }
+
+        .box01 {
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: 900;
+            margin-top: 15px;
+            border-radius: 12px;
+        }
+
+        .photo-box {
+            height: 220px;
+            margin-top: 15px;
+            border-radius: 12px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .text-box {
+            height: 220px;
+            margin-top: 15px;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+        }
+
+        .footer-box {
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 900;
+            margin-top: 15px;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- 第一區：標題 -->
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="title-box bg-primary text-white">旅行主題介紹頁</div>
+            </div>
+        </div>
+
+        <!-- 第二區：三個特色區塊 -->
+        <div class="row justify-content-between">
+            <div class="col-md-3">
+                <div class="box01 bg-success text-white">自然景色</div>
+            </div>
+            <div class="col-md-3">
+                <div class="box01 bg-warning">在地美食</div>
+            </div>
+            <div class="col-md-3">
+                <div class="box01 bg-danger text-white">文化體驗</div>
+            </div>
+        </div>
+
+        <!-- 第三區：左右圖文 -->
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="photo-box"
+                    style="background-image: url(images/landscape01.avif);">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="text-box bg-light">
+                    山林步道與放鬆空間
+                </div>
+            </div>
+        </div>
+
+        <!-- 第四區：反向排列 -->
+        <div class="row flex-md-row-reverse align-items-center">
+            <div class="col-md-6">
+                <div class="photo-box"
+                    style="background-image: url(images/landscape02.avif);">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="text-box bg-info">
+                    湖畔風景與悠閒下午
+                </div>
+            </div>
+        </div>
+
+        <!-- 第五區：offset 練習 -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box01 bg-secondary text-white">景點 A</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <div class="box01 bg-secondary text-white">景點 B</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-8">
+                <div class="box01 bg-secondary text-white">景點 C</div>
+            </div>
+        </div>
+
+        <!-- 第六區：order 練習 -->
+        <div class="row">
+            <div class="col-6 col-md-3 order-md-4">
+                <div class="box01 bg-success text-white">01</div>
+            </div>
+            <div class="col-6 col-md-3 order-md-3">
+                <div class="box01 bg-warning">02</div>
+            </div>
+            <div class="col-6 col-md-3 order-md-2">
+                <div class="box01 bg-danger text-white">03</div>
+            </div>
+            <div class="col-6 col-md-3 order-md-1">
+                <div class="box01 bg-info">04</div>
+            </div>
+        </div>
+
+        <!-- 第七區：推格子 -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="box01 bg-dark text-white">左</div>
+            </div>
+            <div class="col-md-3 ms-auto">
+                <div class="box01 bg-dark text-white">右</div>
+            </div>
+        </div>
+
+        <!-- 第八區：大螢幕才顯示 -->
+        <div class="row justify-content-center">
+            <div class="col-md-10 d-none d-xl-block">
+                <div class="footer-box bg-warning">
+                    這一塊只有 XL 以上才顯示
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

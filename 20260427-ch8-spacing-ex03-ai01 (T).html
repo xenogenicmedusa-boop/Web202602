@@ -1,0 +1,189 @@
+<!-- 請依照我提供的 HTML/CSS 技術範圍，產生一個「健身房品牌官網時間軸區塊」的實務版面。
+
+限制條件：
+1. 不可以使用超出原始範例的技術。
+2. 只能使用 HTML、CSS、Bootstrap Grid、row、col-md-6、container、flex-row-reverse、background-image、position、::before 偽元素、hover、media query。
+3. 不可以使用 JavaScript 動畫、不可以使用 Bootstrap 元件外掛、不可以使用新的框架。
+4. 版面要使用左右交錯時間軸設計。
+5. 桌機版中間要有垂直時間軸線與節點圓點。
+6. 手機版要隱藏時間軸線與節點，內容改成上下排列。
+7. 圖片使用 background-image，圖片檔名可使用 images/fitness01.jpg 到 images/fitness04.jpg。
+8. 請保留 <link rel="stylesheet" href="css/bootstrap.min.css"> 與 <script src="js/bootstrap.bundle.min.js"></script>。
+
+主題需求：
+請以「高端健身房品牌」為主題，內容要有商業感，不要像作文或單純介紹歷史。
+
+區塊內容請包含：
+1. 頁首品牌標題區
+2. 私人教練服務
+3. 團體課程升級
+4. 會員管理系統
+5. 企業健康合作
+
+文字風格：
+請使用像企業官網的語氣，重點放在服務價值、營運升級、會員體驗、品牌專業感，不要使用假文或無意義文字。
+
+設計風格：
+整體請使用深色背景、金色重點色、白色文字，營造高端、專業、商業品牌感。
+
+請產生完整 HTML 程式碼，包含 head、style、body 與 script。 -->
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Fitness 品牌時間軸</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #ffffff;
+        }
+
+        .brand-header {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .brand-header h1 {
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .timeline-section {
+            position: relative;
+        }
+
+        .timeline-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #d4af37;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-section-pointer {
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .timeline-section-pointer::before {
+            content: "";
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: #0f0f0f;
+            border: 5px solid #d4af37;
+            border-radius: 50%;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+
+        .timeline-section-pointer:hover::before {
+            width: 35px;
+            height: 35px;
+        }
+
+        .text-box {
+            padding: 20px;
+        }
+
+        .text-box h3 {
+            color: #d4af37;
+        }
+
+        .bg-cover {
+            background-size: cover;
+            background-position: center;
+        }
+
+        @media screen and (max-width: 768px) {
+
+            .timeline-section::before,
+            .timeline-section-pointer::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- 品牌標題 -->
+        <div class="brand-header">
+            <h1>ELITE FITNESS</h1>
+            <p>高端健身品牌・專業訓練體驗・會員價值升級</p>
+        </div>
+
+        <div class="timeline-section">
+
+            <!-- 私人教練服務 -->
+            <div class="row align-items-center timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="text-box">
+                        <h3>私人教練服務</h3>
+                        <p>提供一對一專業訓練規劃，結合身體數據分析與目標導向設計，確保每位會員都能在安全且高效的環境中達成成果。</p>
+                        <p>透過專屬教練制度，建立長期訓練關係，提升會員黏著度與品牌信任感。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-cover" style="background-image: url(images/gym05.avif); height: 280px;"></div>
+                </div>
+            </div>
+
+            <!-- 團體課程升級 -->
+            <div class="row align-items-center flex-row-reverse timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="text-box">
+                        <h3>團體課程升級</h3>
+                        <p>導入國際級課程設計，結合音樂節奏與高效燃脂模式，打造沉浸式團課體驗。</p>
+                        <p>課程內容持續優化，讓會員在團隊氛圍中提升運動動力，強化品牌活力形象。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-cover" style="background-image: url(images/gym04.avif); height: 280px;"></div>
+                </div>
+            </div>
+
+            <!-- 會員管理系統 -->
+            <div class="row align-items-center timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="text-box">
+                        <h3>會員管理系統</h3>
+                        <p>建立數據化會員管理平台，整合預約、課程、訓練紀錄與消費分析，全面提升營運效率。</p>
+                        <p>透過精準數據洞察會員需求，優化服務流程，打造高端且個人化的健身體驗。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-cover" style="background-image: url(images/gym03.avif); height: 280px;"></div>
+                </div>
+            </div>
+
+            <!-- 企業健康合作 -->
+            <div class="row align-items-center flex-row-reverse timeline-section-pointer">
+                <div class="col-md-6">
+                    <div class="text-box">
+                        <h3>企業健康合作</h3>
+                        <p>與企業建立長期健康合作計畫，提供員工專屬訓練方案與健康促進服務。</p>
+                        <p>協助企業提升員工體能與工作效率，同時擴展品牌商業版圖與市場影響力。</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-cover" style="background-image: url(images/gym02.avif); height: 280px;"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
