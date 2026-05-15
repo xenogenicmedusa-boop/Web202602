@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ch11 練習02 - CRUD</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss-ai.css">
+    <style>
+        @media screen and (max-width: 768px) {
+            .table-rwd thead {
+                display: none;
+            }
+
+            .table-rwd tbody tr {
+                display: block;
+                border: 2px solid var(--raspberry-300);
+                margin-top: 15px;
+                border-radius: 8px;
+                box-shadow: 2px 2px 4px 2px var(--neutral-700);
+            }
+
+            /* overflow: hidden; 避免跑版 */
+            .table-rwd tbody tr td {
+                display: block;
+                overflow: hidden;
+            }
+
+            /* 偽元素 */
+            .table-rwd tbody tr td::before {
+                content: attr(data-th) " : ";
+                font-size: 20px;
+                font-weight: 900;
+                color: var(--raspberry-900);
+                display: block;
+                float: left;
+                width: 25%;
+                text-align: right;
+                padding-right: 10px;
+            }
+
+            .table-rwd tbody tr td span {
+                display: block;
+                float: left;
+                width: 75%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 pt-5">
+                <div class="display-5 text-bg-success text-center fw-bold my-3 rounded-2 py-3">產品列表</div>
+                <table class="table shadow-lg table-rwd">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>產品編號</th>
+                            <th>產品名稱</th>
+                            <th>產品數量</th>
+                            <th>擺放地點</th>
+                            <th>產品尺寸</th>
+                            <th>產品配料</th>
+                            <th>產品甜度</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody id="plist">
+                        <tr>
+                            <td data-th="產品編號">xx</td>
+                            <td data-th="產品名稱">xx</td>
+                            <td data-th="產品數量">xx</td>
+                            <td data-th="擺放地點">xx</td>
+                            <td data-th="產品尺寸">xx</td>
+                            <td data-th="產品配料">xx</td>
+                            <td data-th="產品甜度">xx</td>
+                            <td>
+                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal"
+                                    data-id="xxx" data-pname="xxx" data-pnum="xxx">更新</button>
+                                <button class="btn btn-danger">刪除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- updateModal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-bg-warning">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">產品更新</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="pname" class="form-label">產品名稱</label>
+                        <input type="text" class="form-control is-valid" id="pname" list="plist" placeholder="字數限制1-6!"
+                            disabled>
+                        <datalist id="plist">
+                            <option value="美式咖啡"></option>
+                            <option value="拿鐵咖啡"></option>
+                            <option value="精品咖啡"></option>
+                            <option value="手沖咖啡"></option>
+                        </datalist>
+                        <div class="valid-feedback">產品名稱符合規定</div>
+                        <div class="invalid-feedback">產品名稱不符合規定</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">數量</label>
+                        <input type="number" class="form-control form-control-lg is-valid" min="1" max="10"
+                            placeholder="數量限制1-10!" id="pnum">
+                        <div class="valid-feedback">產品數量符合規定</div>
+                        <div class="invalid-feedback">產品數量不符合規定</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="place" class="form-label">擺放地點</label>
+                        <select name="" id="place" class="form-select form-select-lg is-valid">
+                            <option value="" selected disabled class="text-center fw-bold text-primary">---請選擇貨架編號---
+                            </option>
+                            <option value="貨架編號01">貨架編號01</option>
+                            <option value="貨架編號02">貨架編號02</option>
+                            <option value="貨架編號03">貨架編號03</option>
+                            <option value="貨架編號04">貨架編號04</option>
+                        </select>
+                        <div class="valid-feedback">產品數量符合規定</div>
+                        <div class="invalid-feedback">產品數量不符合規定</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="updateModal-ok-btn">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-4.0.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios@1.13.2/dist/axios.min.js"></script>
+    <script>
+        let flag_pnum = true;
+        let uid; //更新的ID
+        $(function () {
+            //取得產品列表
+            axios.get('http://localhost:3000/products')
+                .then(function (response) {
+                    console.log(response);
+
+                    // $("#plist").empty();
+                    response.data.forEach(function (item) {
+                        // console.log(item.pname);
+                        // console.log(item.pnum);
+
+                        const strHTML = `<tr>
+                                <td data-th="產品編號">${item.id}</td>
+                                <td data-th="產品名稱">${item.pname}</td>
+                                <td data-th="產品數量">${item.pnum}</td>
+                                <td data-th="擺放地點">${item.place}</td>
+                                <td data-th="產品尺寸">${item.chk01}</td>
+                                <td data-th="產品配料">${item.chk02}</td>
+                                <td data-th="產品甜度">${item.radio01}</td>
+                                <td>
+                                    <button class="btn btn-warning update-btn" data-bs-toggle="modal"
+                                        data-bs-target="#updateModal" data-id="${item.id}" data-pname="${item.pname}" data-pnum="${item.pnum}" data-place="${item.place}">更新</button>
+                                    <button class="btn btn-danger delete-btn" data-id="${item.id}">刪除</button>
+                                </td>
+                            </tr>`;
+                        $("#plist").append(strHTML);
+                    });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+
+            //監聽更新按鈕 .update-btn
+            $(document).on('click', '.update-btn', function () {
+                console.log($(this).data('id'));
+                console.log($(this).data('pname'));
+                console.log($(this).data('pnum'));
+                console.log($(this).data('place'));
+
+                //將.update-btn 隱藏的資料擺放到updateModal表單
+                $("#pname").val($(this).data('pname'));
+                $("#pnum").val($(this).data('pnum'));
+                $("#place").val($(this).data('place'));
+
+                uid = $(this).data('id');
+            })
+
+            //監聽刪除按鈕 .delete-btn
+            $(document).on("click", ".delete-btn", function () {
+                console.log($(this).data('id'));
+                const delete_id = $(this).data('id');
+
+                //詢問兩次確認是否刪除
+                //第一次詢問
+                Swal.fire({
+                    title: "第一確認刪除?",
+                    showDenyButton: true,
+                    showCancelButton: false,
+                    confirmButtonText: "確認",
+                    denyButtonText: `取消`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        //第二次詢問
+                        Swal.fire({
+                            title: "第二確認刪除?",
+                            showDenyButton: true,
+                            showCancelButton: false,
+                            confirmButtonText: "確認",
+                            denyButtonText: `取消`
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                //傳遞資料至後端執行刪除行為 
+                                axios.delete(`http://localhost:3000/products/${delete_id}`)
+                                    .then(function (response) {
+                                        console.log(response);
+                                        if (response.status == 200) {
+                                            //sweetalert 彈出確認成功
+                                            Swal.fire({
+                                                title: "產品刪除成功!",
+                                                showDenyButton: false,
+                                                showCancelButton: false,
+                                                confirmButtonText: "確認",
+                                                denyButtonText: `Don't save`,
+                                                allowOutsideClick: false,
+                                                icon: "success"
+                                            }).then((result) => {
+                                                /* Read more about isConfirmed, isDenied below */
+                                                if (result.isConfirmed) {
+                                                    location.href = "20260511-ch11-form-ex02-CRUD.html";
+                                                };
+                                            });
+                                        }
+                                    })
+                                    .catch(function (error) {
+                                        console.log(error);
+                                    })
+                                    .finally(function () {
+                                        // always executed
+                                    });
+                            } else {
+                                return;
+                            }
+                        });
+                    } else {
+                        return;
+                    }
+                });
+            });
+
+            //#pnum 監聽數量
+            $("#pnum").blur(function () {
+                console.log($(this).val());
+                if ($(this).val() >= 1 && $(this).val() <= 10) {
+                    //  數量符合規定
+                    $(this).removeClass('is-invalid');
+                    $(this).addClass('is-valid');
+                    flag_pnum = true;
+                } else {
+                    //  數量不符合規定
+                    $(this).removeClass('is-valid');
+                    $(this).addClass('is-invalid');
+                    flag_pnum = false;
+                }
+            });
+
+            //監聽#updateModal-ok-btn
+            $("#updateModal-ok-btn").click(function () {
+                if (flag_pnum) {
+                    //更新欄位欄位符合規格
+                    //傳遞資料至後端執行更新行為
+                    let dataJSON = {};
+                    dataJSON["pnum"] = Number($("#pnum").val());
+                    dataJSON["place"] = $("#place").val();
+
+                    axios.patch(`http://localhost:3000/products/${uid}`, dataJSON)
+                        .then(function (response) {
+                            console.log(response);
+                            if (response.status == 200) {
+                                //sweetalert 彈出確認成功
+                                Swal.fire({
+                                    title: "產品更新成功!",
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: "確認",
+                                    denyButtonText: `Don't save`,
+                                    allowOutsideClick: false,
+                                    icon: "success"
+                                }).then((result) => {
+                                    /* Read more about isConfirmed, isDenied below */
+                                    if (result.isConfirmed) {
+                                        location.href = "20260511-ch11-form-ex02-CRUD.html";
+                                    };
+                                });
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+                } else {
+                    //更新欄位欄位不符合規格
+                    Swal.fire({
+                        title: "欄位錯誤",
+                        text: "欄位錯誤請修正!",
+                        icon: "error",
+                        allowOutsideClick: false
+                    });
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>

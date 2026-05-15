@@ -82,8 +82,8 @@
                         <input type="checkbox" class="form-check-input is-invalid" name="chk02" value="椰果">
                         <label for="" class="form-check-label">椰果</label>
                     </div>
-                    
-                    <div id="chk02_feedback" class="text-success small mt-1">已選擇配料</div>
+
+                    <div id="chk02_feedback" class="text-danger small mt-1">請至少選擇一種配料</div>
                 </div>
 
                 <div>
@@ -125,6 +125,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-4.0.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios@1.13.2/dist/axios.min.js"></script>
     <script>
         let flag_pname = false;
         let flag_pnum = false;
@@ -174,7 +175,7 @@
                 flag_place = true;
             });
 
-            //chk01 監聽
+            //chk01 監聽 尺寸
             $("input[name='chk01']").change(function () {
                 console.log($("input[name='chk01']:checked").length);
                 if ($("input[name='chk01']:checked").length > 0) {
@@ -182,7 +183,7 @@
                     $("input[name='chk01']").removeClass('is-invalid');
                     $("input[name='chk01']").addClass('is-valid');
                     //chk01_feedback字體顏色，如果符合是綠色
-                    $("chk01_feedback").removeClass("text-danger").addClass("text-success").text("尺寸符合規定");
+                    $("#chk01_feedback").removeClass("text-danger").addClass("text-success").text("尺寸符合規定");
                     flag_chk01 = true;
 
                 } else {
@@ -195,7 +196,7 @@
                 }
             });
 
-            //chk02 監聽
+            //chk02 監聽 配料
             $("input[name='chk02']").change(function () {
                 console.log($("input[name='chk02']:checked").length);
                 if ($("input[name='chk02']:checked").length > 0) {
@@ -203,7 +204,7 @@
                     $("input[name='chk02']").removeClass('is-invalid');
                     $("input[name='chk02']").addClass('is-valid');
                     //chk02_feedback字體顏色，如果符合是綠色
-                    $("chk02_feedback").removeClass("text-danger").addClass("text-success").text("已選擇配料");
+                    $("#chk02_feedback").removeClass("text-danger").addClass("text-success").text("已選擇配料");
                     flag_chk02 = true;
 
                 } else {
@@ -215,22 +216,24 @@
                     flag_chk02 = false;
                 }
             });
-            
+
             //radio01 監聽
             $("input[name='radio01']").change(function () {
                 console.log($("input[name='radio01']:checked").val());
-                if($("input[name='radio01']:checked").val().length > 0){
+                if ($("input[name='radio01']:checked").val().length > 0) {
                     //已經選擇甜度
-                    $("input[name='radio01']:checked").removeClass('is-invalid');
-                    $("input[name='chk01']").addClass('is-valid');
+                    $("input[name='radio01']").removeClass('is-invalid');
+                    $("input[name='radio01']").addClass('is-valid');
+
                     $("#radio01_feedback").removeClass("text-danger").addClass("text-success").text("已經選擇甜度");
                     flag_radio01 = true;
-                } else{
+                } else {
                     //以下可省略
                     //未選擇甜度
                     $("input[name='radio01']").removeClass('is-valid');
                     $("input[name='radio01']").addClass('is-invalid');
-                    $("#radio01_feedback").removeClass("text-success").addClass("text-danger").text("為選擇甜度");
+
+                    $("#radio01_feedback").removeClass("text-success").addClass("text-danger").text("請選擇甜度");
                     flag_radio01 = false;
                 }
             });
@@ -269,6 +272,51 @@
                     <div class="h2">產品甜度: ${radio01}</div>`;
 
                     $("#showmsg").html(strHTML);
+
+                    //轉成json格式
+                    //{"pname":"芒果冰沙", "pnum":10, "place":"貨架編號02", "chk01":"特大, 中, 小", "chk02": "寒天, 椰果", "radio01": "半糖"}
+                    let dataJSON = {};
+                    dataJSON["pname"] = $("#pname").val();
+                    dataJSON["pnum"] = $("#pnum").val();
+                    dataJSON["place"] = $("#place").val();
+                    dataJSON["chk01"] = chk01ary.join('/');
+                    dataJSON["chk02"] = chk02ary.join('/');
+                    dataJSON["radio01"] = radio01;
+
+                    console.log(JSON.stringify(dataJSON));
+
+                    //先完成的json字串傳遞至後端
+                    axios.post('http://localhost:3000/products', dataJSON)
+                        .then(function (response) {
+                            console.log(response);
+                            if (response.status == 201) {
+                                //sweetalert彈出確認成功
+                                Swal.fire({
+                                    title: "產品建檔成功!",
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: "確認",
+                                    denyButtonText: `Don't save`,
+                                    icon: "success",
+                                    allowOutsideClick: false
+                                }).then((result) => {
+                                    /* Read more about isConfirmed, isDenied below */
+                                    if (result.isConfirmed) {
+                                        location.href = "20260504-ch11-form-ex02.html";
+                                    };
+                                });
+                            } else {
+                                //sweetalert 彈出確認 警告錯誤
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .finally(function () {
+                            // always executed
+                        })
+
+
                 } else {
                     //alert("欄位錯誤!");
                     Swal.fire({

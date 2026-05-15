@@ -129,6 +129,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-4.0.0.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios@1.13.2/dist/axios.min.js"></script>
     <script>
         let flag_pname = false;
         let flag_pnum = false;
@@ -260,6 +261,15 @@
                     console.log(chk01ary);
                     console.log(chk01ary.join(', '));
 
+                    //收集 chk02 產品可提供的尺寸
+                    let chk02ary = [];
+                    $("input[name='chk02']:checked").each(function () {
+                        // console.log($(this).val());
+                        chk02ary.push($(this).val());
+                    });
+                    console.log(chk02ary);
+                    console.log(chk02ary.join(', '));
+
                     //收集radio01 甜度
                     let rdaio01 = $("input[name='radio01']:checked").val();
 
@@ -268,8 +278,54 @@
                                     <div class="h2">產品數量: ${$("#pnum").val()}</div>
                                     <div class="h2">貨架編號: ${$("#place").val()}</div>
                                     <div class="h2">產品可提供的尺寸: ${chk01ary.join(', ')}</div>
+                                    <div class="h2">產品可加的配料: ${chk02ary.join(', ')}</div>
                                     <div class="h2">產品甜度: ${rdaio01}</div>`;
                     $("#showmsg").html(strHTML);
+
+                    //轉成json格式
+                    //{"pname":"芒果冰茶99","pnum":10,"place":"貨價編號02","chk01": "特大, 中, 小", "chk02": "寒天, 椰果", "radio01": "半糖"}
+
+                    let dataJSON = {};
+                    dataJSON["pname"] = $("#pname").val();
+                    dataJSON["pnum"] = $("#pnum").val();
+                    dataJSON["place"] = $("#place").val();
+                    dataJSON["chk01"] = chk01ary.join(', ');
+                    dataJSON["chk02"] = chk02ary.join(', ');
+                    dataJSON["radio01"] = rdaio01;
+
+                    console.log(JSON.stringify(dataJSON));
+
+                    //先完成的json字串傳遞至後端
+                    axios.post('http://localhost:3000/products', dataJSON)
+                        .then(function (response) {
+                            console.log(response);
+                            if (response.status == 201) {
+                                //sweetalert 彈出確認成功
+                                Swal.fire({
+                                    title: "產品建檔成功!",
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: "確認",
+                                    denyButtonText: `Don't save`,
+                                    allowOutsideClick: false
+                                }).then((result) => {
+                                    /* Read more about isConfirmed, isDenied below */
+                                    if (result.isConfirmed){
+                                        location.href = "20260504-ch11-form-ex02.html";
+                                    };      
+                                });
+                            } else {
+                                //sweetalert 彈出確認 警告錯誤
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+
+
                 } else {
                     // alert("欄位錯誤!");
                     Swal.fire({

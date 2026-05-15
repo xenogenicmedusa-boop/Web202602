@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健身房會員方案管理系統 - CRUD</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss03-ai.css">
+    <style>
+        @media screen and (max-width: 768px) {
+
+            /* 1. 隱藏表頭 */
+            .table-rwd thead {
+                display: none;
+            }
+
+            /* 2. 讓每一行變成獨立卡片 */
+            .table-rwd tbody tr {
+                display: block;
+                margin-bottom: 1.5rem;
+                border: 2px solid #dee2e6;
+                overflow: hidden;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                background-color: #fff;
+            }
+
+            /* 3. 讓每個單元格垂直排列 */
+            .table-rwd tbody tr td {
+                display: block;
+                width: 100%;
+                padding: 10px 10px;
+                border: none;
+                border-bottom: 1px solid #eee;
+                overflow: hidden;
+                /* 清除浮動 */
+
+            }
+
+            /* 每一行中的最後一個單元格 */
+            .table-rwd tbody tr td:last-child {
+                border-bottom: none;
+                /*將底部的邊框線消除*/
+            }
+
+            /* 4. 製作偽元素標題 */
+            .table-rwd tbody tr td::before {
+                content: attr(data-th) " : ";
+
+                color: #495057;
+                display: block;
+                float: left;
+                width: 35%;
+                /* 給予標題適當寬度 */
+                text-align: right;
+                padding-right: 15px;
+            }
+
+            .table-rwd tbody tr td span {
+                display: block;
+                float: left;
+                width: 65%;
+                word-break: break-all;
+                /* 防止長文字跑版 */
+                color: #212529;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 pt-5">
+                <div class="display-4 text-bg-success text-center my-3 rounded-2">健身房會員方案清單</div>
+                <table class="table shadow-lg table-rwd">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>會員編號</th>
+                            <th>方案名稱</th>
+                            <th>可招收名額</th>
+                            <th>上課時段</th>
+                            <th>可使用館別</th>
+                            <th>課程內容</th>
+                            <th>會員等級</th>
+                        </tr>
+                    </thead>
+                    <tbody id="plist">
+                        <tr>
+                            <td data-th="會員編號"></td>
+                            <td data-th="方案名稱"></td>
+                            <td data-th="可招收名額"></td>
+                            <td data-th="上課時段"></td>
+                            <td data-th="可使用館別"></td>
+                            <td data-th="課程內容"></td>
+                            <td data-th="會員等級"></td>
+                            <td>
+                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal"
+                                    data-id="xx" data-planName="xx" data-quota="xx" data-period="xx">更新</button>
+                                <button class="btn btn-danger delete-btn">刪除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- updateModal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">會員方案更新</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="planName" class="form-label">方案名稱</label>
+                        <input type="text" class="form-control is-valid" id="planName" list="plist" placeholder="請選擇方案" disabled>
+                        <datalist id="plist">
+                            <option value="燃脂入門">燃脂入門</option>
+                            <option value="肌力養成">肌力養成</option>
+                            <option value="私人教練">私人教練</option>
+                            <option value="銀髮健康">銀髮健康</option>
+                            <option value="企業團課">企業團課</option>
+                        </datalist>
+                        <div class="valid-feedback">已選擇方案</div>
+                        <div class="invalid-feedback">請選擇方案</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">可招收名額</label>
+                        <input type="number" class="form-control form-control-lg is-valid" min="1" max="10"
+                            placeholder="人數限制1-30!" id="quota">
+                        <div class="valid-feedback">加入成功!</div>
+                        <div class="invalid-feedback">請選擇名額</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="period" class="form-label">上課時段</label>
+                        <select name="" id="period" class="form-select form-select-lg is-valid">
+                            <option value="" selected disabled class="text-center fw-bold text-primary">---請選擇上課時段---
+                            </option>
+                            <option value="早上時段">早上時段</option>
+                            <option value="下午時段">下午時段</option>
+                            <option value="晚上時段">晚上時段</option>
+                            <option value="假日時段">假日時段</option>
+                        </select>
+                        <div class="valid-feedback">已選擇時段</div>
+                        <div class="invalid-feedback">未選擇時段</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="updateModal-ok-btn">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-4.0.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/axios@1.13.2/dist/axios.min.js"></script>
+    <script>
+        let flag_quota = true;
+        let uid; //更新的ID
+        $(function () {
+            //取得會員方案列表
+            axios.get('http://localhost:3000/plans')
+                .then(function (response) {
+                    console.log(response);
+
+                    $("#plist").empty();
+                    response.data.forEach(function (item) {
+                        // console.log(item.planName);
+                        console.log(item.period);
+                        const strHTML = `<tr>
+                            <td data-th="會員編號">${item.id}</td>
+                            <td data-th="方案名稱">${item.planName}</td>
+                            <td data-th="可招收名額">${item.quota}</td>
+                            <td data-th="上課時段">${item.period}</td>
+                            <td data-th="可使用館別">${item.branch01}</td>
+                            <td data-th="課程內容">${item.course01}</td>
+                            <td data-th="會員等級">${item.level01}</td>
+                            <td>
+                                <button class="btn btn-warning update-btn" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="${item.id}" data-planName="${item.planName}" data-quota="${item.quota}" data-period="${item.period}">更新</button>
+                                <button class="btn btn-danger delete-btn" data-id="${item.id}">刪除</button>
+                            </td>
+                        </tr>`;
+                        $("#plist").append(strHTML);
+
+                    });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+
+            //監聽更新按鈕 .update-btn
+            $(document).on('click', '.update-btn', function () {
+                console.log($(this).data('id'));
+                console.log($(this).data('planName'));
+                console.log($(this).data('quota'));
+                console.log($(this).data('period'));
+
+                //將.update-btn隱藏的資料擺放到updateModal表單
+                $("#planName").val($(this).data('planName'));
+                $("#quota").val($(this).data('quota'));
+                $("#period").val($(this).data('period'));
+                uid = $(this).data('id');
+            });
+            //監聽刪除按鈕 .delete-btn
+            $(document).on('click', '.delete-btn', function () {
+                console.log($(this).data('id'));
+                const delete_id = $(this).data('id');
+                //詢問兩次是否刪除
+                //第一次詢問
+                Swal.fire({
+                    title: "第一次確認刪除?",
+                    showDenyButton: true,
+                    showCancelButton: false,
+                    confirmButtonText: "確認",
+                    denyButtonText: `取消`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        //第二次詢問
+                        Swal.fire({
+                            title: "第二次確認刪除?",
+                            showDenyButton: true,
+                            showCancelButton: false,
+                            confirmButtonText: "確認",
+                            denyButtonText: `取消`,
+                        }).then((result) => {
+                            //傳遞資料至後端執行刪除行為
+                            if (result.isConfirmed) {
+                            axios.delete(`http://localhost:3000/plans/${delete_id}`)
+                                .then(function (response) {
+                                    console.log(response);
+                                    if (response.status == 200) {
+                                        //sweetalert彈出確認成功
+                                        Swal.fire({
+                                            title: "方案刪除成功!",
+                                            showDenyButton: false,
+                                            showCancelButton: false,
+                                            confirmButtonText: "確認",
+                                            denyButtonText: `取消`,
+                                            allowOutsideClick: false,
+                                            icon: "success"
+                                        }).then((result) => {
+                                            /* Read more about isConfirmed, isDenied below */
+                                            if (result.isConfirmed) {
+                                                location.href = "20260515-gym-CRUD.html";
+                                            };
+                                        });
+                                    }
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                })
+                                .finally(function () {
+                                    // always executed
+                                });
+                        } else {
+                            return;
+                        }
+                        
+                    });} else {
+                            return;
+                        }
+                    });
+            });
+        });
+        //#quota 監聽
+        $("#quota").blur(function () {
+            console.log($(this).val());
+            if ($(this).val() >= 1 && $(this).val() <= 30) {
+                //符合規定
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+                flag_quota = true;
+            } else {
+                //不符合規定
+                $(this).removeClass('is-valid');
+                $(this).addClass('is-invalid');
+                flag_quota = false;
+            }
+        });
+        //監聽#updateModal-ok-btn
+        $("#updateModal-ok-btn").click(function () {
+            if (flag_quota) {
+                //更新名額欄位符合規格
+                //傳遞資料到後端執行更新行為
+                let dataJSON = {};
+                dataJSON["quota"] = Number($("#quota").val());
+                dataJSON["period"] = $("#period").val();
+                axios.patch(`http://localhost:3000/plans/${uid}`, dataJSON)
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.status == 200) {
+                            //sweetalert彈出確認成功
+                            Swal.fire({
+                                title: "會員方案更新成功!",
+                                showDenyButton: false,
+                                showCancelButton: false,
+                                confirmButtonText: "確認",
+                                denyButtonText: `Don't save`,
+                                icon: "success",
+                                allowOutsideClick: false
+                            }).then((result) => {
+                                /* Read more about isConfirmed, isDenied below */
+                                if (result.isConfirmed) {
+                                    location.href = "20260515-gym-CRUD.html";
+                                };
+                            });
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        // always executed
+                    });
+            } else {
+                //更新名額欄位不符合規格
+                Swal.fire({
+                    title: "欄位錯誤?",
+                    text: "輸入錯誤請修正?",
+                    icon: "error",
+                    allowOutsideClick: false
+                });
+            }
+        });
+        
+
+    </script>
+
+</body>
+
+</html>
