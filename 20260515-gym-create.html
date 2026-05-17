@@ -290,7 +290,7 @@
                     //轉成json格式              
                     let dataJSON = {};
                     dataJSON["planName"] = $("#planName").val();
-                    dataJSON["quota"] = $("#quota").val();
+                    dataJSON["quota"] = Number($("#quota").val());
                     dataJSON["period"] = $("#period").val();
                     dataJSON["branch01"] = branch01ary.join(', ');
                     dataJSON["course01"] = course01ary.join(', ');
