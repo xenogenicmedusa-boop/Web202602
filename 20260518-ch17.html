@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chapter_17_｜vue_是什麼?</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .box01 {
+            width: 150px;
+            height: 150px;
+            transition: transform 1s;
+        }
+
+        .rotate01 {
+            transform: rotate(45deg);
+        }
+
+        .rotate02 {
+            transform: rotate(80deg);
+        }
+
+        .rotate03 {
+            transform: rotate(135deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="row">
+            <div class="display-4 fw-bold">1. 基本指令架構</div>
+            <div class="display-4 fw-bold text-danger">{{message01}}</div>
+            <button class="btn btn-danger">{{message02}}</button>
+            <hr class="mt-3">
+        </div>
+        <div class="row">
+            <div class="display-4 fw-bold">2. 綁定資料</div>
+            <div class="col-12">
+                <div class="display-5 fw-bold text-primary">綁定資料: v-model</div>
+                <div class="mb-3">
+                    <label for="" class="form-label">品名</label>
+                    <input type="text" class="form-control" name="" id="" v-model="pname">
+                </div>
+                <span>你輸入的資料為: <span class="h2">{{pname}}</span></span>
+
+                <hr class="mt-3">
+                <div class="mb-3">
+                    <label for="" class="form-label">數量</label>
+                    <input type="number" class="form-control" min="0" max="50" v-model="pnum">
+                    <span></span>你輸入的數量為: <span class="h2">{{pnum}}</span>
+                    <hr class="mt-3">
+                    <div class="display-5 fw-bold text-primary">綁定資料: v-bind</div>
+                    <img v-bind:src="imgsrc01" alt="" v-bind:class="classname01">
+                    <img v-bind:src="imgsrc02" alt="" v-bind:class="classname02">
+                    <img v-bind:src="imgsrc03" alt="" v-bind:class="classname03">
+                    <div class="box01 border border-primary my-3"
+                        v-bind:class="{ 'rotate01': isRotate01, 'rotate02' : isRotate02, 'rotate03' : isRotate03}">
+                    </div>
+                    <button class="btn btn-primary me-2"
+                        v-on:click="isRotate01 = !isRotate01, isRotate02=false, isRotate03=false">ROTATE 45
+                        degree</button>
+                    <button class="btn btn-success me-2"
+                        v-on:click="isRotate01=false, isRotate03=false, isRotate02=!isRotate02">ROTATE 80
+                        degree</button>
+                    <button class="btn btn-warning me-2"
+                        v-on:click="isRotate01=false, isRotate02=false, isRotate03=!isRotate03">ROTATE 135
+                        degree</button>
+                </div>
+
+                <hr class="mt-3">
+                <div class="display-5 fw-bold text-primary">綁定資料: v-on</div>
+                <button class="btn btn-success w-25 me-2" v-on:click="count++">點擊+1<br>目前點擊次數為:{{count}}</button>
+                <button class="btn btn-danger w-25" v-on:click="count--">點擊-1<br>目前點擊次數為:{{count}}</button> <br>
+                <span>目前點擊次數為: </span><span class="h2">{{count}}</span>
+            </div>
+            <hr class="mt-3">
+            <div class="mb-3">
+                <label for="" class="form-label">反轉字串</label>
+                <input type="text" class="form-control" v-model="reText" v-on:change="reverseText()">
+                <div class="h2 mt-2">反轉字串: {{reNewText}}</div>
+            </div>
+            <hr class="mt-3">
+            <div class="display-5 text-primary fw-bold">v-for 和 v-if</div>
+            <ul class="list-group">
+                <template v-for="(item, key) in list">
+                    <li class="list-group-item" v-if="item.price < 320">{{key +1}}--{{item.product}}--{{item.price}}元
+                    </li>
+                </template>
+
+            </ul>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/vue.global.js"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    message01: "hello World!",
+                    message02: "This is a button!",
+                    pname: "Americano",
+                    pnum: 10,
+                    imgsrc01: "images/cat01.jpg",
+                    imgsrc02: "images/cat02.avif",
+                    imgsrc03: "images/cat03.avif",
+                    count: 0,
+                    classname01: "w-25",
+                    classname02: "w-50",
+                    classname03: "w-100",
+                    isRotate01: false,
+                    isRotate02: false,
+                    isRotate03: false,
+                    reText: "輸入字串",
+                    reNewText: "",
+                    list: [
+                        {
+                            product: '草莓',
+                            price: 100
+                        },
+                        {
+                            product: '櫻桃',
+                            price: 200
+                        },
+                        {
+                            product: '蘋果',
+                            price: 300
+                        }
+                    ]
+
+                }
+            },
+            methods: {
+                reverseText() {
+                    this.reNewText = this.reText.split('').reverse().join('')
+                }
+            }
+        }).mount("#app")
+
+    </script>
+</body>
+
+</html>

@@ -96,8 +96,9 @@
                             <td data-th="課程內容"></td>
                             <td data-th="會員等級"></td>
                             <td>
-                                <button class="btn btn-warning update-btn" data-bs-toggle="modal" data-bs-target="#updateModal"
-                                    data-id="xx" data-planName="xx" data-quota="xx" data-period="xx">更新</button>
+                                <button class="btn btn-warning update-btn" data-bs-toggle="modal"
+                                    data-bs-target="#updateModal" data-id="xx" data-planName="xx" data-quota="xx"
+                                    data-period="xx">更新</button>
                                 <button class="btn btn-danger delete-btn">刪除</button>
                             </td>
                         </tr>
@@ -118,7 +119,8 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="planName" class="form-label">方案名稱</label>
-                        <input type="text" class="form-control form-control-lg is-valid" id="planName" list="plist" disabled>
+                        <input type="text" class="form-control form-control-lg is-valid" id="planName" list="plist"
+                            disabled>
                         <datalist id="plist">
                             <option value="燃脂入門">燃脂入門</option>
                             <option value="肌力養成">肌力養成</option>
@@ -185,7 +187,7 @@
                             <td data-th="課程內容">${item.course01}</td>
                             <td data-th="會員等級">${item.level01}</td>
                             <td>
-                                <button class="btn btn-warning update-btn" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="${item.id}" data-planName="${item.planName}" data-quota="${item.quota}" data-period="${item.period}">更新</button>
+                                <button class="btn btn-warning update-btn" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="${item.id}" data-planname="${item.planName}" data-quota="${item.quota}" data-period="${item.period}">更新</button>
                                 <button class="btn btn-danger delete-btn" data-id="${item.id}">刪除</button>
                             </td>
                         </tr>`;
@@ -198,19 +200,19 @@
                 .finally(function () {
                     // always executed
                 });
-
+            uid = $(this).data('id');
             //監聽更新按鈕 .update-btn
             $(document).on('click', '.update-btn', function () {
                 console.log($(this).data('id'));
-                console.log($(this).data('planName'));
+                console.log($(this).data('planname'));
                 console.log($(this).data('quota'));
                 console.log($(this).data('period'));
 
                 //將.update-btn隱藏的資料擺放到updateModal表單
-                $("#planName").val($(this).data('planName'));
+                $("#planName").val($(this).data('planname'));
                 $("#quota").val($(this).data('quota'));
                 $("#period").val($(this).data('period'));
-                uid = $(this).data('id');
+
             })
 
             //監聽刪除按鈕 .delete-btn
@@ -288,12 +290,12 @@
             //監聽#updateModal-ok-btn
             $("#updateModal-ok-btn").click(function () {
                 console.log($(this).data('id'));
-                const update_id = $(this).data('id');
+                // const update_id = $(this).data('id');
                 if (flag_quota) {
                     //更新名額欄位符合規格
                     //傳遞資料到後端執行更新行為
                     let dataJSON = {};
-                    // dataJSON["planName"] = $("#planName").val();
+                    dataJSON["planName"] = $("#planName").val();
                     dataJSON["quota"] = Number($("#quota").val());
                     dataJSON["period"] = $("#period").val();
                     axios.patch(`http://localhost:3000/plans/${uid}`, dataJSON)

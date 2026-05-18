@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>點餐練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app" class="container py-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" v-model="chk01">
+                    <label for="" class="h2 form-label">開始點餐</label>
+                </div>
+                <div v-if="chk01">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" value="海鮮河粉" v-model="chkArray">
+                        <label for="" class="form-check-label">海鮮河粉</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" value="牛肉河粉" v-model="chkArray">
+                        <label for="" class="form-check-label">牛肉河粉</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" value="豬肉河粉" v-model="chkArray">
+                        <label for="" class="form-check-label">豬肉河粉</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" value="雞肉河粉" v-model="chkArray">
+                        <label for="" class="form-check-label">雞肉河粉</label>
+                    </div>
+                    <hr class="mt-5">
+                    <div class="h2">付款方式</div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" value="現金" v-model="radioPay">
+                        <label for="" class="form-check-label">現金</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" value="刷卡" v-model="radioPay">
+                        <label for="" class="form-check-label">刷卡</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" value="Line Pay" v-model="radioPay">
+                        <label for="" class="form-check-label">Line Pay</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="h2 text-bg-success rounded-2 text-center py-5">點餐內容</div>
+                <ul class="list-group">
+                    <li class="list-group-item" v-for="(item, index) in chkArray">
+                        {{ index +1}} -- {{ item}}
+                    </li>
+                </ul>
+                <div class="h2 text-primary">付款方式:
+                    {{ radioPay }}</div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/vue.global.js"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    chk01: false,
+                    chkArray: [], //點餐內容
+                    radioPay: "現金" //付款方式
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>
