@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        :root {
+            --uber-green: #06C167;
+            --uber-dark: #1A1A1A;
+            --uber-gray: #717171;
+            --uber-border: #EAEAEA;
+            --uber-bg: #F6F6F6;
+            --uber-card: #FFFFFF;
+            --uber-warning: #FF9F1C;
+            --uber-danger: #E63946;
+        }
+
+        body {
+            background: var(--uber-bg);
+            font-family:
+                "SF Pro Display",
+                "Segoe UI",
+                "Microsoft JhengHei",
+                sans-serif;
+            color: var(--uber-dark);
+        }
+
+        /* 卡片 */
+
+        .card {
+            background: var(--uber-card);
+            border: 1px solid var(--uber-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all .2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+        }
+
+        /* Header */
+
+        .card-header {
+            background: white !important;
+            border-bottom: 1px solid var(--uber-border);
+            padding: 18px 22px;
+        }
+
+        /* 訂單編號 */
+
+        .order-id {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--uber-dark);
+        }
+
+        /* 狀態 */
+
+        .status-badge {
+            background: rgba(6, 193, 103, .12);
+            color: var(--uber-green);
+            border-radius: 999px;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* 顧客資訊 */
+
+        .customer-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .people-count {
+            color: var(--uber-gray);
+            margin-top: 4px;
+        }
+
+        /* 區塊 */
+
+        .order-info {
+            border-top: 1px dashed var(--uber-border);
+            margin-top: 16px;
+            padding-top: 16px;
+        }
+
+        .info-label {
+            color: var(--uber-gray);
+            font-size: .95rem;
+        }
+
+        .info-value {
+            font-weight: 600;
+        }
+
+        /* Footer */
+
+        .card-footer {
+            background: white;
+            border-top: 1px solid var(--uber-border);
+            padding: 20px;
+        }
+
+        /* 金額 */
+
+        .total-price {
+            color: var(--uber-green);
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        /* 按鈕 */
+
+        .btn-detail {
+            background: white;
+            border: 1px solid #dcdcdc;
+            color: var(--uber-dark);
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        .btn-detail:hover {
+            background: #f7f7f7;
+        }
+
+        .btn-confirm {
+            background: var(--uber-green);
+            border: none;
+            color: white;
+            font-weight: 700;
+            border-radius: 12px;
+        }
+
+        .btn-confirm:hover {
+            background: #04a858;
+            color: white;
+        }
+
+        .btn-delete {
+            background: white;
+            border: 1px solid #ffdddd;
+            color: var(--uber-danger);
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .btn-delete:hover {
+            background: #fff3f4;
+        }
+
+        /* 金額區 */
+
+        .order-total {
+            padding: 12px 16px;
+            background: #f8f8f8;
+            border-radius: 14px;
+        }
+
+        .order-count {
+            background: #FFF2F7;
+            color: #1fbb70;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .order-card {
+            position: relative;
+        }
+
+        .order-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: #04a858;
+        }
+
+        /* 響應式 */
+
+        @media (max-width:768px) {
+            .card-footer .d-flex {
+                flex-direction: column;
+            }
+
+            .card-footer button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="container py-4">
+        <div class="row g-4">
+            <div class="display-3 fw-bold text-center mb-3">{{title}}</div>
+            <div class="col-12 col-md-6 col-xl-4" v-for="item in orders">
+                <div class="card order-card shadow-sm h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center bg-white">
+                        <div class="order-id">
+                            🍔訂單編號: <span class="text-primary">{{item.id}}</span>
+                        </div>
+
+                        <span class="status-badge">
+                            待接單
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="fs-5 fw-bold">訂餐人: {{item.customerName}}</div>
+                            <div>👥用餐人數: {{item.customerCount}} 人</div>
+                        </div>
+                        <div class="border-top pt-3">
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="text-secondary">取餐方式</span>
+                                <span class="fw-bold">{{item.pickupType}}</span>
+                            </div>
+                            <div class="order-total d-flex justify-content-between align-items-center">
+                                <span class="text-secondary">付款方式</span>
+                                <span class="fw-bold">{{item.payType}}</span>
+                            </div>
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="text-secondary">點餐數量</span>
+                                <span class="order-count">{{item.selectedCount}}項</span>
+                            </div>
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="text-secondary">備註</span>
+                                <span class="fw-bold">{{item.memo}}</span>
+                            </div>
+                            <!-- 點擊查看後，顯示詳細訂單內容 -->                            
+                            <div class="border rounded-3 p-3 mt-3" v-if="selectedOrderId === item.id">
+                                <div class="fw-bolder mb-2">餐點明細</div>
+                                <div class="d-flex justify-content-between border-bottom py-2"
+                                    v-for="meal in item.meals" :key="meal.id">
+                                    <span>{{meal.name}}</span>
+                                    <span class="fw-bolder text-success">{{meal.price}}元</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="mb-2 d-flex justify-content-between">
+                            <span class="fw-bold">總金額
+                            </span>
+                            <span class="fw-bold fs-4 text-success">NTD.{{item.totalPrice}}元</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary flex-fill" @click="toggleDetails(item.id)">
+                                <span v-if="selectedOrderId == item.id">收合明細</span>
+                            <span v-else>展開明細</span>
+                        </button>
+                            <button class="btn btn-success flex-fill">確認訂單</button>
+                            <button class="btn btn-outline-danger flex-fill">刪除訂單</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/vue.global.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    title: "訂單管理系統",
+                    orders: [],//從json-server取得所有訂單
+                    selectedOrderId: null //紀錄目前展開的訂單
+                }
+            },
+            methods: {
+                getOrders() {
+                    const vm = this;
+                    axios
+                        .get('http://localhost:3000/orders')
+                        .then(function (response) {
+                            console.log(response);
+                            vm.orders = response.data;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+                },
+                toggleDetails(id) {
+                    const vm = this;
+                    if (vm.selectedOrderId === id) {
+                        vm.selectedOrderId = null
+                    } else {
+                        this.selectedOrderId = id
+                    }
+                }
+            },
+            //在網頁載入時會先執行的功能
+            mounted() {
+                this.getOrders();
+            },
+        }).mount("#app");
+    </script>
+</body>
+
+</html>

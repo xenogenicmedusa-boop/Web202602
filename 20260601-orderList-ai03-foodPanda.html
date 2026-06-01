@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        :root {
+            --panda-pink: #D70F64;
+            --panda-dark: #222222;
+            --panda-gray: #757575;
+            --panda-border: #ECECEC;
+            --panda-bg: #F7F8FA;
+            --panda-success: #27AE60;
+            --panda-danger: #E74C3C;
+            --panda-card: #FFFFFF;
+        }
+
+        body {
+            background: var(--panda-bg);
+            font-family:
+                "Segoe UI",
+                "Microsoft JhengHei",
+                sans-serif;
+            color: var(--panda-dark);
+        }
+
+        /* 標題 */
+
+        .page-title {
+            color: var(--panda-pink);
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        /* 卡片 */
+
+        .card {
+            background: var(--panda-card);
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow:
+                0 4px 16px rgba(0, 0, 0, .05);
+            transition: .25s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, .12);
+        }
+
+        /* Header */
+
+        .card-header {
+            background: white !important;
+            border-bottom: 1px solid var(--panda-border);
+            padding: 18px 20px;
+        }
+
+        /* 訂單編號 */
+
+        .order-id {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--panda-dark);
+        }
+
+        /* 狀態 */
+
+        .status-badge {
+            background: #FFE4F0;
+            color: var(--panda-pink);
+            padding: 7px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* 客戶名稱 */
+
+        .customer-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--panda-dark);
+        }
+
+        .people-count {
+            color: var(--panda-gray);
+        }
+
+        /* 資訊區 */
+
+        .order-info {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px dashed var(--panda-border);
+        }
+
+        .info-label {
+            color: var(--panda-gray);
+        }
+
+        .info-value {
+            font-weight: 700;
+        }
+
+        /* Footer */
+
+        .card-footer {
+            background: white;
+            border-top: 1px solid var(--panda-border);
+            padding: 20px;
+        }
+
+        /* 金額區 */
+
+        .order-total {
+            background: #FFF2F7;
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 15px;
+        }
+
+        .total-label {
+            font-weight: 700;
+        }
+
+        .total-price {
+            color: var(--panda-pink);
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        /* 按鈕 */
+
+        .btn-detail {
+            border: 2px solid var(--panda-pink);
+            color: var(--panda-pink);
+            background: white;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .btn-detail:hover {
+            background: #FFF2F7;
+        }
+
+        .btn-confirm {
+            background: var(--panda-pink);
+            border: none;
+            color: white;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .btn-confirm:hover {
+            background: #BD0D58;
+            color: white;
+        }
+
+        .btn-delete {
+            border: 2px solid #ffd8d8;
+            color: var(--panda-danger);
+            background: white;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .btn-delete:hover {
+            background: #FFF4F4;
+        }
+
+        /* 點餐數量小標籤 */
+
+        .order-count {
+            background: #FFF2F7;
+            color: var(--panda-pink);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* 響應式 */
+
+        @media(max-width:768px) {
+
+            .card-footer .d-flex.gap-2 {
+                flex-direction: column;
+            }
+
+            .card-footer button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="container py-4">
+        <div class="mb-4">
+
+            <h2 class="page-title">
+                🐼 Foodpanda 訂單管理
+            </h2>
+
+            <div class="text-secondary">
+                今日待處理訂單 12 筆
+            </div>
+
+        </div>
+        <div class="row g-4">
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="card shadow-sm">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+
+                        <div class="order-id">
+                            #FP250601001
+                        </div>
+
+                        <span class="status-badge">
+                            待接單
+                        </span>
+
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="fs-5 fw-bold">Wang</div>
+                            <div>用餐人數:10人</div>
+                        </div>
+                        <div class="border-top pt-3">
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="text-secondary">取餐方式</span>
+                                <span class="fw-bold">櫃台取餐</span>
+                            </div>
+                            <div class="order-total d-flex justify-content-between align-items-center">
+                                <span class="text-secondary">付款方式</span>
+                                <span class="fw-bold">現金</span>
+                            </div>
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="text-secondary">點餐數量</span>
+                                <span class="order-count">
+                                    3項商品
+                                </span>
+                            </div>
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="text-secondary">備註</span>
+                                <span class="fw-bold">不用餐具</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="order-total d-flex justify-content-between align-items-center">
+
+                            <span class="total-label">
+                                總金額
+                            </span>
+
+                            <span class="total-price">
+                                NT$1000
+                            </span>
+
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary flex-fill">查看明細</button>
+                            <button class="btn btn-success flex-fill">確認訂單</button>
+                            <button class="btn btn-outline-danger flex-fill">刪除訂單</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/vue.global.js"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+
+                }
+            }
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

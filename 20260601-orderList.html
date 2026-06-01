@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app" class="container py-4">
+        <div class="row g-4">
+            <div class="display-4">{{title}}</div>
+            <div class="col-12 col-md-6 col-xl-4" v-for="item in orders">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center bg-white">
+                        <div class="fs-5">🍔訂單編號: <span class="text-primary">{{item.id}}</span></div><span class="badge text-bg-warning">待處理</span>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <div class="fs-5 fw-bold">訂餐人: {{item.customerName}}</div>
+                            <div>👥用餐人數: {{item.customerCount}}人</div>
+                        </div>
+                        <div class="border-top pt-3">
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="text-secondary">取餐方式</span>
+                                <span class="fw-bold">{{item.pickupType}}</span>
+                            </div>
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="text-secondary">付款方式</span>
+                                <span class="fw-bold">{{item.payType}}</span>
+                            </div>
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="text-secondary">點餐數量</span>
+                                <span class="fw-bold">{{item.selectedCount}}項</span>
+                            </div>
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="text-secondary">備註</span>
+                                <span class="fw-bold">{{item.memo}}</span>
+                            </div>
+                            <div class="border rounded-3 p-3 mt-3" v-if="selectedOrderId === item.id">
+                                <div class="fw-bolder mb-2">餐點明細</div>
+                                <div class="d-flex justify-content-between border-bottom py-2" v-for="meal in item.meals">
+                                    <span>{{meal.name}}</span>
+                                    <span class="fw-bolder text-success">{{meal.price}}元</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="mb-2 d-flex justify-content-between">
+                            <span class="fw-bold">總金額
+                            </span>
+                            <span class="fw-bold fs-4 text-danger">{{item.totalPrice}}元</span>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary flex-fill" @click="toggleDetails(item.id)">
+                                <span v-if="selectedOrderId == item.id">收合明細</span>
+                            <span v-else>展開明細</span></button>
+                            <button class="btn btn-success flex-fill">確認訂單</button>
+                            <button class="btn btn-outline-danger flex-fill">刪除訂單</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/vue.global.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    title: "訂單管理系統",
+                    orders: [],
+                    selectedOrderId: null,
+                }
+            },
+            methods: {
+                getOrders() {
+                    const vm = this;
+                    axios
+                        .get('http://localhost:3000/orders')
+                        .then(function (response) {
+                            console.log(response);
+                            vm.orders = response.data;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+                },
+                toggleDetails(id) {
+                    const vm = this;
+                    if (vm.selectedOrderId === id) {
+                        vm.selectedOrderId = null
+                    } else {
+                        this.selectedOrderId = id
+                    }
+                }
+            },
+            mounted() {
+                this.getOrders();
+            },
+        }).mount("#app")
+    </script>
+</body>
+
+</html>

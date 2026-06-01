@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vuejs 練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="row justify-content-center">
+            <div class="display-4 text-center text-bg-success my-3 py-3 rounded-2">{{ title }}</div>
+            <div class="col-10">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" v-model="isOrder">
+                    <label for="" class="form-check-label">點餐</label>
+                </div>
+                <hr>
+                <!-- v-bind: 可以簡寫成 : -->
+                <div v-if="isOrder">
+                    <div class="h3 mb-3">填寫訂單資料</div>
+                    
+                    <div class="mb-3">
+                        <label for="customerName" class="form-label">訂餐人姓名(2~5字)</label>
+                        <input type="text" id="customerName" class="form-control" v-model="customerName"
+                            :class="{
+                                'is-valid' : customerNameFlag === true, 
+                                'is-invalid' : customerNameFlag === false, 
+                            }">
+                        <div class="valid-feedback">
+                            姓名格式正確
+                        </div>
+                        <div class="invalid-feedback">
+                            姓名格式不正確
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="customerCount" class="form-label">用餐人數(1~20人)</label>
+                        <input type="number" id="customerCount" min="1" max="20" class="form-control" v-model="customerCount"
+                        :class="{
+                            'is-valid' : customerCountFlag === true, 
+                            'is-invalid' : customerCountFlag === false,
+                        }">
+                        <div class="valid-feedback">
+                            用餐人數介於1~20人，符合規定。
+                        </div>
+                        <div class="invalid-feedback">
+                            用餐人數必須介於1~20人
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="memo" class="form-label">備註(1~20字)</label>
+                        <textarea class="form-control"id="memo" rows="3" placeholder="例如: 不要香菜，餐具多一分...." v-model="memo"
+                        :class="{
+                                'is-valid' : memoFlag === true, 
+                                'is-invalid' : memoFlag === false, 
+                            }"></textarea>
+                        <div class="form-text">
+                            目前的字數: {{ memo.length }} / 20
+                        </div>
+                        <div class="valid-feedback">
+                            備註格式正確
+                        </div>
+                        <div class="invalid-feedback">
+                            備註格式不正確
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="h3 mb-3">先選餐點</div>
+                    <div class="form-check" v-for="item in meals">
+                        <input type="checkbox" class="form-check-input" :value="item" v-model="selectedMeals"
+                            :id="item.id">
+                        <label :for="item.id" class="form-check-label">
+                            {{ item.name }} -- {{ item.price }} 元
+                        </label>
+                    </div>
+
+                    <hr>
+
+                    <div class="h3">選擇付款方式</div>
+                    <div class="mb-3">
+                        <select class="form-select" v-model="payType">
+                            <option value="" disabled selected>選擇付款方式</option>
+                            <option value="信用卡">信用卡</option>
+                            <option value="現金">現金</option>
+                            <option value="LINE PAY">LINE PAY</option>
+                            <option value="APPLE PAY">APPLE PAY</option>
+                        </select>
+                    </div>
+
+                    <hr>
+
+                    <div class="h3">選擇取餐方式</div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" value="櫃台取餐" id="pickupType01" v-model="pickupType">
+                        <label for="pickupType01" class="form-label">櫃台取餐</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" value="送到座位" id="pickupType02" v-model="pickupType">
+                        <label for="pickupType02" class="form-label">送到座位</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" value="得來速" id="pickupType03" v-model="pickupType">
+                        <label for="pickupType03" class="form-label">得來速</label>
+                    </div>
+
+                    <hr>
+
+                    <div class="alert alert-info">
+                        <div class="h3 mb-3">訂單內容</div>
+
+                        <div class="mb-3">
+                            訂餐人:
+                            <span v-if="customerName" class="fw-bold text-danger h5">{{ customerName }}</span>
+                            <span v-else class="fw-bold text-danger h5">尚未填寫</span>
+                        </div>
+
+                        <hr>
+
+                        <div class="mb-3">
+                            用餐人數:
+                            <span class="fw-bold text-danger h5">{{ customerCount }}</span>
+                        </div>
+                        
+                        <hr>
+
+                        <div class="h3 mb-3">已選餐點</div>
+                        <div class="mb-3">
+                            目前共選擇:
+                            <span class="fw-bold text-danger h5">
+                                {{ selectedCount }}
+                            </span>個餐點
+                        </div>
+
+                        <div class="mb-3">
+                            付款方式:
+                            <span v-if="payType" class="fw-bold text-danger h5">{{ payType }}</span>
+                            <span v-else class="fw-bold text-danger h5">尚未選擇付款方式</span>
+                        </div>
+
+                        <div class="mb-3">
+                            取餐方式:
+                            <span v-if="pickupType" class="fw-bold text-danger h5">{{ pickupType }}</span>
+                            <span v-else class="fw-bold text-danger h5">尚未選擇取餐方式</span>
+                        </div>
+
+                        <hr>
+
+                        <div class="mb-3">
+                           備註:
+                            <span v-if="memo" class="fw-bold text-danger h5">{{ memo }}</span>
+                            <span v-else class="fw-bold text-danger h5">無</span>
+                        </div>
+
+                        <hr>
+                        
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between" v-for="item in selectedMeals">
+                                <span>{{ item.name }}</span>
+                                <span>{{ item.price }}元</span>
+                            </li>
+                        </ul>
+                        <div class="h4 text-end mt-3 fw-bold">
+                            總金額:{{ totalPrice }}元
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/vue.global.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    title: 'Vuejs 練習 - 點餐',
+                    isOrder: false,
+                    meals: [
+                        {
+                            id: 1,
+                            name: '大麥克套餐',
+                            price: 135
+                        },
+                        {
+                            id: 2,
+                            name: '雙層牛肉吉事堡套餐',
+                            price: 125
+                        },
+                        {
+                            id: 3,
+                            name: '麥香雞套餐',
+                            price: 115
+                        },
+                        {
+                            id: 4,
+                            name: '麥克雞塊 6 塊餐',
+                            price: 129
+                        },
+                        {
+                            id: 5,
+                            name: '嫩煎雞腿堡套餐',
+                            price: 145
+                        },
+                        {
+                            id: 6,
+                            name: '勁辣雞腿堡套餐',
+                            price: 145
+                        }
+                    ],
+                    //紀錄所點的餐點
+                    selectedMeals: [],
+                    //付款方式
+                    payType: '',
+                    //取餐方式
+                    pickupType: '',
+
+                    //訂單基本資料
+                    customerName: '',
+                    customerCount: 0,
+                    memo: '',
+
+                    //表單驗證狀態 旗子
+                    customerNameFlag: null,
+                    customerCountFlag: null,
+                    memoFlag: null
+                }
+            },
+            computed: {
+                totalPrice() {
+                    let total = 0;
+
+                    this.selectedMeals.forEach(function (item) {
+                        total = total + item.price
+                    });
+
+                    return total;
+                },
+                selectedCount() {
+                    return this.selectedMeals.length;
+                }
+            },
+            watch: {
+                customerName(newValue) {
+                    //console.log(newValue);
+                    if(newValue.length === 0){
+                        this.customerNameFlag = null;
+                    }else if(newValue.length >=2 && newValue.length <= 5){
+                        this.customerNameFlag = true;
+                    }else{
+                        this.customerNameFlag = false;
+                    }
+                },
+                customerCount(newValue) {
+                   if(newValue === 0){
+                        this.customerCountFlag = null;
+                    }else if(newValue >=1 && newValue <= 20){
+                        this.customerCountFlag = true;
+                    }else{
+                        this.customerCountFlag = false;
+                    } 
+                },
+                memo(newValue) {
+                    if(newValue.length === 0){
+                        this.memoFlag = null;
+                    }else if(newValue.length >=1 && newValue.length <= 20){
+                        this.memoFlag = true;
+                    }else{
+                        this.memoFlag = false;
+                    }
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+
+</html>

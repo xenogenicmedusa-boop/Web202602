@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麥當勞訂單管理</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style>
+        :root {
+            --mc-red: #DA291C;
+            --mc-dark-red: #B71C12;
+            --mc-yellow: #FFC72C;
+            --mc-bg: #FFF8ED;
+            --mc-text: #333333;
+            --mc-gray: #8B8B8B;
+            --mc-green: #1aeb60;
+            --mc-dark-green: #086d1e;
+
+        }
+
+        body {
+            background: var(--mc-bg);
+            font-family: "Microsoft JhengHei", sans-serif;
+            color: var(--mc-text);
+        }
+
+        /* 頁面標題 */
+        .page-title {
+            color: var(--mc-red);
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        /* 卡片 */
+        .card {
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all .25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .12);
+        }
+
+        /* Header */
+        .card-header {
+            background: linear-gradient(
+                135deg,
+                var(--mc-red),
+                var(--mc-dark-red)
+            ) !important;
+            color: white;
+            border: none;
+            padding: 18px 20px;
+        }
+
+        .order-id {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* 狀態標籤 */
+        .status-badge {
+            background: var(--mc-yellow);
+            color: #222;
+            font-weight: 700;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+        }
+
+        /* Body */
+        .card-body {
+            padding: 24px;
+        }
+
+        .customer-name {
+            color: var(--mc-red);
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .people-count {
+            color: var(--mc-gray);
+            margin-top: 5px;
+        }
+
+        .order-info {
+            margin-top: 15px;
+            border-top: 2px dashed #eee;
+            padding-top: 15px;
+        }
+
+        .info-label {
+            color: var(--mc-gray);
+        }
+
+        .info-value {
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .card-footer {
+            background: white;
+            border-top: 1px solid #eee;
+            padding: 20px;
+        }
+
+        .total-price {
+            color: var(--mc-red);
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        /* 按鈕 */
+        .btn-detail {
+            border: 2px solid var(--mc-green);
+            color: #333333;
+            font-weight: 600;
+            background-color: aquamarine;
+        }
+
+        .btn-detail:hover {
+            background: var(--mc-dark-green);
+            color: white;
+        }
+
+        .btn-confirm {
+            background: var(--mc-yellow);
+            border: none;
+            color: #222;
+            font-weight: 700;
+        }
+
+        .btn-confirm:hover {
+            background: #ffb800;
+        }
+
+        .btn-delete {
+            border: 2px solid #d9534f;
+            color: #d9534f;
+            font-weight: 600;
+            background-color: #523d05;
+        }
+
+        .btn-delete:hover {
+            background: #d9534f;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app" class="container py-4">
+
+        <h2 class="page-title">
+            🍔 麥當勞訂單管理系統
+        </h2>
+
+        <div class="row g-4">
+
+            <div class="col-12 col-md-6 col-xl-4">
+
+                <div class="card shadow-sm">
+
+                    <div class="card-header d-flex justify-content-between align-items-center">
+
+                        <div class="order-id fs-5">
+                            訂單編號 #XXX
+                        </div>
+
+                        <span class="status-badge">
+                            待處理
+                        </span>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="mb-3">
+
+                            <div class="customer-name">
+                                Wang
+                            </div>
+
+                            <div class="people-count">
+                                用餐人數：10人
+                            </div>
+
+                        </div>
+
+                        <div class="order-info">
+
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="info-label">取餐方式</span>
+                                <span class="info-value">櫃台取餐</span>
+                            </div>
+
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="info-label">付款方式</span>
+                                <span class="info-value">現金</span>
+                            </div>
+
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="info-label">點餐數量</span>
+                                <span class="info-value">3項</span>
+                            </div>
+
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="info-label">備註</span>
+                                <span class="info-value">不用餐具</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer">
+
+                        <div class="mb-3 d-flex justify-content-between align-items-center">
+
+                            <span class="fw-bold">
+                                總金額
+                            </span>
+
+                            <span class="total-price">
+                                NT$1000
+                            </span>
+
+                        </div>
+
+                        <div class="d-flex gap-2">
+
+                            <button class="btn btn-detail flex-fill">
+                                查看明細
+                            </button>
+
+                            <button class="btn btn-confirm flex-fill">
+                                確認訂單
+                            </button>
+
+                            <button class="btn btn-delete flex-fill">
+                                刪除訂單
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/vue.global.js"></script>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {}
+            }
+        }).mount("#app")
+    </script>
+
+</body>
+
+</html>
