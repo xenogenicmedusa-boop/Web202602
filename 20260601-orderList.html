@@ -9,106 +9,363 @@
 </head>
 
 <body>
-    <div id="app" class="container py-4">
-        <div class="row g-4">
-            <div class="display-4">{{title}}</div>
-            <div class="col-12 col-md-6 col-xl-4" v-for="item in orders">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header d-flex justify-content-between align-items-center bg-white">
-                        <div class="fs-5">🍔訂單編號: <span class="text-primary">{{item.id}}</span></div><span class="badge text-bg-warning">待處理</span>
+    <div id="app" class="container py-5">
+        <div class="display-3 fw-bold text-center mb-3">{{title}}</div>
+        <div class="row mb-3 g-4">
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="h3 text-bg-warning p-2 text-center fw-bold rounded-2">待處理</div>
+                        <span class="h1 fw-bold text-center">{{pendingOrderCount}}</span>筆
                     </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="h3 text-bg-primary p-2 text-center fw-bold rounded-2">製作中</div>
+                        <span class="h1 fw-bold text-center">{{processingOrderCount}}</span>筆
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="h3 text-bg-success p-2 text-center fw-bold rounded-2">已完成</div>
+                        <span class="h1 fw-bold text-center">{{completedOrderCount}}</span>筆
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3 mt-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="h3 text-bg-danger p-2 text-center fw-bold rounded-2">已取消</div>
+                        <span class="h1 fw-bold text-center">{{cancelledOrderCount}}</span>筆
+                    </div>
+                </div>
+            </div>
 
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <div class="fs-5 fw-bold">訂餐人: {{item.customerName}}</div>
-                            <div>👥用餐人數: {{item.customerCount}}人</div>
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-xl-4" v-for="item in orders">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center bg-white">
+                            <div class="fs-5">🍔訂單編號:
+                                <span class="text-primary">{{item.id}}</span>
+                            </div>
+                            <span class="badge" :class="{
+                                'text-bg-warning':item.status ==='待處理',
+                                'text-bg-primary':item.status ==='製作中',
+                                'text-bg-success':item.status ==='已完成',
+                                'text-bg-danger':item.status ==='已取消'
+                            }">{{item.status}}</span>
                         </div>
-                        <div class="border-top pt-3">
-                            <div class="mb-2 d-flex justify-content-between">
-                                <span class="text-secondary">取餐方式</span>
-                                <span class="fw-bold">{{item.pickupType}}</span>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div class="fs-5 fw-bold">訂餐人: {{item.customerName}}</div>
+                                <div>👥用餐人數: {{item.customerCount}}人</div>
                             </div>
-                            <div class="mb-2 d-flex justify-content-between">
-                                <span class="text-secondary">付款方式</span>
-                                <span class="fw-bold">{{item.payType}}</span>
-                            </div>
-                            <div class="mb-2 d-flex justify-content-between">
-                                <span class="text-secondary">點餐數量</span>
-                                <span class="fw-bold">{{item.selectedCount}}項</span>
-                            </div>
-                            <div class="mb-2 d-flex justify-content-between">
-                                <span class="text-secondary">備註</span>
-                                <span class="fw-bold">{{item.memo}}</span>
-                            </div>
-                            <div class="border rounded-3 p-3 mt-3" v-if="selectedOrderId === item.id">
-                                <div class="fw-bolder mb-2">餐點明細</div>
-                                <div class="d-flex justify-content-between border-bottom py-2" v-for="meal in item.meals">
-                                    <span>{{meal.name}}</span>
-                                    <span class="fw-bolder text-success">{{meal.price}}元</span>
+                            <div class="border-top pt-3">
+                                <div class="mb-2 d-flex justify-content-between">
+                                    <span class="text-secondary">取餐方式</span>
+                                    <span class="fw-bold">{{item.pickupType}}</span>
+                                </div>
+                                <div class="mb-2 d-flex justify-content-between">
+                                    <span class="text-secondary">付款方式</span>
+                                    <span class="fw-bold">{{item.payType}}</span>
+                                </div>
+                                <div class="mb-2 d-flex justify-content-between">
+                                    <span class="text-secondary">點餐數量</span>
+                                    <span class="fw-bold">{{item.selectedCount}}項</span>
+                                </div>
+                                <div class="mb-2 d-flex justify-content-between">
+                                    <span class="text-secondary">備註</span>
+                                    <span class="fw-bold">{{item.memo}}</span>
+                                </div>
+                                <div class="border rounded-3 p-3 mt-3" v-if="selectedOrderId === item.id">
+                                    <div class="fw-bolder mb-2">餐點明細</div>
+                                    <div class="d-flex justify-content-between border-bottom py-2"
+                                        v-for="meal in item.meals">
+                                        <span>{{meal.name}}</span>
+                                        <span class="fw-bolder text-success">{{meal.price}}元</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="mb-2 d-flex justify-content-between">
-                            <span class="fw-bold">總金額
-                            </span>
-                            <span class="fw-bold fs-4 text-danger">{{item.totalPrice}}元</span>
-                        </div>
-                        <div class="d-flex gap-2">
-                            <button class="btn btn-outline-primary flex-fill" @click="toggleDetails(item.id)">
-                                <span v-if="selectedOrderId == item.id">收合明細</span>
-                            <span v-else>展開明細</span></button>
-                            <button class="btn btn-success flex-fill">確認訂單</button>
-                            <button class="btn btn-outline-danger flex-fill">刪除訂單</button>
+                        <div class="card-footer">
+                            <div class="mb-2 d-flex justify-content-between">
+                                <span class="fw-bold">總金額
+                                </span>
+                                <span class="fw-bold fs-4 text-danger">{{item.totalPrice}}元</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-primary flex-fill" @click="toggleDetails(item.id)">
+                                    <span v-if="selectedOrderId == item.id">收合明細</span>
+                                    <span v-else>展開明細</span></button>
+                                <button class="btn btn-success flex-fill" @click="showEditModal(item)">修改訂單</button>
+                                <button class="btn btn-outline-danger flex-fill"
+                                    @click="deleteOrder(item.id)">刪除訂單</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- 修改訂單的Modal -->
+            <div class="modal" tabindex="-1" id="editModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bold"><span
+                                    class="badge text-bg-danger">訂單編號</span>{{editOrder.id}}
+                            </h5>
+                            <!-- 訂單狀態 -->
+                            <select class="form-select" v-model="editOrder.status">
+                                <option value="待處理">待處理</option>
+                                <option value="製作中">製作中</option>
+                                <option value="已完成">已完成</option>
+                                <option value="已取消">已取消</option>
+                            </select>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- 訂餐人姓名(2~5字) -->
+                            <div class="mb-3">
+                                <label for="customerName" class="form-label">訂餐人姓名(2-5字)</label>
+                                <input type="text" id="customerName" class="form-control"
+                                    v-model="editOrder.customerName" disabled>
+                                <div class="valid-feedback">姓名格式正確</div>
+                                <div class="invalid-feedback">姓名格式不正確</div>
+                            </div>
+                            <!-- 訂餐人數(1~20人) -->
+                            <div class="mb-3">
+                                <label for="customerCount" class="form-label">用餐人數(1-20人)</label>
+                                <input type="number" id="customerCount" min="1" max="20" class="form-control"
+                                    v-model="editOrder.customerCount" :class="{'is-valid' : customerCountFlag === true,
+'is-invalid' : customerCountFlag === false,}">
+                                <div class="valid-feedback">用餐人數符合規定</div>
+                                <div class="invalid-feedback">用餐人數必須介於1-20人</div>
+                            </div>
+                            <!-- 備註(1~20字) -->
+                            <div class="mb-3">
+                                <label for="memo" class="form-label">備註(1-20字)</label>
+                                <textarea id="memo" row="3" class="form-control" placeholder="例如:不要香菜、餐具多一分..."
+                                    v-model="editOrder.memo" :class="{'is-valid' : memoFlag === true,
+'is-invalid' : memoFlag === false,}"></textarea>
+                                <div class="valid-feedback">備註格式正確</div>
+                                <div class="invalid-feedback">備註格式不正確</div>
+                                <div class="form-text">目前字數: {{editOrder.memo?.length || 0}} / 20</div>
+                            </div>
+                            <!-- 付款方式 -->
+                            <div class="h5">修改付款方式</div>
+                            <div class="mb-3">
+                                <select class="form-select" v-model="editOrder.payType">
+                                    <option value="" disabled selected>選擇付款方式</option>
+                                    <option value="信用卡">信用卡</option>
+                                    <option value="現金">現金</option>
+                                    <option value="LINE PAY">LINE PAY</option>
+                                    <option value="APPLE PAY">APPLE PAY</option>
+                                </select>
+                            </div>
+                            <!-- 取餐方式 -->
+                            <div class="h5">修改取餐方式</div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" value="櫃台取餐" id="pickupType01"
+                                    v-model="editOrder.pickupType">
+                                <label for="pickupType01" class="form-label">櫃台取餐</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" value="送到座位" id="pickupType02"
+                                    v-model="editOrder.pickupType">
+                                <label for="pickupType02" class="form-label">送到座位</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" value="得來速" id="pickupType03"
+                                    v-model="editOrder.pickupType">
+                                <label for="pickupType03" class="form-label">得來速</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" @click="updateOrder"
+                                :disabled="!isFormValid">確認修改</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal -->
         </div>
-    </div>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/vue.global.js"></script>
-    <script src="js/axios.min.js"></script>
-    <script>
-        Vue.createApp({
-            data() {
-                return {
-                    title: "訂單管理系統",
-                    orders: [],
-                    selectedOrderId: null,
-                }
-            },
-            methods: {
-                getOrders() {
-                    const vm = this;
-                    axios
-                        .get('http://localhost:3000/orders')
-                        .then(function (response) {
-                            console.log(response);
-                            vm.orders = response.data;
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        })
-                        .finally(function () {
-                            // always executed
-                        });
+        <!-- end container -->
+
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/vue.global.js"></script>
+        <script src="js/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Vue.createApp({
+                data() {
+                    return {
+                        title: "訂單管理系統",
+                        orders: [],//從json-server取得所有訂單
+                        selectedOrderId: null,//計入目前展開那一筆訂單
+                        //紀錄目前正在修改的訂單
+                        editOrder: {
+                            id: '',
+                            customerName: '',
+                            customerCount: 0,
+                            memo: '',
+                            payType: '',
+                            pickupType: '',
+                            status: ''
+                        },
+                        //表單驗證狀態旗子
+                        customerCountFlag: null,
+                        memoFlag: null,
+
+                    }
                 },
-                toggleDetails(id) {
-                    const vm = this;
-                    if (vm.selectedOrderId === id) {
-                        vm.selectedOrderId = null
-                    } else {
-                        this.selectedOrderId = id
+                methods: {
+                    getOrders() {
+                        const vm = this;
+                        axios.get('http://localhost:3000/orders/')
+                            .then(function (response) {
+                                console.log(response);
+                                vm.orders = response.data;
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            })
+                            .finally(function () {
+                                // always executed
+                            });
+                    },
+                    toggleDetails(id) {
+                        const vm = this;
+                        if (vm.selectedOrderId === id) {
+                            vm.selectedOrderId = null
+                        } else {
+                            this.selectedOrderId = id
+                        }
+                    },
+                    showEditModal(item) {
+                        //複製要更新編輯的資料
+                        const vm = this;
+                        vm.editOrder = {
+                            ...item
+                        }
+                        //顯示editModal
+                        const modalElement = document.getElementById('editModal');
+                        const modal = bootstrap.Modal.getOrCreateInstance(modalElement, {
+                            backdrop: 'static',
+                            keyboard: false
+                        });
+
+                        modal.show();
+                    },
+                    //送出修改資料
+                    updateOrder() {
+                        const vm = this;
+                        //整理可以修改的欄位
+                        const updateData = {
+                            customerCount: vm.editOrder.customerCount,
+                            memo: vm.editOrder.memo,
+                            payType: vm.editOrder.payType,
+                            pickupType: vm.editOrder.pickupType,
+                            status: vm.editOrder.status,
+                        };
+                        axios.patch('http://localhost:3000/orders/' + vm.editOrder.id, updateData)
+                            .then(function (response) {
+                                console.log(response);
+                                //改成sweetalert
+                                Swal.fire({
+                                    title: "Good job!",
+                                    text: "訂單修改成功!",
+                                    icon: "success"
+                                });
+                                //關閉editModal
+                                const modalElement = document.getElementById('editModal');
+                                const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+                                modal.hide();
+                                //重新讀取訂單
+                                vm.getOrders();
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            })
+                            .finally(function () {
+                                // always executed
+                            });
+                    },
+                    deleteOrder(id) {
+                        const vm = this;
+                        Swal.fire({
+                        title: "確認刪除訂單嗎?",
+                        text: "刪除後將無法還原！",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#d33",
+                        cancelButtonColor: "#3085d6",
+                        confirmButtonText: "是的，刪除它！",
+                        cancelButtonText: "取消"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            axios.delete('http://localhost:3000/orders/' + id)
+                                .then(function (response) {
+                                    Swal.fire("成功!", "訂單刪除成功!", "success");
+                                    vm.getOrders();
+                                })
+                            .catch(function (error) {
+                                console.log(error);
+                            })
+                            .finally(function () {
+                                // always executed
+                            });
+                    }
+                });
+                            }},                        
+                //在網頁仔入時會先執行的功能(譬如: 取得相關資料)
+                mounted() {
+                    this.getOrders();
+                },
+                watch: {
+                    //如果是物件裏面的變數，要用單引號框住
+                    'editOrder.customerCount'(newValue) {
+                        if (newValue === 0) {
+                            this.customerCountFlag = null;
+                        } else if (newValue >= 1 && newValue <= 20) {
+                            this.customerCountFlag = true;
+                        } else {
+                            this.customerCountFlag = false;
+                        }
+                    },
+                    'editOrder.memo'(newValue) {
+                        if (newValue.length === 0) {
+                            this.memoFlag = null;
+                        } else if (newValue.length >= 1 && newValue.length <= 20) {
+                            this.memoFlag = true;
+                        } else {
+                            this.memoFlag = false;
+                        }
+                    }
+                },
+                computed: {
+                    //判斷訂單是否完整
+                    isFormValid() {
+                        return this.customerCountFlag === true && this.memoFlag === true;
+                    },
+                    pendingOrderCount(){
+                        return this.orders.filter(order=>order.status==='待處理').length;                        
+                    },
+                    processingOrderCount(){
+                        return this.orders.filter(order=>order.status ==='製作中').length;
+                    },
+                    completedOrderCount(){
+                        return this.orders.filter(order=>order.status ==='已完成').length;
+                    },
+                    cancelledOrderCount(){
+                        return this.orders.filter(order=>order.status ==='已取消').length;
                     }
                 }
-            },
-            mounted() {
-                this.getOrders();
-            },
-        }).mount("#app")
-    </script>
+            }).mount("#app")
+        </script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vuejs 練習</title>
+    <title>Order Meals</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
@@ -49,7 +49,7 @@
                     <div class="form-check" v-for="item in meals">
                         <input type="checkbox" class="form-check-input" :value="item" v-model="selectedMeals"
                             :id="item.id">
-                        <label for="item.id" class="form-check-label">{{item.name}} -- {{item.price}}元</label>
+                        <label :for="item.id" class="form-check-label">{{item.name}} -- {{item.price}}元</label>
                     </div>
                     <hr>
                     <div class="h3">請選擇付款方式</div>
@@ -149,7 +149,7 @@
         Vue.createApp({
             data() {
                 return {
-                    title: 'Vuejs 練習．點餐',
+                    title: 'Order Meals',
                     isOrder: false,
                     meals: [
                         {
@@ -251,7 +251,8 @@
                         payType: this.payType,
                         pickupType: this.pickupType,
                         selectedCount: this.selectedCount,
-                        totalPrice: this.totalPrice
+                        totalPrice: this.totalPrice,
+                        status:"待處理"
                     };
                     console.log(orderData);
                     //傳遞至json server API執行新增
@@ -268,7 +269,7 @@
                                     icon: 'success',
                                     allowOutsideClick: 'false'
                                 }).then((result) => {
-                                    if (result.isConfirmed) {location.href="20260525-1.html"};
+                                    if (result.isConfirmed) {location.href="20260525-orderMeal.html"};
                                 });
                             }
                         })
