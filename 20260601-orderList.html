@@ -9,44 +9,129 @@
 </head>
 
 <body>
-    <div id="app" class="container py-5">
-        <div class="display-3 fw-bold text-center mb-3">{{title}}</div>
-        <div class="row mb-3 g-4">
-            <div class="col-md-6 col-xl-3 mt-3">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="h3 text-bg-warning p-2 text-center fw-bold rounded-2">待處理</div>
-                        <span class="h1 fw-bold text-center">{{pendingOrderCount}}</span>筆
+    <div id="app">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="20260615-chartjs.html">🍔 後台管理系統</a>
+                <div class="ms-auto">
+                    <button class="btn btn-outline-light d-flex align-items-center gap-1" onclick="history.back()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
+                        </svg>
+                        <a href="20260525-orderMeal.html" class="text-decoration-none text-info">Order Meal</a>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div class="container py-5">
+            <div class="display-3 fw-bold text-center mb-3">{{title}}</div>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            狀態統計
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="row mb-3 g-4">
+                                <div class="col-md-6 col-xl-3 mt-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <div class="h3 text-bg-warning p-2 text-center fw-bold rounded-2">待處理</div>
+                                            <span class="h1 fw-bold text-center">{{pendingOrderCount}}</span>筆
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3 mt-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <div class="h3 text-bg-primary p-2 text-center fw-bold rounded-2">製作中</div>
+                                            <span class="h1 fw-bold text-center">{{processingOrderCount}}</span>筆
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3 mt-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <div class="h3 text-bg-success p-2 text-center fw-bold rounded-2">已完成</div>
+                                            <span class="h1 fw-bold text-center">{{completedOrderCount}}</span>筆
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3 mt-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <div class="h3 text-bg-danger p-2 text-center fw-bold rounded-2">已取消</div>
+                                            <span class="h1 fw-bold text-center">{{cancelledOrderCount}}</span>筆
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            訂單狀態統計圖表
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="mb-3" style="position:relative; height:350px; width: 100%;">
+                                    <canvas id="statusChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            產品銷售統計圖表
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="mb-3" style="position:relative; height:350px; width: 100%;">
+                                    <canvas id="SaleChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            取餐方式統計圖表
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="mb-3" style="position:relative; height:350px; width: 100%;">
+                                    <canvas id="PickupTypeChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-xl-3 mt-3">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="h3 text-bg-primary p-2 text-center fw-bold rounded-2">製作中</div>
-                        <span class="h1 fw-bold text-center">{{processingOrderCount}}</span>筆
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3 mt-3">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="h3 text-bg-success p-2 text-center fw-bold rounded-2">已完成</div>
-                        <span class="h1 fw-bold text-center">{{completedOrderCount}}</span>筆
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-xl-3 mt-3">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="h3 text-bg-danger p-2 text-center fw-bold rounded-2">已取消</div>
-                        <span class="h1 fw-bold text-center">{{cancelledOrderCount}}</span>筆
-                    </div>
-                </div>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-12 col-md-6 col-xl-4" v-for="item in orders">
+            <div class="row g-4 mt-3">
+                <div class="col-12 col-md-6 col-xl-4" v-for="item in orders" :key="item.id">
                     <div class="card shadow-sm h-100">
                         <div class="card-header d-flex justify-content-between align-items-center bg-white">
                             <div class="fs-5">🍔訂單編號:
@@ -118,7 +203,7 @@
                                     class="badge text-bg-danger">訂單編號</span>{{editOrder.id}}
                             </h5>
                             <!-- 訂單狀態 -->
-                            <select class="form-select" v-model="editOrder.status">
+                            <select class="form-select ms-2" v-model="editOrder.status">
                                 <option value="待處理">待處理</option>
                                 <option value="製作中">製作中</option>
                                 <option value="已完成">已完成</option>
@@ -194,109 +279,126 @@
             <!-- end modal -->
         </div>
         <!-- end container -->
+    </div>
 
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/vue.global.js"></script>
-        <script src="js/axios.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            Vue.createApp({
-                data() {
-                    return {
-                        title: "訂單管理系統",
-                        orders: [],//從json-server取得所有訂單
-                        selectedOrderId: null,//計入目前展開那一筆訂單
-                        //紀錄目前正在修改的訂單
-                        editOrder: {
-                            id: '',
-                            customerName: '',
-                            customerCount: 0,
-                            memo: '',
-                            payType: '',
-                            pickupType: '',
-                            status: ''
-                        },
-                        //表單驗證狀態旗子
-                        customerCountFlag: null,
-                        memoFlag: null,
 
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/vue.global.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    title: "訂單管理系統",
+                    orders: [],//從json-server取得所有訂單
+                    selectedOrderId: null,//計入目前展開那一筆訂單
+                    //紀錄目前正在修改的訂單
+                    editOrder: {
+                        id: '',
+                        customerName: '',
+                        customerCount: 0,
+                        memo: '',
+                        payType: '',
+                        pickupType: '',
+                        status: ''
+                    },
+                    //表單驗證狀態旗子
+                    customerCountFlag: null,
+                    memoFlag: null,
+                    //statusChart訂單狀態表
+                    statusChartInstance: null,
+                    //產品銷售統計圖
+                    saleChartInstance: null,
+                    pickupTypeChartInstance: null
+
+                }
+            },
+            methods: {
+                getOrders() {
+                    const vm = this;
+                    axios.get('http://localhost:3000/orders/')
+                        .then(function (response) {
+                            console.log(response);
+                            vm.orders = response.data;
+                            //等VUE畫面更新完以後再產生圖表
+                            vm.$nextTick(function () {
+                                vm.renderStatusChart();
+                                vm.renderSaleChart();
+                                vm.renderPickupTypeChart();
+                            });
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+                },
+                toggleDetails(id) {
+                    const vm = this;
+                    if (vm.selectedOrderId === id) {
+                        vm.selectedOrderId = null
+                    } else {
+                        this.selectedOrderId = id
                     }
                 },
-                methods: {
-                    getOrders() {
-                        const vm = this;
-                        axios.get('http://localhost:3000/orders/')
-                            .then(function (response) {
-                                console.log(response);
-                                vm.orders = response.data;
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                            })
-                            .finally(function () {
-                                // always executed
-                            });
-                    },
-                    toggleDetails(id) {
-                        const vm = this;
-                        if (vm.selectedOrderId === id) {
-                            vm.selectedOrderId = null
-                        } else {
-                            this.selectedOrderId = id
-                        }
-                    },
-                    showEditModal(item) {
-                        //複製要更新編輯的資料
-                        const vm = this;
-                        vm.editOrder = {
-                            ...item
-                        }
-                        //顯示editModal
-                        const modalElement = document.getElementById('editModal');
-                        const modal = bootstrap.Modal.getOrCreateInstance(modalElement, {
-                            backdrop: 'static',
-                            keyboard: false
-                        });
+                showEditModal(item) {
+                    //複製要更新編輯的資料
+                    const vm = this;
+                    vm.editOrder = {
+                        ...item
+                    };
+                    // 💡 防呆優化：打開 Modal 時根據舊資料先初始化驗證旗標，避免按鈕被鎖死
+                    vm.customerCountFlag = vm.editOrder.customerCount >= 1 && vm.editOrder.customerCount <= 20;
+                    vm.memoFlag = vm.editOrder.memo && vm.editOrder.memo.length >= 1 && vm.editOrder.memo.length <= 20;
+                    //顯示editModal
+                    const modalElement = document.getElementById('editModal');
+                    const modal = bootstrap.Modal.getOrCreateInstance(modalElement, {
+                        backdrop: 'static',
+                        keyboard: false
+                    });
 
-                        modal.show();
-                    },
-                    //送出修改資料
-                    updateOrder() {
-                        const vm = this;
-                        //整理可以修改的欄位
-                        const updateData = {
-                            customerCount: vm.editOrder.customerCount,
-                            memo: vm.editOrder.memo,
-                            payType: vm.editOrder.payType,
-                            pickupType: vm.editOrder.pickupType,
-                            status: vm.editOrder.status,
-                        };
-                        axios.patch('http://localhost:3000/orders/' + vm.editOrder.id, updateData)
-                            .then(function (response) {
-                                console.log(response);
-                                //改成sweetalert
-                                Swal.fire({
-                                    title: "Good job!",
-                                    text: "訂單修改成功!",
-                                    icon: "success"
-                                });
-                                //關閉editModal
-                                const modalElement = document.getElementById('editModal');
-                                const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
-                                modal.hide();
-                                //重新讀取訂單
-                                vm.getOrders();
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                            })
-                            .finally(function () {
-                                // always executed
+                    modal.show();
+                },
+                //送出修改資料
+                updateOrder() {
+                    const vm = this;
+                    //整理可以修改的欄位
+                    const updateData = {
+                        customerCount: vm.editOrder.customerCount,
+                        memo: vm.editOrder.memo,
+                        payType: vm.editOrder.payType,
+                        pickupType: vm.editOrder.pickupType,
+                        status: vm.editOrder.status,
+                    };
+                    axios.patch('http://localhost:3000/orders/' + vm.editOrder.id, updateData)
+                        .then(function (response) {
+                            console.log(response);
+                            //改成sweetalert
+                            Swal.fire({
+                                title: "Good job!",
+                                text: "訂單修改成功!",
+                                icon: "success"
                             });
-                    },
-                    deleteOrder(id) {
-                        const vm = this;
-                        Swal.fire({
+                            //關閉editModal
+                            const modalElement = document.getElementById('editModal');
+                            const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+                            modal.hide();
+                            //重新讀取訂單
+                            vm.getOrders();
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+                },
+                deleteOrder(id) {
+                    const vm = this;
+                    Swal.fire({
                         title: "確認刪除訂單嗎?",
                         text: "刪除後將無法還原！",
                         icon: "warning",
@@ -312,60 +414,277 @@
                                     Swal.fire("成功!", "訂單刪除成功!", "success");
                                     vm.getOrders();
                                 })
-                            .catch(function (error) {
-                                console.log(error);
-                            })
-                            .finally(function () {
-                                // always executed
+                                .catch(function (error) {
+                                    console.log(error);
+                                })
+                                .finally(function () {
+                                    // always executed
+                                });
+                        }
+
+                    });
+                },
+                renderStatusChart() {
+                    //甘特圖
+                    const ctx = document.getElementById('statusChart');
+                    if (!ctx) return;
+                    // 如果圖表已經存在，先銷毀舊的再畫新的，防止 canvas 重疊 Bug
+                    if (this.statusChartInstance != null) {
+                        this.statusChartInstance.destroy();
+                    }
+                    // 這裡直接取用 computed 的即時動態數據
+                    this.statusChartInstance = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['待處理', '製作中', '已完成', '已取消'],
+                            datasets: [{
+                                label: '訂單狀態統計',
+                                data: [
+                                    this.pendingOrderCount,
+                                    this.processingOrderCount,
+                                    this.completedOrderCount,
+                                    this.cancelledOrderCount
+                                ],
+                                borderWidth: 1,
+                                backgroundColor: [
+                                    'rgba(255, 193, 7, 0.2)',  // 待處理：警告/提醒的黃色
+                                    'rgba(13, 110, 253, 0.2)', // 製作中：代表進行中的藍色
+                                    'rgba(40, 167, 69, 0.2)',  // 已完成：代表成功的綠色
+                                    'rgba(220, 53, 69, 0.2)'   // 已取消：代表中斷/警示的紅色
+                                ],
+                                borderColor: [
+                                    'rgba(255, 193, 7, 1)',    // 待處理邊框 (純黃)
+                                    'rgba(13, 110, 253, 1)',   // 製作中邊框 (純藍)
+                                    'rgba(40, 167, 69, 1)',    // 已完成邊框 (純綠)
+                                    'rgba(220, 53, 69, 1)'     // 已取消邊框 (純紅)
+                                ]
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            // 1. 是否維持原圖比例（預設為 true）
+                            // 如果設為 false，圖表會完全拉伸到填滿外層容器的寬和高，可能會稍微變形
+                            maintainAspectRatio: false,
+
+                            // 2. 縮放時的動畫延遲（單位：毫秒）
+                            // 當使用者瘋狂拖曳視窗時，延遲 200 毫秒再重畫，可以提升網頁效能
+                            resizeDelay: 200,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        stepSize: 1 // 強制 y 軸只顯示整數
+                                    }
+                                }
+                            }
+                        }
+                    });
+                },
+                renderSaleChart() {
+                    const ctx = document.getElementById('SaleChart');
+                    if (!ctx) return;
+                    //建立一個物件 紀錄統計資料
+                    let mealCount = {};
+                    //統計每項餐點賣出幾份
+                    this.orders.forEach(function (item) {
+                        item.meals.forEach(function (meal) {
+                            //如果這個餐點沒有出現過線設定為0
+                            if (mealCount[meal.name] === undefined) {
+                                mealCount[meal.name] = 0;
+                            }
+                            //每出現一次代表賣出一份
+                            mealCount[meal.name] = mealCount[meal.name] + 1;
+                        });
+                    });                    
+                    console.log(mealCount);
+                    // 💡 修正：轉換 mealCount 物件為 Chart.js 所需的 標籤 與 數據 陣列
+                    const chartLabels = Object.keys(mealCount); // 自動取得所有餐點名稱，例如 ['大麥克套餐', '麥香雞套餐']
+                    const chartData = Object.values(mealCount);  // 自動取得對應的銷售數量，例如 [12, 8]
+                    // 如果圖表已經存在，先銷毀舊的再畫新的，防止 canvas 重疊 Bug
+                    if (this.saleChartInstance != null) {
+                        this.saleChartInstance.destroy();
+                    }
+                    this.saleChartInstance = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: chartLabels,
+                            datasets: [{
+                                label: '產品銷售統計',
+                                data: chartData,
+                                borderWidth: 1,
+                                backgroundColor: [
+                                    '#1A73E8',   // 1. 科技藍 (代表主力產品、高銷售)
+                                    '#4CD137',   // 2. 翡翠綠 (代表成長中、高利潤)
+                                    '#FBC531',   // 3. 活力橘 (代表潛力新品、注意度高)
+                                    '#9C27B0',  // 4. 優雅紫 (代表高端、限量系列)
+                                    '#E84118',   // 5. 玫瑰紅 (代表促銷、熱門爆款)
+                                    '#FF9F43'     // 6. 時尚灰 (代表出清、常態低度品)
+                                ],
+                                borderColor: [
+                                    'rgba(54, 162, 235, 1)',   // 科技藍邊框
+                                    'rgba(75, 192, 192, 1)',   // 翡翠綠邊框
+                                    'rgba(255, 159, 64, 1)',   // 活力橘邊框
+                                    'rgba(153, 102, 255, 1)',  // 優雅紫邊框
+                                    'rgba(255, 99, 132, 1)',   // 玫瑰紅邊框
+                                    'rgba(201, 203, 207, 1)'    // 時尚灰邊框
+                                ],
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            resizeDelay: 200,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        stepSize: 1
+                                    }
+                                }
+                            }
+                        }
+                    });
+                },
+                renderPickupTypeChart(){
+                    if (!this.orders || this.orders.length === 0) return;
+                    const pickupTypeCount ={};
+                    this.orders.forEach(order =>{
+                        const type = order.pickupType || '未填寫';
+                        if (pickupTypeCount[type]){
+                            pickupTypeCount[type]++;
+                        } else {
+                            pickupTypeCount[type] =1;
+                        }
+                    });
+                    console.log("取餐方式統計結果:", pickupTypeCount);
+                    const ctx = document.getElementById('PickupTypeChart');
+                    if (!ctx) return;
+                    if (this.pickupTypeChartInstance){
+                        this.pickupTypeChartInstance.destroy();
+                    }
+                    this.pickupTypeChartInstance = new Chart(ctx,{
+                        type: 'pie',
+                        data:{
+                            labels: Object.keys(pickupTypeCount),
+                            datasets:[{
+                            label: '取餐方式統計',
+                            data: Object.values(pickupTypeCount),
+                            borderWidth: 2,
+                            backgroundColor: [
+                                    '#1A73E8',   // 1. 科技藍 (代表主力產品、高銷售)
+                                    '#4CD137',   // 2. 翡翠綠 (代表成長中、高利潤)
+                                    '#FBC531',   // 3. 活力橘 (代表潛力新品、注意度高)
+                                    '#9C27B0',  // 4. 優雅紫 (代表高端、限量系列)
+                                    '#E84118',   // 5. 玫瑰紅 (代表促銷、熱門爆款)
+                                    '#FF9F43'     // 6. 時尚灰 (代表出清、常態低度品)
+                                ],
+                                borderColor: [
+                                    'rgba(54, 162, 235, 1)',   // 科技藍邊框
+                                    'rgba(75, 192, 192, 1)',   // 翡翠綠邊框
+                                    'rgba(255, 159, 64, 1)',   // 活力橘邊框
+                                    'rgba(153, 102, 255, 1)',  // 優雅紫邊框
+                                    'rgba(255, 99, 132, 1)',   // 玫瑰紅邊框
+                                    'rgba(201, 203, 207, 1)'    // 時尚灰邊框
+                                ],
+                        }]
+                    },
+                    options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            resizeDelay: 200
+                            // 圓餅圖不需要 Y 軸 scales 喔！
+                        }                        
+                    });
+                }
+            },
+
+            //在網頁仔入時會先執行的功能(譬如: 取得相關資料)
+            mounted() {
+                this.getOrders();
+
+                // 💡 修正提示：監聽 Bootstrap Accordion 的展開事件
+                // 當使用者點擊展開「後臺相關統計圖表」時，強制讓圖表重新 resize，解決剛開始隱藏寬高為0的問題                
+                const collapseTwoEl = document.getElementById('collapseTwo');
+                if (collapseTwoEl) {
+                    collapseTwoEl.addEventListener('shown.bs.collapse', () => {
+                        if (this.statusChartInstance) {
+                            this.statusChartInstance.resize();
+                        }
+                    });
+                }
+                // 💡 修正：同步新增對產品銷售圖表折疊的展開監聽
+                const collapseThreeEl = document.getElementById('collapseThree');
+                if (collapseThreeEl) {
+                    collapseThreeEl.addEventListener('shown.bs.collapse', () => {
+                        if (this.saleChartInstance) {
+                            this.saleChartInstance.resize();
+                        }
+                    });
+                }
+                const collapseFourEl = document.getElementById('collapseFour');
+                if (collapseFourEl) {
+                    collapseFourEl.addEventListener('shown.bs.collapse', () => {
+                        if (this.pickupTypeChartInstance) {
+                            this.pickupTypeChartInstance.resize();
+                        }
+                    });
+                }
+            },
+            watch: {
+                // 💡 修正提示：新增對 orders 的監聽
+                // 當 Axios 拿到新資料或訂單被修改/刪除時，自動更新圖表
+                orders: {
+                    handler(newVal) {
+                        if (newVal.length > 0) {
+                            // 使用 $nextTick 確保 HTML 裡的 #statusChart 節點已經渲染出來了
+                            this.$nextTick(() => {
+                                this.renderStatusChart();
+                                this.renderSaleChart();
                             });
-                    }
-                });
-                            }},                        
-                //在網頁仔入時會先執行的功能(譬如: 取得相關資料)
-                mounted() {
-                    this.getOrders();
-                },
-                watch: {
-                    //如果是物件裏面的變數，要用單引號框住
-                    'editOrder.customerCount'(newValue) {
-                        if (newValue === 0) {
-                            this.customerCountFlag = null;
-                        } else if (newValue >= 1 && newValue <= 20) {
-                            this.customerCountFlag = true;
-                        } else {
-                            this.customerCountFlag = false;
                         }
                     },
-                    'editOrder.memo'(newValue) {
-                        if (newValue.length === 0) {
-                            this.memoFlag = null;
-                        } else if (newValue.length >= 1 && newValue.length <= 20) {
-                            this.memoFlag = true;
-                        } else {
-                            this.memoFlag = false;
-                        }
+                    deep: true
+                },
+                //如果是物件裏面的變數，要用單引號框住
+                'editOrder.customerCount'(newValue) {
+                    if (newValue === 0) {
+                        this.customerCountFlag = null;
+                    } else if (newValue >= 1 && newValue <= 20) {
+                        this.customerCountFlag = true;
+                    } else {
+                        this.customerCountFlag = false;
                     }
                 },
-                computed: {
-                    //判斷訂單是否完整
-                    isFormValid() {
-                        return this.customerCountFlag === true && this.memoFlag === true;
-                    },
-                    pendingOrderCount(){
-                        return this.orders.filter(order=>order.status==='待處理').length;                        
-                    },
-                    processingOrderCount(){
-                        return this.orders.filter(order=>order.status ==='製作中').length;
-                    },
-                    completedOrderCount(){
-                        return this.orders.filter(order=>order.status ==='已完成').length;
-                    },
-                    cancelledOrderCount(){
-                        return this.orders.filter(order=>order.status ==='已取消').length;
+                'editOrder.memo'(newValue) {
+                    if (!newValue || newValue.length === 0) {
+                        this.memoFlag = null;
+                    } else if (newValue.length >= 1 && newValue.length <= 20) {
+                        this.memoFlag = true;
+                    } else {
+                        this.memoFlag = false;
                     }
                 }
-            }).mount("#app")
-        </script>
+            },
+            computed: {
+                //判斷訂單是否完整
+                isFormValid() {
+                    return this.customerCountFlag === true && this.memoFlag === true;
+                },
+                pendingOrderCount() {
+                    return this.orders.filter(order => order.status === '待處理').length;
+                },
+                processingOrderCount() {
+                    return this.orders.filter(order => order.status === '製作中').length;
+                },
+                completedOrderCount() {
+                    return this.orders.filter(order => order.status === '已完成').length;
+                },
+                cancelledOrderCount() {
+                    return this.orders.filter(order => order.status === '已取消').length;
+                }
+            }
+        }).mount("#app")
+    </script>
 </body>
 
 </html>

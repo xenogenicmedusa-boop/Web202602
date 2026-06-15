@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麥當勞餐點介紹首頁</title>
+    <!-- 引入 Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- 自訂麥當勞風格 CSS -->
+    <style>
+        :root {
+            --mcd-red: #DA291C;
+            --mcd-gold: #FFBC0D;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+        }
+
+        /* 橫幅 (Hero Section) 樣式 */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--mcd-red) 70%, #b31d12 100%);
+            color: white;
+            padding: 60px 0;
+            border-bottom: 6px solid var(--mcd-gold);
+        }
+
+        .mcd-logo {
+            font-size: 3.5rem;
+            color: var(--mcd-gold);
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* 餐點卡片樣式 */
+        .meal-card {
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            background: white;
+        }
+
+        .meal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .meal-img-wrapper {
+            position: relative;
+            height: 220px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 15px;
+        }
+
+        .meal-img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+
+        .meal-card:hover .meal-img {
+            transform: scale(1.05);
+        }
+
+        .price-tag {
+            color: var(--mcd-red);
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        /* 點餐按鈕樣式 */
+        .btn-mcd-order {
+            background-color: var(--mcd-gold);
+            color: #212529;
+            font-weight: bold;
+            font-size: 1.25rem;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(255, 188, 13, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .btn-mcd-order:hover {
+            background-color: #e5a900;
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255, 188, 13, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 頂部滿版橫幅 -->
+        <header class="hero-banner text-center shadow-sm">
+            <div class="container">
+                <div class="mcd-logo mb-2">M</div>
+                <h1 class="display-4 fw-bold mb-3">美味餐點 經典再現</h1>
+                <p class="lead fs-4 text-white-50">嚴選新鮮食材，現點現做，滿足你的味蕾需求！</p>
+                <!-- 醒目的 Order Meal 按鈕 -->
+                <div class="mt-4">
+                    <button class="btn btn-mcd-order d-inline-flex align-items-center gap-2" @click="goToOrder">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
+                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                        </svg>
+                        Order Meal 立即點餐
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- 產品展示區域 -->
+        <main class="container py-5">
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <h2 class="fw-bold border-bottom d-inline-block pb-2 border-3 border-warning">熱門主打套餐</h2>
+                </div>
+            </div>
+
+            <!-- 餐點卡片 Grid -->
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-4" v-for="meal in meals" :key="meal.id">
+                    <div class="card meal-card h-100 shadow-sm">
+                        <!-- 圖片包裹區塊，確保比例與水平垂直置中 -->
+                        <div class="meal-img-wrapper">
+                            <img :src="meal.image" :alt="meal.name" class="meal-img">
+                        </div>
+                        <div class="card-body d-flex flex-column justify-content-between p-4">
+                            <div>
+                                <h3 class="h5 card-title fw-bold text-dark mb-2">{{ meal.name }}</h3>
+                                <p class="card-text text-secondary small mb-3">{{ meal.description }}</p>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center border-top pt-3">
+                                <span class="text-muted small">經典套餐</span>
+                                <span class="price-tag">${{ meal.price }} 元</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 頁尾 -->
+        <footer class="bg-dark text-white-50 text-center py-4 mt-5 border-top border-secondary">
+            <div class="container">
+                <small>© 2026 McDonald's 後台整合展示網頁</small>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 引入 Vue 3 & Bootstrap 核心 JS -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/vue.global.js"></script>
+    
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    // 依據提供的圖片檔案名稱，建立對應的 meals 餐點清單資料
+                    meals: [
+                        {
+                            id: 1,
+                            name: "大麥克套餐",
+                            price: 140,
+                            image: "/images/大麥克套餐.png",
+                            description: "經典雙層牛肉搭配獨特大麥克醬汁、生菜、吉事與酸黃瓜，永遠的NO.1選擇。"
+                        },
+                        {
+                            id: 2,
+                            name: "勁辣雞腿堡套餐",
+                            price: 140,
+                            image: "/images/勁辣雞腿堡套餐.png",
+                            description: "整塊精選雞腿肉，香脆多汁且帶有濃郁辛辣風味，嗜辣饕客的最愛。"
+                        },
+                        {
+                            id: 3,
+                            name: "麥脆鷄套餐",
+                            price: 160,
+                            image: "/images/麥脆鷄套餐.png",
+                            description: "外皮酥脆卡滋、內層鮮嫩多汁，完美鎖住雞肉鮮甜的黃金極致美味。"
+                        },
+                        {
+                            id: 4,
+                            name: "麥克雞塊 (10塊) 套餐",
+                            price: 155,
+                            image: "/images/麥克雞塊10塊套餐.jpg",
+                            description: "外酥內嫩的經典經典雞塊，搭配無可取代的糖醋醬，讓人一口接一口。"
+                        },
+                        {
+                            id: 5,
+                            name: "雙層牛肉吉事堡套餐",
+                            price: 120,
+                            image: "/images/雙層牛肉吉事堡套餐.jpg",
+                            description: "濃郁雙層融化吉事，完美覆蓋於香煎純牛肉餅上，絕妙香濃滋味。"
+                        },
+                        {
+                            id: 6,
+                            name: "麥香雞套餐",
+                            price: 110,
+                            image: "/images/麥香雞套餐.jpg",
+                            description: "經典風味雞肉排，搭配新鮮生菜與特製醬汁，輕巧美味、百吃不厭。"
+                        }
+                    ]
+                }
+            },
+            methods: {
+                // 點擊 Order Meal 的觸發事件
+                goToOrder() {
+                    alert("即將為您跳轉至點餐系統頁面！");
+                    // 實際應用時可改為網頁跳轉，例如：
+                    window.location.href = "20260525-orderMeal.html";
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+
+</html>

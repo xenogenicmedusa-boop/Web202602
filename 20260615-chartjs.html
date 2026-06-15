@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>統計圖</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app" class="container pt-5">
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-10 card p-3 bg-light">
+                <h5 class="fw-bold mb-3">🛠️ 模擬訂單列表資料變動 (測試用)</h5>
+                <div class="d-flex gap-3">
+                    <button class="btn btn-warning" @click="pendingCount++">待處理 +1 (目前: {{ pendingCount }})</button>
+                    <button class="btn btn-primary" @click="processingCount++">製作中 +1 (目前: {{ processingCount }})</button>
+                    <button class="btn btn-success" @click="completedCount++">已完成 +1 (目前: {{ completedCount }})</button>
+                    <button class="btn btn-danger" @click="cancelledCount++">已取消 +1 (目前: {{ cancelledCount }})</button>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10 mt-5">
+                <div class="card">
+                    <div class="card-header text-bg-warning fw-bold">
+                        <div class="h4">甘特圖</div>
+                    </div>
+                    <div class="card-body" style="position: relative; width: 100%; max-width: 600px; height: 400px;">
+                        <canvas id="myChart01"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10 mt-5">
+                <div class="card">
+                    <div class="card-header text-bg-warning fw-bold">
+                        <div class="h4">折線圖</div>
+                    </div>
+                    <div class="card-body" style="position: relative; width: 100%; max-width: 600px; height: 400px;">
+                        <canvas id="myChart02"></canvas>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-10 mt-5">
+                <div class="card">
+                    <div class="card-header text-bg-warning fw-bold">
+                        <div class="h4">圓餅圖</div>
+                    </div>
+                    <div class="card-body" style="position: relative; width: 100%; max-width: 600px; height: 400px;">
+                        <canvas id="myChart03"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/vue.global.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    orders: [],   
+                    pendingCount: 0,
+                    processingCount: 0,
+                    completedCount: 0,
+                    cancelledCount: 0,                 
+                    // 用來儲存 Chart 實例的變數
+                    chart01: null,
+                    chart02: null,
+                    chart03: null
+                }
+            },
+            // 計算屬性：將資料包裝成 Chart.js 需要的陣列格式
+            computed: {
+                chartData(){
+                    if (this.orders && this.orders.length > 0) {
+                        const pending = this.orders.filter(o => o.status === '待處理').length;
+                        const processing = this.orders.filter(o => o.status === '製作中').length;
+                        const completed = this.orders.filter(o => o.status === '已完成').length;
+                        const cancelled = this.orders.filter(o => o.status === '已取消').length;
+                        return [pending, processing, completed, cancelled];
+                    }
+                    return [this.pendingCount, this.processingCount, this.completedCount, this.cancelledCount];
+                }
+            },
+        
+            mounted() {
+                // 4. 當 DOM 元素渲染完成後，再初始化圖表
+                this.initCharts();
+                this.getOrders();
+            },
+            methods: {
+                getOrders() {
+                    const vm = this;
+                    axios.get('http://localhost:3000/orders/')
+                        .then(function (response) {
+                            console.log("資料載入成功", response.data);
+                            vm.orders = response.data;
+                            
+                        })
+                        .catch(function (error) {
+                            console.log("API 請求失敗或未開啟服務，目前使用模擬按鈕資料測試中。");
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+                },
+                initCharts() {
+                    // 通用的樣式與顏色設定
+                    const chartColors = {
+                        backgroundColor: [
+                            'rgba(255, 193, 7, 0.2)',  // 待處理：黃色
+                            'rgba(13, 110, 253, 0.2)', // 製作中：藍色
+                            'rgba(40, 167, 69, 0.2)',  // 已完成：綠色
+                            'rgba(220, 53, 69, 0.2)'   // 已取消：紅色
+                        ],
+                        borderColor: [
+                            'rgba(255, 193, 7, 1)',
+                            'rgba(13, 110, 253, 1)',
+                            'rgba(40, 167, 69, 1)',
+                            'rgba(220, 53, 69, 1)'
+                        ]
+                    };
+
+                    const commonOptions = {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        resizeDelay: 200,
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    };
+
+                    // 圖表 1：條形圖
+                    this.chart01 = new Chart(document.getElementById('myChart01'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['待處理', '製作中', '已完成', '已取消'],
+                            datasets: [{
+                                label: '訂單狀態統計',
+                                data: this.chartData, // 綁定 Vue 計算屬性
+                                borderWidth: 1,
+                                ...chartColors
+                            }]
+                        },
+                        options: commonOptions
+                    });
+
+                    // 圖表 2：折線圖
+                    this.chart02 = new Chart(document.getElementById('myChart02'), {
+                        type: 'line',
+                        data: {
+                            labels: ['待處理', '製作中', '已完成', '已取消'],
+                            datasets: [{
+                                label: '訂單狀態統計',
+                                data: this.chartData, // 綁定 Vue 計算屬性
+                                borderWidth: 3,
+                                borderColor: 'rgba(13, 110, 253, 1)',       // 統一用藍色線
+                                backgroundColor: 'rgba(13, 110, 253, 0.1)', // 節點填滿顏色
+                                fill: false,                                // 不填滿折線下方區塊
+                                tension: 0.2                                // 稍微平滑的線條                               
+                            }]
+                        },
+                        options: commonOptions
+                    });
+
+                    // 圖表 3：圓餅圖
+                    this.chart03 = new Chart(document.getElementById('myChart03'), {
+                        type: 'pie',
+                        data: {
+                            labels: ['待處理', '製作中', '已完成', '已取消'],
+                            datasets: [{
+                                label: '訂單狀態統計',
+                                data: this.chartData, // 綁定 Vue 計算屬性
+                                borderWidth: 1,
+                                ...chartColors
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            resizeDelay: 200
+                            // 圓餅圖不需要 Y 軸 scales 喔！
+                        }
+                    });
+                },
+                // 更新圖表數據的方法
+                updateAllCharts() {
+                    const newData = this.chartData;
+                    
+                    [this.chart01, this.chart02, this.chart03].forEach(chart => {
+                        if (chart) {
+                            chart.data.datasets[0].data = [...newData];
+                            chart.update(); // 呼叫 Chart.js 內建的 update 重新繪製
+                        }
+                    });
+                }
+            },
+            watch: {
+                // 5. 監聽計算屬性 chartData，當數字一變動，立刻通知圖表更新
+                chartData: {
+                    handler() {
+                        this.updateAllCharts();
+                    },
+                    deep: true // 深層監聽陣列內部的數字變化
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>
