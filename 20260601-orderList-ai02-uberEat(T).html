@@ -374,94 +374,394 @@
 </head>
 
 <body>
-
-    <div class="container py-5" id="app">
-        <div class="row g-4">
+    <div id="app">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">控制台</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">首頁</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                系統功能
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="20260525-1.html">點餐</a></li>
+                                <li><a class="dropdown-item active" href="20260601-orderList-ai02-uberEat.html">訂單列表</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled">Disabled</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="container py-5">
             <div class="display-3 fw-bold text-center mb-3"> {{ title }}</div>
-            <div class="col-12 col-md-6 col-xl-4" v-for="item in orders">
-                <div class="card order-card shadow">
-                    <div class="card-header order-header d-flex justify-content-between align-items-center">
-                        <div class="fs-5 fw-bold">
-                            🍔 訂單編號: <span class="text-primary">{{ item.id }}</span>
-                        </div>
-                        <span class="status-badge">
-                            待處理
-                        </span>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="customer-info mb-3">
-                            <div class="customer-name">
-                                {{ item.customerName }}
-                            </div>
-
-                            <div class="customer-count">
-                                👥 用餐人數：{{ item.customerCount }}人
-                            </div>
-                        </div>
-                        <div class="order-detail">
-                            <div class="detail-row">
-                                <span>取餐方式</span>
-                                <span class="value">{{ item.pickupType }}</span>
-                            </div>
-                            <div class="detail-row">
-                                <span>付款方式</span>
-                                <span class="value">{{ item.payType }}</span>
-                            </div>
-                            <div class="detail-row">
-                                <span>點餐數量</span>
-                                <span class="value">{{ item.selectedCount }}項</span>
-                            </div>
-                            <div class="detail-row">
-                                <span>備註</span>
-                                <span class="value">{{ item.memo }}</span>
-                            </div>
-
-                            <!-- 顯示訂單的meals -->
-                            <div class="border rounded-3 p-3 mt-3">
-                                <div class="fw-bolder mb-2">餐點明細</div>
-                                <div class="d-flex justify-content-between border-bottom py-2" v-for="meal in item.meals">
-                                    <span>{{ meal.name }}</span>
-                                    <span class="fw-bolder text-success">99元</span>
+            <!-- 摺疊 -->
+            <div class="accordion mb-3" id="accordion01">
+                <!-- 數據統計 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            數據統計
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                        data-bs-parent="#accordion01">
+                        <div class="accordion-body">
+                            <div class="row mb-3">
+                                <div class="col-md-6 col-xl-3 mt-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <div class="h3 text-bg-warning p-2 text-center fw-bold rounded-2">待處理</div>
+                                            <span class="h1 fw-bold text-center">{{ pendingCount }}</span>筆
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3 mt-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <div class="h3 text-bg-primary p-2 text-center fw-bold rounded-2">製作中</div>
+                                            <span class="h1 fw-bold text-center">{{processingCount}}</span>筆
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3 mt-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <div class="h3 text-bg-success p-2 text-center fw-bold rounded-2">已完成</div>
+                                            <span class="h1 fw-bold text-center">{{ completedCount }}</span>筆
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xl-3 mt-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <div class="h3 text-bg-danger p-2 text-center fw-bold rounded-2">已取消</div>
+                                            <span class="h1 fw-bold text-center">{{ cancelledCount }}</span>筆
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
-                    <div class="card-footer order-footer">
-                        <div class="total-price">
-                            <span>總金額</span>
-                            <span class="price">
-                                NT$ {{ item.totalPrice }} 元
-                            </span>
+                </div>
+                <!-- 後臺相關數據統計圖表 - 訂單狀態(bar) -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading01">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            後臺相關數據-訂單狀態統計圖表
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordion01">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <canvas id="statusChart" style="min-height: 380px;"></canvas>
+                                </div>
+                            </div>
                         </div>
-                        <div class="d-flex gap-2 mt-3">
-                            <button class="btn btn-detail flex-fill">
-                                查看明細
-                            </button>
-                            <button class="btn btn-edit flex-fill">
-                                修改訂單
-                            </button>
-                            <button class="btn btn-delete flex-fill">
-                                刪除訂單
-                            </button>
+                    </div>
+                </div>
+
+                <!-- 後臺相關數據 - 產品銷售統計統計圖表(line)    -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading02">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse02" aria-expanded="false" aria-controls="collapseThree">
+                            產品銷售統計統計圖表
+                        </button>
+                    </h2>
+                    <div id="collapse02" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                        data-bs-parent="#accordion01">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <canvas id="mealSalesChart" style="min-height: 380px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- 後臺相關數據 - 付款方式統計圖表(pie)    -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingthree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse03" aria-expanded="false" aria-controls="collapseThree">
+                            付款方式統計圖表
+                        </button>
+                    </h2>
+                    <div id="collapse03" class="accordion-collapse collapse" aria-labelledby="heading03"
+                        data-bs-parent="#accordion01">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div style="height: 380px;">
+                                        <canvas id="payTypeChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-xl-4" v-for="item in orders">
+                    <div class="card order-card shadow h-100">
+                        <div class="card-header order-header d-flex justify-content-between align-items-center">
+                            <div class="fs-5 fw-bold">
+                                🍔 訂單編號: <span class="text-primary">{{ item.id }}</span>
+                            </div>
+                            <span class="status-badge" :class="{'text-bg-warning' : item.status === '待處理',
+                                 'text-bg-primary' : item.status === '製作中',
+                                 'text-bg-success' : item.status === '已完成',
+                                 'text-bg-danger' : item.status === '已取消'}">
+                                {{ item.status }}
+                            </span>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="customer-info mb-3">
+                                <div class="customer-name">
+                                    {{ item.customerName }}
+                                </div>
+
+                                <div class="customer-count">
+                                    👥 用餐人數：{{ item.customerCount }}人
+                                </div>
+                            </div>
+                            <div class="order-detail">
+                                <div class="detail-row">
+                                    <span>取餐方式</span>
+                                    <span class="value">{{ item.pickupType }}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span>付款方式</span>
+                                    <span class="value">{{ item.payType }}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span>點餐數量</span>
+                                    <span class="value">{{ item.selectedCount }}項</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span>備註</span>
+                                    <span class="value">{{ item.memo }}</span>
+                                </div>
+
+                                <!--點擊查看明細後才顯示訂單的meals -->
+                                <div class="border rounded-3 p-3 mt-3" v-if="selectedOrderId === item.id">
+                                    <div class="fw-bolder mb-2">餐點明細</div>
+                                    <div class="d-flex justify-content-between border-bottom py-2"
+                                        v-for="meal in item.meals">
+                                        <span>{{ meal.name }}</span>
+                                        <span class="fw-bolder text-success">{{ meal.price }}元</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card-footer order-footer">
+                            <div class="total-price">
+                                <span>總金額</span>
+                                <span class="price">
+                                    NT$ {{ item.totalPrice }} 元
+                                </span>
+                            </div>
+                            <div class="d-flex gap-2 mt-3">
+                                <button class="btn btn-detail flex-fill" @click="toggleDetails(item.id)">
+                                    <span v-if="selectedOrderId == item.id">收合明細</span>
+                                    <span v-else>展開明細</span>
+                                </button>
+                                <button class="btn btn-edit flex-fill" @click="showEditModal(item)">
+                                    修改訂單
+                                </button>
+                                <button class="btn btn-delete flex-fill" @click="deleteOrder(item.id)">
+                                    刪除訂單
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 修改訂單 Modal -->
+            <div class="modal" tabindex="-1" id="editModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bold">
+                                <span class="badge text-bg-danger">訂單編號</span>
+                                {{ editOrder.id }}
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- 訂餐人姓名(2~5字) -->
+                            <div class="mb-3">
+                                <label for="customerName" class="form-label">訂餐人姓名(2~5字)</label>
+                                <input type="text" id="customerName" class="form-control"
+                                    v-model="editOrder.customerName" disabled>
+                                <div class="valid-feedback">
+                                    姓名格式正確
+                                </div>
+                                <div class="invalid-feedback">
+                                    姓名格式不正確
+                                </div>
+                            </div>
+                            <!-- 用餐人數(1~20人) -->
+                            <div class="mb-3">
+                                <label for="customerCount" class="form-label">用餐人數(1~20人)</label>
+                                <input type="number" id="customerCount" min="1" max="20" class="form-control"
+                                    v-model="editOrder.customerCount" :class="{
+                                        'is-valid' : customerCountFlag === true, 
+                                        'is-invalid' : customerCountFlag === false,
+                                    }">
+                                <div class="valid-feedback">
+                                    用餐人數介於1~20人，符合規定。
+                                </div>
+                                <div class="invalid-feedback">
+                                    用餐人數必須介於1~20人
+                                </div>
+                            </div>
+                            <!-- 備註(1~20字) -->
+                            <div class="mb-3">
+                                <label for="memo" class="form-label">備註(1~20字)</label>
+                                <textarea class="form-control" id="memo" rows="3" placeholder="例如: 不要香菜，餐具多一分...."
+                                    v-model="editOrder.memo" :class="{
+                                'is-valid' : memoFlag === true, 
+                                'is-invalid' : memoFlag === false, 
+                            }"></textarea>
+                                <div class="form-text">
+                                    目前的字數: {{ editOrder.memo.length }} / 20
+                                </div>
+                                <div class="valid-feedback">
+                                    備註格式正確
+                                </div>
+                                <div class="invalid-feedback">
+                                    備註格式不正確
+                                </div>
+                            </div>
+                            <!-- 訂單狀態 -->
+                            <div class="mb-3">
+                                <div class="h3">選擇訂單狀態</div>
+                                <div class="mb-3">
+                                    <select class="form-select" v-model="editOrder.status">
+                                        <option value="" disabled selected>訂單狀態</option>
+                                        <option value="待處理">待處理</option>
+                                        <option value="製作中">製作中</option>
+                                        <option value="已完成">已完成</option>
+                                        <option value="已取消">已取消</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- 付款方式 -->
+                            <div class="h3">選擇付款方式</div>
+                            <div class="mb-3">
+                                <select class="form-select" v-model="editOrder.payType">
+                                    <option value="" disabled selected>選擇付款方式</option>
+                                    <option value="信用卡">信用卡</option>
+                                    <option value="現金">現金</option>
+                                    <option value="LINE PAY">LINE PAY</option>
+                                    <option value="APPLE PAY">APPLE PAY</option>
+                                </select>
+                            </div>
+                            <!-- 取餐方式 -->
+                            <div class="h3">選擇取餐方式</div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" value="櫃台取餐" id="pickupType01"
+                                    v-model="editOrder.pickupType">
+                                <label for="pickupType01" class="form-label">櫃台取餐</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" value="送到座位" id="pickupType02"
+                                    v-model="editOrder.pickupType">
+                                <label for="pickupType02" class="form-label">送到座位</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" value="得來速" id="pickupType03"
+                                    v-model="editOrder.pickupType">
+                                <label for="pickupType03" class="form-label">得來速</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-success" @click="updateOrder"
+                                :disabled="!isFormValid">確認修改</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal -->
+
+
         </div>
     </div>
+
+    <!-- end container -->
+
+
+
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/vue.global.js"></script>
     <script src="https://unpkg.com/axios@1.13.2/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         Vue.createApp({
             data() {
                 return {
                     title: "訂單列表",
-                    orders: [], //從json-server 取得所有訂單
+                    //從json-server 取得所有訂單
+                    orders: [],
+                    //計入目前展開那一筆訂單
+                    selectedOrderId: null,
+                    //紀錄目前正在修改的訂單
+                    editOrder: {
+                        id: '',
+                        customerName: '',
+                        customerCount: 0,
+                        memo: '',
+                        payType: '',
+                        pickupType: '',
+                        status: ''
+                    },
+                    //表單驗證狀態 旗子
+                    customerCountFlag: null,
+                    memoFlag: null,
+                    //statusChart 訂單狀態表
+                    statusChart: null,
+                    //mealSalesChart 產品銷售圖表
+                    mealSalesChart: null,
+                    //payTypeChart 付款方式統計表
+                    payTypeChart: null,
+                    //數據統計
+                    pendingCount: 0,
+                    processingCount: 0,
+                    completedCount: 0,
+                    cancelledCount: 0
+
                 }
             },
             methods: {
@@ -471,6 +771,13 @@
                         .then(function (response) {
                             console.log(response);
                             vm.orders = response.data;
+
+                            //等Vue畫面更新完以後再產生圖表
+                            vm.$nextTick(function () {
+                                vm.renderStatusChart();
+                                vm.renderMealSalesChart();
+                                vm.renderpayTypeChart();
+                            });
                         })
                         .catch(function (error) {
                             console.log(error);
@@ -478,11 +785,318 @@
                         .finally(function () {
                             // always executed
                         });
+                },
+                toggleDetails(id) {
+                    const vm = this;
+                    if (vm.selectedOrderId === id) {
+                        vm.selectedOrderId = null
+                    } else {
+                        this.selectedOrderId = id
+                    }
+                },
+                showEditModal(item) {
+                    //複製要更新編輯的資料
+                    const vm = this;
+                    vm.editOrder = {
+                        ...item
+                    }
+
+                    //顯示editModal
+                    const modalElement = document.getElementById('editModal');
+                    const modal = bootstrap.Modal.getOrCreateInstance(modalElement, {
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    modal.show();
+
+                },
+                //送出修改資料
+                updateOrder() {
+                    const vm = this;
+                    //整理可修改的欄位
+                    const updataData = {
+                        customerCount: vm.editOrder.customerCount,
+                        memo: vm.editOrder.memo,
+                        payType: vm.editOrder.payType,
+                        pickupType: vm.editOrder.pickupType,
+                        status: vm.editOrder.status
+                    };
+
+                    axios.patch('http://localhost:3000/orders/' + vm.editOrder.id, updataData)
+                        .then(function (response) {
+                            console.log(response);
+
+                            //改成sweetalert
+                            alert("訂單修改成功");
+
+                            //關閉editModal
+                            const modalElement = document.getElementById('editModal');
+                            const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+                            modal.hide();
+
+                            //重新讀取訂單資料
+                            vm.getOrders();
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+
+                },
+                deleteOrder(id) {
+                    const vm = this;
+
+                    //再次確認 自行改成sweetalert
+                    const result = confirm("確認刪除訂單嗎?");
+                    if (result === false) {
+                        return; //直接終止
+                    }
+                    axios.delete('http://localhost:3000/orders/' + id)
+                        .then(function (response) {
+                            console.log(response);
+                            //改成sweetalert
+                            alert("訂單刪除成功");
+                            //重新讀取訂單資料
+                            vm.getOrders();
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+                },
+                renderStatusChart() {
+                    const vm = this;
+                    // 甘特圖表
+                    const ctx = document.getElementById('statusChart');
+
+                    //統計待處理
+                    const pendingCount = vm.orders.filter(function (item) {
+                        return item.status === '待處理'
+                    }).length;
+                    vm.pendingCount = pendingCount;
+
+                    //統計製作中
+                    const processingCount = vm.orders.filter(function (item) {
+                        return item.status === '製作中'
+                    }).length;
+                    vm.processingCount = processingCount;
+
+                    //統計已完成
+                    const completedCount = vm.orders.filter(function (item) {
+                        return item.status === '已完成'
+                    }).length;
+                    vm.completedCount = completedCount;
+
+                    //統計已取消
+                    const cancelledCount = vm.orders.filter(function (item) {
+                        return item.status === '已取消'
+                    }).length;
+                    vm.cancelledCount = cancelledCount;
+
+                    //強迫重新產生canvas
+                    if (vm.statusChart != null) {
+                        vm.statusChart.destroy();
+                    }
+
+                    vm.statusChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['待處理', '製作中', '已完成', '已取消'],
+                            datasets: [{
+                                label: '# 訂單狀態統計',
+                                data: [pendingCount, processingCount, completedCount, cancelledCount],
+                                borderWidth: 2,
+                                backgroundColor: [
+                                    '#facc15', // 待處理
+                                    '#3b82f6', // 製作中
+                                    '#22c55e', // 已完成
+                                    '#ef4444'  // 已取消
+                                ],
+                                borderColor: [
+                                    '#ca8a04',
+                                    '#1d4ed8',
+                                    '#15803d',
+                                    '#b91c1c'
+                                ],
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                },
+                renderMealSalesChart() {
+                    const vm = this;
+                    // 甘特圖表
+                    const ctx = document.getElementById('mealSalesChart');
+
+                    //建立一個物件 紀錄統計的資料
+                    let mealCount = {};
+
+                    //統計每個餐點賣出幾份
+                    vm.orders.forEach(function (item) {
+                        item.meals.forEach(function (meal) {
+                            //如果這個餐點沒有出現過線設定為0
+                            if (mealCount[meal.name] === undefined) {
+                                mealCount[meal.name] = 0;
+                            }
+
+                            //每出現一次 就代表賣出一份
+                            mealCount[meal.name] = mealCount[meal.name] + 1;
+                        });
+                    });
+
+                    console.log(mealCount);
+
+                    //強迫重新產生canvas
+                    if (vm.mealSalesChart != null) {
+                        vm.mealSalesChart.destroy();
+                    }
+
+                    vm.mealSalesChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: Object.keys(mealCount),
+                            datasets: [{
+                                label: '# 產品銷售統計表',
+                                data: Object.values(mealCount),
+                                borderWidth: 2,
+                                backgroundColor: [
+                                    '#facc15', // 大麥克套餐
+                                    '#3b82f6', // 雙層牛肉吉事堡套餐
+                                    '#22c55e', // 
+                                    '#ef4444', // 
+                                    '#3b82f6', // 
+                                    '#22c55e', // 
+                                    '#ef4444'  // 
+                                ],
+                                borderColor: [
+                                    '#ca8a04',
+                                    '#1d4ed8',
+                                    '#15803d',
+                                    '#b91c1c',
+                                    '#b91c1c',
+                                    '#b91c1c',
+                                    '#b91c1c'
+                                ],
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                },
+                renderpayTypeChart() {
+                    const vm = this;
+                    // 甘特圖表
+                    const ctx = document.getElementById('payTypeChart');
+
+                    //建立一個物件 紀錄統計的資料
+                    let payTypeCount = {};
+
+                    //統計每個餐點賣出幾份
+                    vm.orders.forEach(function (item) {
+                        //如果這個餐點沒有出現過線設定為0
+                        if (payTypeCount[item.payType] === undefined) {
+                            payTypeCount[item.payType] = 0;
+                        }
+
+                        //每出現一次 就代表賣出一份
+                        payTypeCount[item.payType] = payTypeCount[item.payType] + 1;
+                    });
+
+                    console.log(payTypeCount);
+
+                    //強迫重新產生canvas
+                    if (vm.payTypeChart != null) {
+                        vm.payTypeChart.destroy();
+                    }
+                    vm.payTypeChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: Object.keys(payTypeCount),
+                            datasets: [{
+                                label: '# 產品銷售統計表',
+                                data: Object.values(payTypeCount),
+                                borderWidth: 2,
+                                backgroundColor: [
+                                    '#facc15', // 大麥克套餐
+                                    '#3b82f6', // 雙層牛肉吉事堡套餐
+                                    '#22c55e', // 
+                                    '#ef4444', // 
+                                    '#3b82f6', // 
+                                    '#22c55e', // 
+                                    '#ef4444'  // 
+                                ],
+                                borderColor: [
+                                    '#ca8a04',
+                                    '#1d4ed8',
+                                    '#15803d',
+                                    '#b91c1c',
+                                    '#b91c1c',
+                                    '#b91c1c',
+                                    '#b91c1c'
+                                ],
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
                 }
             },
-            //在網頁載入時會先執行的功能(譬如: 取得相關資料)
+            //在網頁載入時會先執行的功能(譬如: 取得相關資料，產生統計圖)
             mounted() {
                 this.getOrders();
+                // this.renderStatusChart();
+                // this.renderMealSalesChart();
+            },
+            watch: {
+                //如果是物件裡的面的變數，必須要用單引號框住''
+                'editOrder.customerCount'(newValue) {
+                    if (newValue === 0) {
+                        this.customerCountFlag = null;
+                    } else if (newValue >= 1 && newValue <= 20) {
+                        this.customerCountFlag = true;
+                    } else {
+                        this.customerCountFlag = false;
+                    }
+                },
+                'editOrder.memo'(newValue) {
+                    if (newValue.length === 0) {
+                        this.memoFlag = null;
+                    } else if (newValue.length >= 1 && newValue.length <= 20) {
+                        this.memoFlag = true;
+                    } else {
+                        this.memoFlag = false;
+                    }
+                }
+            },
+            computed: {
+                //判斷輸入訂單是否完整
+                isFormValid() {
+                    return this.customerCountFlag === true &&
+                        this.memoFlag === true
+                }
             }
         }).mount("#app");
     </script>

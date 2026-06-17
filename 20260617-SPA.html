@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>火星漢堡研究所 - 賽博夕陽旗艦站</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+TC:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-orange-main: #FF6A1C;   /* 強烈主橘 */
+            --color-yellow-bright: #FFDA62;  /* 螢光明黃 */
+            --color-orange-pale: #FFAE56;    /* 柔和粉橘 */
+            --color-pink-neon: #F5788B;      /* 霓虹桃粉 */
+            --cyber-dark-bg: #1a0f0a;        /* 科技暗橘黑基調 */
+            --cyber-dark-card: #2d1b13;      /* 科技深色卡片底 */
+            --font-sci: 'Orbitron', 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            background-color: var(--cyber-dark-bg);
+            color: #fff5f0;
+            font-family: var(--font-sci);
+            scroll-behavior: smooth; /* 開啟全域絲滑平滑捲動效果 */
+        }
+
+        /* Section 1 社群列優化 */
+        .cyber-social-topbar {
+            background: linear-gradient(90deg, #24140d, #3d1f12);
+            border-bottom: 2px solid var(--color-orange-main);
+        }
+        .cyber-social-topbar a {
+            margin-left: 15px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .cyber-social-topbar a:hover {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 8px var(--color-yellow-bright));
+        }
+
+        /* Section 2 Navbar 科技感重塑 */
+        .cyber-navbar {
+            background: rgba(26, 15, 10, 0.85) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 106, 28, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+        }
+        .cyber-navbar .nav-link {
+            color: #e0e6ed !important;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+            font-size: 0.95rem;
+        }
+        .cyber-navbar .nav-link:hover, .cyber-navbar .nav-link.active {
+            color: var(--color-yellow-bright) !important;
+            border-bottom: 2px solid var(--color-yellow-bright);
+        }
+        
+        /* 自訂按鈕顏色適配 Palette */
+        .btn-cyber-orange {
+            background-color: var(--color-orange-main);
+            border-color: var(--color-orange-main);
+            color: #1a0f0a;
+            font-weight: bold;
+        }
+        .btn-cyber-orange:hover {
+            background-color: var(--color-orange-pale);
+            border-color: var(--color-orange-pale);
+            box-shadow: 0 0 15px var(--color-orange-main);
+        }
+        .btn-cyber-outline {
+            border-color: var(--color-pink-neon);
+            color: var(--color-pink-neon);
+        }
+        .btn-cyber-outline:hover {
+            background-color: var(--color-pink-neon);
+            color: #fff;
+            box-shadow: 0 0 15px var(--color-pink-neon);
+        }
+
+        /* 測試用的 Section 區塊樣式（確保一頁式捲動可見效果） */
+        .dummy-section {
+            padding: 100px 0;
+            border-bottom: 1px solid rgba(255, 106, 28, 0.1);
+        }
+        .carousel-placeholder {
+            height: 350px;
+            background: radial-gradient(circle, #4a2d1f 0%, #2d1b13 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-pink-neon);
+        }
+    </style>
+</head>
+<body>
+
+    <section class="cyber-social-topbar" id="s01">
+        <div class="container">
+            <div class="text-end py-2">
+                <a href="#facebook"><i class="fa-brands fa-square-facebook text-primary fa-2x"></i></a>
+                <a href="#instagram"><i class="fa-brands fa-square-instagram fa-2x" style="color: var(--color-pink-neon);"></i></a>
+                <a href="#line"><i class="fa-brands fa-line text-success fa-2x"></i></a>
+                <a href="#x"><i class="fa-brands fa-square-x-twitter text-white fa-2x"></i></a>    
+            </div>
+        </div>
+    </section>
+
+    <nav class="navbar navbar-expand-lg navbar-dark cyber-navbar" id="s02">
+        <div class="container">
+            <a href="#s03" class="navbar-brand font-sci d-flex align-items-center gap-2 fw-bold">
+                <i class="fa-solid fa-rocket fa-lg" style="color: var(--color-orange-main);"></i>
+                <i class="fa-solid fa-burger fa-lg" style="color: var(--color-yellow-bright);"></i>
+                <span class="d-none d-sm-inline" style="color: var(--color-orange-pale); font-size: 1.25rem;">MARS LAB</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 font-sci">
+                    <li class="nav-item">
+                        <a href="#s03" class="nav-link active" aria-current="page">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#s04" class="nav-link"><i class="fa-solid fa-book-open me-1"></i>品牌故事</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#s06" class="nav-link"><i class="fa-solid fa-burger me-1"></i>人氣餐點</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#s07" class="nav-link"><i class="fa-solid fa-champagne-glasses me-1"></i>主廚推薦</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#s08" class="nav-link"><i class="fa-solid fa-tags me-1"></i>限時優惠</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#s09" class="nav-link"><i class="fa-solid fa-star me-1" style="color: var(--color-yellow-bright)"></i>顧客評價</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#s10" class="nav-link"><i class="fa-solid fa-location-dot me-1"></i>門市資訊</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#s11" class="nav-link"><i class="fa-solid fa-envelope me-1"></i>聯絡我們</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="20260525-orderMeal.html" class="nav-link" style="color: var(--color-orange-main) !important; fw-bold"><i class="fa-solid fa-cart-shopping me-1"></i>立即點餐</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex gap-2">
+                    <button class="btn btn-cyber-outline btn-sm px-3"><i class="fa-solid fa-arrow-right-to-bracket me-1"></i>登入</button>
+                    <button class="btn btn-cyber-orange btn-sm px-3"><i class="fa-solid fa-user-plus me-1"></i>註冊</button> 
+                </div>            
+            </div>        
+        </div>
+    </nav>
+
+    <section class="container dummy-section text-center" id="s03">
+        <h2 style="color: var(--color-yellow-bright);">Section 3: Quantum Carousel</h2>
+        <div class="carousel-placeholder mt-4">
+            <p class="lead font-sci">// QUANTUM SLIDER ENERGY CORE ACTIVE //</p>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
