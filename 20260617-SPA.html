@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+TC:wght@300;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+TC:wght@300;500;700&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
-            --color-orange-main: #FF6A1C;   /* 強烈主橘 */
-            --color-yellow-bright: #FFDA62;  /* 螢光明黃 */
-            --color-orange-pale: #FFAE56;    /* 柔和粉橘 */
-            --color-pink-neon: #F5788B;      /* 霓虹桃粉 */
-            --cyber-dark-bg: #1a0f0a;        /* 科技暗橘黑基調 */
-            --cyber-dark-card: #2d1b13;      /* 科技深色卡片底 */
+            --color-orange-main: #FF6A1C;
+            /* 強烈主橘 */
+            --color-yellow-bright: #FFDA62;
+            /* 螢光明黃 */
+            --color-orange-pale: #FFAE56;
+            /* 柔和粉橘 */
+            --color-pink-neon: #F5788B;
+            /* 霓虹桃粉 */
+            --cyber-dark-bg: #1a0f0a;
+            /* 科技暗橘黑基調 */
+            --cyber-dark-card: #2d1b13;
+            /* 科技深色卡片底 */
             --font-sci: 'Orbitron', 'Noto Sans TC', sans-serif;
         }
 
@@ -25,7 +34,8 @@
             background-color: var(--cyber-dark-bg);
             color: #fff5f0;
             font-family: var(--font-sci);
-            scroll-behavior: smooth; /* 開啟全域絲滑平滑捲動效果 */
+            scroll-behavior: smooth;
+            /* 開啟全域絲滑平滑捲動效果 */
         }
 
         /* Section 1 社群列優化 */
@@ -33,11 +43,13 @@
             background: linear-gradient(90deg, #24140d, #3d1f12);
             border-bottom: 2px solid var(--color-orange-main);
         }
+
         .cyber-social-topbar a {
             margin-left: 15px;
             transition: all 0.3s ease;
             display: inline-block;
         }
+
         .cyber-social-topbar a:hover {
             transform: scale(1.2);
             filter: drop-shadow(0 0 8px var(--color-yellow-bright));
@@ -52,17 +64,20 @@
             top: 0;
             z-index: 1050;
         }
+
         .cyber-navbar .nav-link {
             color: #e0e6ed !important;
             transition: all 0.3s;
             border-bottom: 2px solid transparent;
             font-size: 0.95rem;
         }
-        .cyber-navbar .nav-link:hover, .cyber-navbar .nav-link.active {
+
+        .cyber-navbar .nav-link:hover,
+        .cyber-navbar .nav-link.active {
             color: var(--color-yellow-bright) !important;
             border-bottom: 2px solid var(--color-yellow-bright);
         }
-        
+
         /* 自訂按鈕顏色適配 Palette */
         .btn-cyber-orange {
             background-color: var(--color-orange-main);
@@ -70,15 +85,18 @@
             color: #1a0f0a;
             font-weight: bold;
         }
+
         .btn-cyber-orange:hover {
             background-color: var(--color-orange-pale);
             border-color: var(--color-orange-pale);
             box-shadow: 0 0 15px var(--color-orange-main);
         }
+
         .btn-cyber-outline {
             border-color: var(--color-pink-neon);
             color: var(--color-pink-neon);
         }
+
         .btn-cyber-outline:hover {
             background-color: var(--color-pink-neon);
             color: #fff;
@@ -90,6 +108,7 @@
             padding: 100px 0;
             border-bottom: 1px solid rgba(255, 106, 28, 0.1);
         }
+
         .carousel-placeholder {
             height: 350px;
             background: radial-gradient(circle, #4a2d1f 0%, #2d1b13 100%);
@@ -98,33 +117,376 @@
             justify-content: center;
             border: 1px solid var(--color-pink-neon);
         }
+
+        /* 註冊 Modal 專屬科幻暗色調質感優化 */
+        #registerModal .modal-content {
+            background-color: #1a0f0a;
+            /* 配合 Cyber-Sunset 暗橘黑基調 */
+            border: 2px solid #FF6A1C;
+            /* 強烈主橘外框 */
+            box-shadow: 0 0 30px rgba(255, 106, 28, 0.25);
+            color: #fff5f0;
+        }
+
+        #registerModal .modal-header {
+            background: linear-gradient(90deg, #FF6A1C, #FFAE56) !important;
+            /* 漸層主橘與粉橘 */
+            border-bottom: 2px solid #FFDA62;
+            color: #1a0f0a !important;
+            /* 確保深色文字清晰易讀 */
+        }
+
+        /* 左側：會員條款滾動視窗優化 */
+        .cyber-terms-box {
+            background-color: #110906;
+            border: 1px solid rgba(255, 174, 86, 0.2);
+            padding: 20px;
+            height: 380px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #ffa473;
+        }
+
+        /* 條款自訂滾動條 */
+        .cyber-terms-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .cyber-terms-box::-webkit-scrollbar-thumb {
+            background: #F5788B;
+            /* 霓虹桃粉滾動條 */
+            border-radius: 3px;
+        }
+
+        /* 右側：輸入框控制台化 */
+        #registerModal .form-label {
+            color: #FFDA62;
+            /* 螢光明黃標籤 */
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        #registerModal .form-control {
+            background-color: #24140d !important;
+            border: 1px solid rgba(255, 106, 28, 0.4) !important;
+            color: #fff !important;
+            border-radius: 0px;
+            transition: all 0.3s;
+        }
+
+        #registerModal .form-control:focus {
+            border-color: #F5788B !important;
+            /* 聚焦時呈現霓虹桃粉 */
+            box-shadow: 0 0 10px rgba(245, 120, 139, 0.5) !important;
+            background-color: #2d1b13 !important;
+        }
+
+        /* 核取方塊優化 */
+        #registerModal .form-check-input {
+            background-color: #24140d;
+            border-color: #FF6A1C;
+        }
+
+        #registerModal .form-check-input:checked {
+            background-color: #FF6A1C;
+            border-color: #FFDA62;
+            box-shadow: 0 0 8px #FF6A1C;
+        }
+
+        #registerModal .modal-footer {
+            border-top: 1px solid rgba(255, 106, 28, 0.15);
+        }
+
+        /* 登入 Modal 專屬科幻暗色調視覺重塑 */
+        #loginModal .modal-content {
+            background-color: #1a0f0a;
+            /* 賽博暗橘黑基底 */
+            border: 2px solid #FF6A1C;
+            /* 核心主橘色線條框 */
+            box-shadow: 0 0 25px rgba(255, 106, 28, 0.3);
+            color: #fff5f0;
+        }
+
+        /* 強制將原本的 text-bg-primary 覆蓋為高質感的夕陽漸層 */
+        #loginModal .modal-header.text-bg-primary {
+            background: linear-gradient(90deg, #FF6A1C, #FFAE56) !important;
+            border-bottom: 2px solid #FFDA62;
+            color: #1a0f0a !important;
+            /* 確保標題深色高對比 */
+        }
+
+        #loginModal .form-label {
+            color: #FFDA62;
+            /* 螢光明黃提示字 */
+            font-weight: 500;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+
+        #loginModal .form-control {
+            background-color: #24140d !important;
+            border: 1px solid rgba(255, 106, 28, 0.4) !important;
+            color: #fff !important;
+            border-radius: 0px;
+            transition: all 0.3s;
+        }
+
+        #loginModal .form-control:focus {
+            border-color: #F5788B !important;
+            /* 聚焦時發出霓虹桃粉光芒 */
+            box-shadow: 0 0 10px rgba(245, 120, 139, 0.5) !important;
+            background-color: #2d1b13 !important;
+        }
+
+        /* 勾選方塊美化 */
+        #loginModal .form-check-input {
+            background-color: #24140d;
+            border-color: #FF6A1C;
+        }
+
+        #loginModal .form-check-input:checked {
+            background-color: #FF6A1C;
+            border-color: #FFDA62;
+            box-shadow: 0 0 8px #FF6A1C;
+        }
+
+        #loginModal .modal-footer {
+            border-top: 1px solid rgba(255, 106, 28, 0.15);
+        }
+
+        /* 商業按鈕樣式適配 */
+        .btn-cyber-submit {
+            background-color: #FF6A1C;
+            border-color: #FF6A1C;
+            color: #1a0f0a;
+            font-weight: bold;
+            border-radius: 0px;
+            transition: all 0.3s;
+        }
+
+        .btn-cyber-submit:hover {
+            background-color: #FFDA62;
+            border-color: #FFDA62;
+            color: #1a0f0a;
+            box-shadow: 0 0 15px #FFDA62;
+        }
+
+        /* 能量核心幻燈片高質感重塑 */
+        #carouselExampleCaptions .carousel-item {
+            position: relative;
+        }
+
+        /* 核心美化：利用 ::after 注入一層高质感的賽博夕陽暗光遮罩，解決背景圖太亮導致字不清楚的問題 */
+        #carouselExampleCaptions .carousel-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(26, 15, 10, 0.2) 0%, rgba(26, 15, 10, 0.85) 100%);
+            z-index: 1;
+        }
+
+        /* 文字內容容器：強制置中並提升層級至遮罩上方 */
+        #carouselExampleCaptions .carousel-caption {
+            z-index: 2;
+            bottom: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            width: 80%;
+            left: 10%;
+        }
+
+        /* 投影片主標題 */
+        #carouselExampleCaptions .carousel-caption h5 {
+            font-family: var(--font-sci);
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 15px #FF6A1C, 0 0 30px #F5788B;
+            /* 主橘與霓虹桃粉發光 */
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        /* 投影片介紹內文 */
+        #carouselExampleCaptions .carousel-caption p {
+            font-size: 1.2rem;
+            color: #ffa473;
+            /* 柔和粉橘字 */
+            max-width: 700px;
+            margin: 0 auto;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 1px;
+        }
+
+        /* 科技感微型徽章副標 */
+        .cyber-badge-sm {
+            font-family: var(--font-sci);
+            font-size: 0.85rem;
+            color: #FFDA62;
+            /* 螢光明黃 */
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* 指示器（底部小橫條）美化 */
+        #carouselExampleCaptions .carousel-indicators [button] {
+            background-color: #FFAE56;
+            height: 4px;
+            opacity: 0.5;
+        }
+
+        #carouselExampleCaptions .carousel-indicators .active {
+            background-color: #FF6A1C !important;
+            box-shadow: 0 0 8px #FF6A1C;
+            opacity: 1;
+        }
+
+        /* 左右切換箭頭發光優化 */
+        #carouselExampleCaptions .carousel-control-prev,
+        #carouselExampleCaptions .carousel-control-next {
+            width: 5%;
+            z-index: 3;
+        }
+
+        #carouselExampleCaptions .carousel-control-prev-icon,
+        #carouselExampleCaptions .carousel-control-next-icon {
+            filter: drop-shadow(0 0 5px #FF6A1C);
+        }
+
+        /* RWD 手機版字體縮放適配 */
+        @media (max-width: 768px) {
+            #carouselExampleCaptions .carousel-caption h5 {
+                font-size: 1.8rem;
+            }
+
+            #carouselExampleCaptions .carousel-caption p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Section 4 品牌故事面板專屬美化 */
+        #s04 {
+            background-color: #1a0f0a;
+            /* 賽博暗橘黑基底 */
+            border-bottom: 1px solid rgba(255, 106, 28, 0.15);
+            overflow: hidden;
+        }
+
+        /* 左側漢堡大圖科技化渲染 */
+        .cyber-story-img {
+            position: relative;
+            min-height: 450px;
+        }
+
+        /* 注入夕陽霓虹漸層，讓圖片與右側暗色背景完美融合 */
+        .cyber-story-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(26, 15, 10, 0) 70%, #1a0f0a 100%),
+                linear-gradient(180deg, rgba(245, 120, 139, 0.15) 0%, rgba(255, 106, 28, 0.15) 100%);
+        }
+
+        /* 右側內容區科技字體與排版優化 */
+        .cyber-story-title {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 106, 28, 0.6);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .cyber-story-p {
+            color: #ffa473 !important;
+            /* 柔和粉橘字 */
+            letter-spacing: 1px;
+            line-height: 1.8;
+            max-width: 650px;
+            margin: 0 auto 15px auto;
+            text-align: justify;
+        }
+
+        /* 數據分析卡片控制台化 */
+        .cyber-counter-card {
+            background: rgba(36, 20, 13, 0.6);
+            border: 1px solid rgba(255, 106, 28, 0.25);
+            padding: 20px 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .cyber-counter-card:hover {
+            transform: translateY(-50px);
+            border-color: #F5788B;
+            /* 懸停時轉為霓虹桃粉 */
+            box-shadow: 0 0 15px rgba(245, 120, 139, 0.4);
+        }
+
+        .cyber-counter-label {
+            color: #FFAE56 !important;
+            /* 粉橘色標籤 */
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        /* 將原本的 text-success 重新定義為高質感的明黃霓虹光芒 */
+        .cyber-counter-number01,
+        .cyber-counter-number02,
+        .cyber-counter-number03,
+        .cyber-counter-number04 {
+            color: #FFDA62 !important;
+            /* 螢光明黃 */
+            font-family: var(--font-sci);
+            text-shadow: 0 0 10px rgba(255, 218, 98, 0.5);
+        }
+
+        .cyber-counter-unit {
+            color: #ffffff;
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
     </style>
 </head>
-<body>
 
+<body>
+    <!-- Section 1| 社群連結 -->
     <section class="cyber-social-topbar" id="s01">
         <div class="container">
             <div class="text-end py-2">
                 <a href="#facebook"><i class="fa-brands fa-square-facebook text-primary fa-2x"></i></a>
-                <a href="#instagram"><i class="fa-brands fa-square-instagram fa-2x" style="color: var(--color-pink-neon);"></i></a>
+                <a href="#instagram"><i class="fa-brands fa-square-instagram fa-2x"
+                        style="color: var(--color-pink-neon);"></i></a>
                 <a href="#line"><i class="fa-brands fa-line text-success fa-2x"></i></a>
-                <a href="#x"><i class="fa-brands fa-square-x-twitter text-white fa-2x"></i></a>    
+                <a href="#x"><i class="fa-brands fa-square-x-twitter text-white fa-2x"></i></a>
             </div>
         </div>
     </section>
-
+    <!-- Section 2| Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark cyber-navbar" id="s02">
         <div class="container">
             <a href="#s03" class="navbar-brand font-sci d-flex align-items-center gap-2 fw-bold">
                 <i class="fa-solid fa-rocket fa-lg" style="color: var(--color-orange-main);"></i>
                 <i class="fa-solid fa-burger fa-lg" style="color: var(--color-yellow-bright);"></i>
-                <span class="d-none d-sm-inline" style="color: var(--color-orange-pale); font-size: 1.25rem;">MARS LAB</span>
+                <span class="d-none d-sm-inline" style="color: var(--color-orange-pale); font-size: 1.25rem;">MARS
+                    LAB</span>
             </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 font-sci">
                     <li class="nav-item">
@@ -143,7 +505,8 @@
                         <a href="#s08" class="nav-link"><i class="fa-solid fa-tags me-1"></i>限時優惠</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#s09" class="nav-link"><i class="fa-solid fa-star me-1" style="color: var(--color-yellow-bright)"></i>顧客評價</a>
+                        <a href="#s09" class="nav-link"><i class="fa-solid fa-star me-1"
+                                style="color: var(--color-yellow-bright)"></i>顧客評價</a>
                     </li>
                     <li class="nav-item">
                         <a href="#s10" class="nav-link"><i class="fa-solid fa-location-dot me-1"></i>門市資訊</a>
@@ -152,25 +515,312 @@
                         <a href="#s11" class="nav-link"><i class="fa-solid fa-envelope me-1"></i>聯絡我們</a>
                     </li>
                     <li class="nav-item">
-                        <a href="20260525-orderMeal.html" class="nav-link" style="color: var(--color-orange-main) !important; fw-bold"><i class="fa-solid fa-cart-shopping me-1"></i>立即點餐</a>
+                        <a href="20260525-orderMeal.html" class="nav-link"
+                            style="color: var(--color-orange-main) !important; fw-bold"><i
+                                class="fa-solid fa-cart-shopping me-1"></i>立即點餐</a>
                     </li>
                 </ul>
-                
+
                 <div class="d-flex gap-2">
-                    <button class="btn btn-cyber-outline btn-sm px-3"><i class="fa-solid fa-arrow-right-to-bracket me-1"></i>登入</button>
-                    <button class="btn btn-cyber-orange btn-sm px-3"><i class="fa-solid fa-user-plus me-1"></i>註冊</button> 
-                </div>            
-            </div>        
+                    <button class="btn btn-cyber-outline btn-sm px-3" data-bs-toggle="modal"
+                        data-bs-target="#loginModal"><i class="fa-solid fa-arrow-right-to-bracket me-1"></i>登入</button>
+                    <button class="btn btn-cyber-orange btn-sm px-3" data-bs-toggle="modal"
+                        data-bs-target="#registerModal"><i class="fa-solid fa-user-plus me-1"></i>註冊</button>
+                </div>
+            </div>
         </div>
     </nav>
+    <!-- registerModal -->
+    <div class="modal fade" id="registerModal" data-bs-backdrop="static" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-bg-warning px-4 py-3">
+                    <h1 class="modal-title fs-3 fw-bold font-sci" id="exampleModalLabel">
+                        <i class="fa-solid fa-user-gear me-2"></i>MARS-NET // 會員核心註冊
+                    </h1>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
 
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-6">
+                            <div class="fs-4 fw-bold mb-3" style="color: #FFDA62;">
+                                <i class="fa-solid fa-file-shield me-2"></i>會員通訊協議條款
+                            </div>
+
+                            <div class="cyber-terms-box">
+                                <p class="fw-bold">// 歡迎加入火星漢堡研究所（以下簡稱「本研究所」）星際通訊網路矩陣。</p>
+
+                                <p>【第一條：服務初始化與帳號安全】<br>
+                                    使用者於點擊「確認註冊」時，即視為同意接受本通訊協議之所有規範。您必須妥善保管您的帳號憑證與密碼金鑰。任何透過該帳號傳輸之數據包與點餐指令，皆視為您本人之有效行為。若發現帳號遭不當第三方攔截，請立即連通本所星際指揮部。
+                                </p>
+
+                                <p>【第二條：個人數據與量子隱私保護】<br>
+                                    本研究所承諾依照大氣層隱私安全法規保護您的個人資料（包含但不限於地球通訊編碼、DNA風味偏好、量子支付金鑰等）。我們僅將數據用於卡路里注入優化、蟲洞外送定位以及極限壓力測試之數據統計，絕不向第三方非法外洩您的碳水化合物偏好。
+                                </p>
+
+                                <p>【第三條：星際交易與量子跳轉支付】<br>
+                                    所有於本平台上進行之點餐行為，皆採用 256-bit
+                                    風味加密通訊。使用者可使用火星信用點、指定加密貨幣進行量子跳轉支付。一旦點餐控制台顯示「傳送矩陣初始化完成」，除不可抗力之星際風暴或重力塌陷外，訂單將不予取消或更改傳送座標。
+                                </p>
+
+                                <p>【④ 條：智慧財產權與反物質調味保護】<br>
+                                    本研究所網站內所有重組大麥克模組、高能勁辣雞腿堡配方、反重力可樂杯結構、以及「Cyber-Sunset」暖霓虹網頁視覺協議，均屬本研究所或相關權利人依法擁有之智慧財產權。非經書面授權，禁止任何形式之矩陣複製、解碼或反向工程。
+                                </p>
+
+                                <p>【第五條：協議修改與終端中斷】<br>
+                                    本研究所有權於任何時間，因應大氣層環境變化或核心升級，修訂本服務條款。修訂後之數據包將直接公告於首頁控制台，不另行單向通訊通知。若使用者違反本協議（如惡意灌入垃圾數據包、干擾點餐蟲洞運作），本所有權立即終止或凍結該帳號之傳送權限。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-6 ps-4 border-start border-secondary border-opacity-25">
+                            <div class="mb-3">
+                                <label for="regAccount" class="form-label"><i
+                                        class="fa-solid fa-terminal me-2"></i>星際登入帳號</label>
+                                <input type="text" id="regAccount" class="form-control" placeholder="請設定 6-20 位英數字編碼">
+                            </div>
+                            <div class="mb-3">
+                                <label for="regPassword" class="form-label"><i
+                                        class="fa-solid fa-key me-2"></i>核心存取密碼</label>
+                                <input type="password" id="regPassword" class="form-control" placeholder="請輸入高強度密碼">
+                            </div>
+                            <div class="mb-3">
+                                <label for="regPasswordConfirm" class="form-label"><i
+                                        class="fa-solid fa-shield-halved me-2"></i>確認存取密碼</label>
+                                <input type="password" id="regPasswordConfirm" class="form-control"
+                                    placeholder="請再次輸入密碼以驗證">
+                            </div>
+                            <div class="mb-3">
+                                <label for="regEmail" class="form-label"><i class="fa-solid fa-envelope me-2"></i>地球通訊編碼
+                                    (Email)</label>
+                                <input type="email" id="regEmail" class="form-control" placeholder="name@mars-net.com">
+                            </div>
+                            <div class="mb-3 pt-2">
+                                <input type="checkbox" id="regAgree" class="form-check-input me-2">
+                                <label for="regAgree"
+                                    class="form-check-label text-white-50 small">我已詳細閱讀並同意遵守上述所有星際通訊協議條款</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer px-4 py-3 bg-black bg-opacity-25">
+                    <button type="button" class="btn btn-outline-secondary font-sci px-4 text-white"
+                        data-bs-dismiss="modal" style="border-radius: 0px;">ABORT // 取消</button>
+                    <button type="button" class="btn btn-cyber-orange font-sci px-4" style="border-radius: 0px;">
+                        <i class="fa-solid fa-user-plus me-2"></i>REGISTER // 確認註冊
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- loginModal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-bg-primary px-4 py-3">
+                    <h1 class="modal-title fs-5 fw-bold font-sci" id="exampleModalLabel">
+                        <i class="fa-solid fa-right-to-bracket me-2"></i>MARS-NET // 會員核心登入
+                    </h1>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label for="loginAccount" class="form-label"><i class="fa-solid fa-terminal me-2"></i>星際通訊帳號 /
+                            Email</label>
+                        <input type="text" id="loginAccount" class="form-control" placeholder="請輸入註冊的帳號編碼">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label"><i class="fa-solid fa-key me-2"></i>存取密碼金鑰</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="請輸入密碼">
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center pt-1 mb-2">
+                        <div class="form-check">
+                            <input type="checkbox" id="rememberMe" class="form-check-input">
+                            <label for="rememberMe" class="form-check-label text-white-50 small">保持安全連線 (記住我)</label>
+                        </div>
+                        <div>
+                            <a href="#forgot" class="small text-decoration-none"
+                                style="color: #FFAE56; transition: 0.3s;" onmouseover="this.style.color='#FFDA62'"
+                                onmouseout="this.style.color='#FFAE56'">
+                                <i class="fa-solid fa-circle-question me-1"></i>忘記驗證金鑰？
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer px-4 py-3 bg-black bg-opacity-25">
+                    <button type="button" class="btn btn-outline-secondary text-white font-sci px-3"
+                        data-bs-dismiss="modal" style="border-radius: 0px;">
+                        ABORT // 關閉
+                    </button>
+                    <button type="button" class="btn btn-cyber-submit font-sci px-4">
+                        <i class="fa-solid fa-unlock-keyhole me-2"></i>ACCESS // 驗證登入
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Section 3| Hero Carousel -->
     <section class="container dummy-section text-center" id="s03">
-        <h2 style="color: var(--color-yellow-bright);">Section 3: Quantum Carousel</h2>
-        <div class="carousel-placeholder mt-4">
-            <p class="lead font-sci">// QUANTUM SLIDER ENERGY CORE ACTIVE //</p>
+        <h2 style="color: var(--color-yellow-bright);">火星研究室成果發表</h2>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active"
+                    style="background-image: url(images/burger-1.jpg); height: 90vh; background-position: center center; background-size: cover;">
+                    <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+                        <span class="cyber-badge-sm">// CORE ENERGY: OVERCLOCKED MODULE //</span>
+                        <h5>熱核重組大麥克</h5>
+                        <p class="d-block">運用奧林帕斯地底強子對撞機，完美解構純牛肉膳食纖維。注入 256-bit 獨家加密風味醬汁，這不只是漢堡，更是您機械核心的終極燃料源。</p>
+                    </div>
+                </div>
+                <div class="carousel-item"
+                    style="background-image: url(images/burger-2.jpg); height: 90vh; background-position: center center; background-size: cover;">
+                    <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+                        <span class="cyber-badge-sm">// VELOCITY QUANTUM: GOLDEN CRISP //</span>
+                        <h5>高頻震盪麥脆鷄</h5>
+                        <p class="d-block">外皮經由高頻分子震盪技術完美對齊，達到絕對黃金酥脆度；內層完美鎖水、鮮嫩多汁。在低重力環境下，釋放跨越星系的極致美味外殼。</p>
+                    </div>
+                </div>
+                <div class="carousel-item"
+                    style="background-image: url(images/burger-3.jpg); height: 90vh; background-position: center center; background-size: cover;">
+                    <div class="carousel-caption d-flex flex-column justify-content-center h-100">
+                        <span class="cyber-badge-sm">// TELEPORTATION: ZERO-G FLAVOR //</span>
+                        <h5>量子蟲洞光速傳送</h5>
+                        <p class="d-block">內嵌微型反重力矩陣包裝，保證在激烈的大氣層跳轉運送中液體絕不外灑。在地球控制台一鍵下單，熱騰騰的高能卡路里數據包將瞬間橫跨軌道！</p>
+                    </div>
+                </div>
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </section>
+    <!-- Section 4| counterup 數據 得獎數目 量化數據... -->
+    <section id="s04" class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-md-5" cyber-story-img
+                style="background-image: url(images/burger-4.jpg); background-position: center center; background-size: cover;">
+            </div>
+            <div class="col-md-7 py-5 px-lg-5 d-flex flex-column justify-content-center text-center">
+                <div class=" display-5 fw-bolder cyber-story-title">西元2025年<span
+                        style="color: var(--color-pink-neon); text-shadow: 0 0 10px rgba(245,120,139,0.5);">全台第一家</span>
+                </div>
+                <div class="display-5 fw-bolder mb-4" style="color: var(--color-yellow-bright);">臺中西屯本店</div>
 
+                <p class="fs-7 cyber-story-p">
+                    //
+                    數據包初始化完成。火星漢堡研究所在2025年於台中西屯核心地帶建立了全台首座「高能卡路里傳送矩陣」。我們打破了傳統美式餐飲的常規疆界，將無重力烹飪美學與地表頂級食材進行跨星系重組，立志為每一位碳基生命體提供超越大氣層限制的極致風味體驗。
+                </p>
+                <p class="fs-7 cyber-story-p">
+                    身為全台引領太空科幻浪潮的旗艦漢堡實驗室，西屯本店內建量子分子震盪烤爐與反重力低溫熟成艙，完美鎖住純牛肉餅中每一顆高能肉汁粒子。在這裡，進食不再只是單純的生物能量補充，而是一場橫跨光年、探索反物質調味的星際感官漫遊。
+                </p>
+                <p class="fs-7 cyber-story-p">
+                    我們以台中西屯為原點，將賽博夕陽的溫暖霓虹發散至全台各個前哨基地。不論您是需要高能熱核燃料的星際商旅，還是熱愛探索未知風味的軌道先鋒，火星漢堡研究所都將隨時打開點餐蟲洞，將最剛出爐的太空美味精準投遞。
+                </p>
+                <div class="container">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <div class="cyber-counter-card">
+                                <div class="h4 cyber-counter-label"><i class="fa-solid fa-chart-line me-1"></i>年銷售量
+                                </div>
+                                <div class="h3 fw-bold cyber-counter-number01">100000 <span
+                                        class="h4 cyber-counter-unit">顆+</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="cyber-counter-card">
+                                <div class="h4 cyber-counter-label"><i class="fa-solde fa-satellite-dish me-1"></i>分店數量
+                                </div>
+                                <div class="h3 fw-bold cyber-counter-number02">100 <span
+                                        class="h4 cyber-counter-unit">家</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="cyber-counter-card">
+                                <div class="h4 cyber-counter-label"><i class="fa-solid fa-coins me-1"></i>年營業額</div>
+                                <div class="h3 fw-bold cyber-counter-number03">100000 <span
+                                        class="h4 cyber-counter-unit">萬</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="cyber-counter-card">
+                                <div class="h4 cyber-counter-label"><i class="fa-solid fa-network-wired me-1"></i>加盟店數
+                                </div>
+                                <div class="h3 fw-bold cyber-counter-number04">10 <span
+                                        class="h4 cyber-counter-unit">家</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section 5| 時間軸排版 點餐順序 -->
+<section id="s05" style="background-image: url(images/burger-5.jpg); height: 100vh; background-position: center center; background-size: cover; background-attachment: fixed;">
+    <div class="container">
+        <div class="display-3 text-black fw-bolder py-5 text-center">點餐順序</div>
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6"></div>
+        </div>
+    </div>
+
+</section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script>
+        const counterUp = window.counterUp.default
+
+        const callback = entries => {
+            entries.forEach(entry => {
+                const el = entry.target
+                if (entry.isIntersecting && !el.classList.contains('is-visible')) {
+                    counterUp(el, {
+                        duration: 1000,
+                        delay: 16,
+                    })
+                    el.classList.add('is-visible')
+                }
+            })
+        }
+
+        const IO = new IntersectionObserver(callback, { threshold: 1 })
+
+        const el01 = document.querySelector('.cyber-counter-number01')
+        IO.observe(el01)
+        const el02 = document.querySelector('.cyber-counter-number02')
+        IO.observe(el02)
+        const el03 = document.querySelector('.cyber-counter-number03')
+        IO.observe(el03)
+        const el04 = document.querySelector('.cyber-counter-number04')
+        IO.observe(el04)
+    </script>
 </body>
+
 </html>
